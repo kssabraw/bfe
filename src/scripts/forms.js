@@ -32,6 +32,10 @@ if (contact) {
   contact.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (contact.querySelector('[name="website"]').value) return; // honeypot
+    if (!contact.checkValidity()) {
+      contact.reportValidity();
+      return;
+    }
 
     const btn = contact.querySelector('button[type="submit"]');
     const msg = document.getElementById('contact-message');

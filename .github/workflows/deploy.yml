@@ -29,7 +29,7 @@ jobs:
           # GitHub Pages preview serves under /bfe — Cloudflare builds
           # without these and serves at the domain root.
           SITE_URL: https://kssabraw.github.io
-          BASE_PATH: /bfe
+          BASE_PATH: bfe
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

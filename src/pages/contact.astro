@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
       </div>
-      <form id="contact-form" class="card contact-card" data-thanks-url={`${base}/thank-you/`} novalidate>
+      <form id="contact-form" class="card contact-card" data-thanks-url={`${base}/thank-you/`}>
         <div class="form-field">
           <label for="cf-name">Name</label>
           <input type="text" id="cf-name" name="name" placeholder="Your name" required />

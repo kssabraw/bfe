@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
 export async function getStaticPaths() {
@@ -10,6 +11,9 @@ export async function getStaticPaths() {
   }));
 }
 
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
 const { post } = Astro.props;
 const { Content } = await render(post);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -24,6 +28,7 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
   title={`${post.data.title} – Be Found Everywhere`}
   description={post.data.description}
   ogImage={post.data.heroImage}
+  ogType="article"
 >
   <article class="section">
     <div class="container post-container">

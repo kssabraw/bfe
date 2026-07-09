@@ -9,7 +9,7 @@ export async function GET(context) {
     title: 'Be Found Everywhere – Blog',
     description:
       'AEO and SEO tips to help your business get found in search engines and AI assistants.',
-    site: context.site,
+    site: new URL(base || '/', context.site).href,
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,

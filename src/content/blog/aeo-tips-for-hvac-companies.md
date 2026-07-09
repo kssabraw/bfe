@@ -1,6 +1,6 @@
 ---
 title: "AEO Tips for HVAC Companies"
-description: "AEO Tips for HVAC Companies: Optimizing for AI-Powered Search"
+description: "The digital landscape for HVAC companies has fundamentally shifted."
 pubDate: 2026-03-18
 ---
 

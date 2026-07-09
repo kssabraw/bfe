@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import { PAGE_SIZE, sortPosts } from '../../lib/blog';
+
+const posts = sortPosts(await getCollection('blog'));
+const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+const pagePosts = posts.slice(0, PAGE_SIZE);
+---
+
+<Base
+  title="Blog – Be Found Everywhere"
+  description="AEO and SEO tips to help your business get found in search engines and AI assistants."
+>
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Blog</span>
+        <h1>AEO & SEO insights</h1>
+        <p>Practical tips to help your business get found — in search engines and in AI answers.</p>
+      </div>
+      <div class="grid grid--3">
+        {pagePosts.map((post) => (
+          <PostCard slug={post.id} {...post.data} />
+        ))}
+      </div>
+      <Pagination current={1} total={totalPages} />
+    </div>
+  </section>
+</Base>

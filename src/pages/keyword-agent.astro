@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import UpcomingApps from '../components/UpcomingApps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { faqGeneral, links } from '../lib/data';
+---
+
+<Base
+  title="Keyword Agent – Be Found Everywhere"
+  description="Keyword research used to take hours. Now it takes seconds. Describe your business or paste a URL — AI builds your complete keyword campaign."
+>
+  <Hero
+    eyebrow="The World's First Keyword AI Agent"
+    title="Keyword research used to take hours. Now it takes seconds."
+    text="Keyword Agent is the fastest way to discover what your customers are searching for, and exactly which keywords are worth your time. Just describe your business or paste a URL. AI handles the rest."
+    ctaLabel="Start Your 7 Day Trial for Only $1"
+    ctaHref={links.keywordsTrial}
+    videoId="oOGLtju1c8M"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Keyword research, reinvented</span>
+        <h2>The first AI Agent built to do your keyword research for you.</h2>
+        <p>
+          Keyword research is one of the highest-leverage things you can do for your business and one
+          of the most time-consuming. Between finding the right seed terms, analyzing competition,
+          estimating revenue potential, and filtering out junk keywords, it can eat an entire workday
+          before you've written a single word of content.
+        </p>
+        <p>
+          Keyword Agent is the AI-powered research assistant that does the heavy lifting for you.
+          Tell it your business type and service area, and it returns a full, data-rich keyword plan
+          in minutes, covering everything your SEO strategy needs to prioritize the right
+          opportunities and start driving real traffic.
+        </p>
+        <a class="btn btn--primary" href={links.bundleTrial} rel="noopener">Start Your 7 Day Trial for Only $1</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Key Features of Keyword Agent</span>
+        <h2>AI Powered Keyword Research That Makes a Difference</h2>
+      </div>
+      <FeatureRow
+        title="Your keyword campaign, built for you."
+        desc="Keyword Agent does not just find keywords. It builds you a campaign. By analyzing dozens of data points across every keyword it discovers, it filters out the noise and shows you exactly which terms will drive traffic, leads, and revenue for your business. All you have to do is tell it what you do."
+        image="/images/Screenshot-2026-02-27-at-7.33.11-PM.png"
+      />
+      <FeatureRow
+        title="Know which keywords actually convert."
+        desc="Traffic that does not convert is just noise. Keyword Agent helps you cut through it with a conversion potential score on every keyword, built from over one million data points. You will always know which terms attract buyers and which ones just attract clicks."
+        image="/images/Screenshot-2026-03-16-at-11.48.49-PM-scaled.png"
+        flip
+      />
+      <FeatureRow
+        title="Roll Over Credits"
+        desc="Never deal with wasted credits. All credits for our apps have a 3 month subscription pool to protect the usage you paid for."
+        image="/images/credit-balance.png"
+      />
+      <FeatureRow
+        title="Get found locally. In search and in AI."
+        desc="Local mode builds you a complete picture of the keywords your community is searching for. Target those terms and you are not just ranking on Google. You are the business that gets recommended when someone asks an AI engine who to call, hire, or visit in your area. That is what it means to be found everywhere."
+        image="/images/Screenshot-2026-03-17-at-12.07.50-AM.png"
+        flip
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">The easiest decision you will make today</span>
+        <h2>If keyword research takes you more than an hour a month, Keyword Agent pays for itself.</h2>
+        <p>
+          Keyword Agent costs less than most people charge for a single hour of their time. But
+          instead of spending hours manually researching, sorting, and second-guessing keywords, you
+          get a complete, agency-quality keyword campaign built in minutes. Keep your time. Keep
+          your budget. Get better results.
+        </p>
+        <a class="btn btn--primary" href={links.bundleTrial} rel="noopener">Start Your 7 Day Trial for Only $1</a>
+      </div>
+      <FeatureRow
+        title="Campaigns at a glance"
+        desc="Everything your SEO strategy needs, organized and prioritized."
+        image="/images/Screenshot-2026-04-21-at-11.35.04-AM.png"
+      />
+    </div>
+  </section>
+
+  <UpcomingApps />
+  <Testimonials />
+  <PricingSection />
+  <FaqSection items={faqGeneral} />
+</Base>

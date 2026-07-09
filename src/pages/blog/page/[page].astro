@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import PostCard from '../../../components/PostCard.astro';
+import Pagination from '../../../components/Pagination.astro';
+import { PAGE_SIZE, sortPosts } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = sortPosts(await getCollection('blog'));
+  const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+  // page 1 lives at /blog/ — generate only pages 2..N here
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => {
+    const page = i + 2;
+    return {
+      params: { page: String(page) },
+      props: {
+        posts: posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+        page,
+        totalPages,
+      },
+    };
+  });
+}
+
+const { posts, page, totalPages } = Astro.props;
+---
+
+<Base
+  title={`Blog – Page ${page} – Be Found Everywhere`}
+  description="AEO and SEO tips to help your business get found in search engines and AI assistants."
+>
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Blog</span>
+        <h1>AEO & SEO insights</h1>
+        <p>Page {page} of {totalPages}</p>
+      </div>
+      <div class="grid grid--3">
+        {posts.map((post) => (
+          <PostCard slug={post.id} {...post.data} />
+        ))}
+      </div>
+      <Pagination current={page} total={totalPages} />
+    </div>
+  </section>
+</Base>

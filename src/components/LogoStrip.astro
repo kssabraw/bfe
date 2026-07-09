@@ -1,0 +1,39 @@
+---
+import { logoStrip } from '../lib/data';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="logo-strip-wrap">
+  <p class="logo-strip-label">Used by global powerhouses like</p>
+  <div class="logo-strip">
+    {logoStrip.map((src) => <img src={`${base}${src}`} alt="Customer logo" loading="lazy" />)}
+  </div>
+</div>
+
+<style>
+  .logo-strip-wrap {
+    text-align: center;
+    margin-top: 56px;
+  }
+  .logo-strip-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 20px;
+  }
+  .logo-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    opacity: 0.65;
+  }
+  .logo-strip img {
+    height: 28px;
+    width: auto;
+    filter: grayscale(1);
+  }
+</style>

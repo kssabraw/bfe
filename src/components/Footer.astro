@@ -1,0 +1,115 @@
+---
+import { links, contact } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <h2>Get Your Business Found Everywhere</h2>
+      <a class="btn btn--primary" href={links.bundleTrial} rel="noopener">Try Both for 7 Days for $1</a>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src={`${base}/images/BFE-Brand-Styles-white.png`} alt="Be Found Everywhere" class="footer-logo" />
+        <form data-newsletter novalidate>
+          <div class="newsletter-row">
+            <input type="email" name="email" placeholder="Enter Your Email" required aria-label="Email address" />
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+          </div>
+          <div class="form-message" role="status"></div>
+        </form>
+      </div>
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick links</h4>
+        <a href={`${base}/`}>Home</a>
+        <a href={`${base}/terms-of-use/`}>Terms of Use</a>
+        <a href={`${base}/privacy-policy/`}>Privacy Policy</a>
+      </nav>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href={`tel:+13027042664`}>P: {contact.phone}</a>
+        <a href={`mailto:${contact.email}`}>E: {contact.email}</a>
+      </div>
+      <nav class="footer-col" aria-label="Follow us">
+        <h4>Follow Us</h4>
+        <a href={links.facebook} rel="noopener">Facebook</a>
+        <a href={links.youtube} rel="noopener">Youtube</a>
+        <a href={links.instagram} rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © {year} All rights reserved. Be Found Everywhere Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: linear-gradient(160deg, var(--c-navy) 0%, var(--c-deep-purple) 100%);
+    color: var(--c-lavender);
+    padding: 64px 0 28px;
+  }
+  .footer-cta {
+    text-align: center;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 48px;
+  }
+  .footer-cta h2 {
+    color: var(--c-white);
+    margin-bottom: 22px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr 1fr;
+    gap: 40px;
+  }
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    margin-bottom: 20px;
+  }
+  .footer-col h4 {
+    color: var(--c-white);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--c-lavender);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover { color: var(--c-white); }
+  .newsletter-row {
+    display: flex;
+    gap: 10px;
+  }
+  .newsletter-row input {
+    flex: 1;
+    padding: 11px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--c-white);
+    font-size: 14px;
+  }
+  .newsletter-row input::placeholder { color: var(--c-muted); }
+  .newsletter-row input:focus {
+    outline: none;
+    border-color: var(--c-primary);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-top: 48px;
+    padding-top: 24px;
+    font-size: 13px;
+    color: var(--c-muted);
+  }
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>

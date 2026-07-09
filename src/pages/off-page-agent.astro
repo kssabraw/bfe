@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { faqOffPage } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base
+  title="Off-Page Agent – Be Found Everywhere"
+  description="Backlinks used to take months. Now they take minutes. Paste your URL, pick your keywords — AI builds, links, and indexes a real backlink network."
+>
+  <Hero
+    eyebrow="The World's First Off-Page SEO AI Agent"
+    title="Backlinks used to take months. Now they take minutes."
+    text="Off-Page Agent is the fastest way to build a real backlink network for your money site. Just paste your URL and pick your keywords. AI builds, links, and indexes the rest."
+    ctaLabel="Start Your 7 Day Trial for Only $1"
+    ctaHref={`${base}/pricing/`}
+    videoId="e6sostEhq68"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Off-page SEO, reinvented</span>
+        <h2>The first AI Agent built to do your link building for you.</h2>
+        <p>
+          Off-page SEO is one of the highest-leverage things you can do for your rankings — and one
+          of the most expensive, slowest, and riskiest to outsource. Between sourcing sites, writing
+          content, building accounts, getting things indexed, and keeping anchor text safe, link
+          building has historically meant either a five-figure agency retainer or hours of manual
+          grunt work every week.
+        </p>
+        <p>
+          Off-Page Agent is the AI-powered link builder that does the heavy lifting for you. Tell it
+          your money site, pick a few target keywords, and choose how deep you want to go. The agent
+          builds you a real tiered network of Google Sites linking back to your business — branded,
+          safe, and live in minutes. No outreach. No spreadsheets. No agency invoice.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Key Features of Off-Page Agent</span>
+        <h2>AI Powered Backlinks That Actually Move Rankings</h2>
+        <p>
+          Stop renting links and start building an asset. Off-Page Agent gives you a real backlink
+          network you control, built on a platform Google already trusts.
+        </p>
+      </div>
+      <FeatureRow
+        title="Built on Google Sites, trusted by Google."
+        desc="Every backlink the agent builds lives on Google's own infrastructure. That means real domain trust, real indexing, and real ranking power — not throwaway PBN garbage that gets deindexed in a month. You get a network of authoritative pages pointing back to your business, on a platform Google itself owns."
+        image="/images/Screenshot-2026-05-19-at-10.47.05-AM-scaled.png"
+      />
+      <FeatureRow
+        title="Tiered link power, picked by you."
+        desc="Choose how aggressively you want to rank. Tier 1 sends 4 backlinks straight at your money site. Tier 4 builds a 160-site network with link juice flowing up through every layer. Whether you need a quick boost or a full-scale ranking campaign, you control the depth and the spend."
+        image="/images/Screenshot-2026-05-19-at-11.15.36-AM.png"
+        flip
+      />
+      <FeatureRow
+        title="Keywords that match your business, suggested for you."
+        desc="Drop in a seed keyword and the agent generates a full list of related terms your customers are actually searching. Pick the three that matter most or add your own. Each one becomes a fully built backlink site with three supporting subpages — all targeting the keywords that drive traffic in your niche."
+        image="/images/Screenshot-2026-05-19-at-11.00.49-AM-e1779214629770.png"
+      />
+      <FeatureRow
+        title="Roll Over Credits"
+        desc="Never deal with wasted credits. All credits for our apps have a 3 month subscription pool to protect the usage you paid for."
+        image="/images/credit-balance.png"
+        flip
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">The easiest decision you will make today</span>
+        <h2>If you have ever paid an agency for backlinks, Off-Page Agent pays for itself in a week.</h2>
+        <p>
+          Link building agencies charge $200–$500 per backlink and weeks of turnaround. Off-Page
+          Agent builds a real, branded, tiered backlink network for a fraction of that — fully
+          automated, live in minutes, and built on a platform Google trusts. Keep your time. Keep
+          your budget. Keep your rankings.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+    </div>
+  </section>
+
+  <PricingSection />
+  <FaqSection items={faqOffPage} />
+</Base>

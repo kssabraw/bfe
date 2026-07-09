@@ -1,0 +1,103 @@
+---
+import { links } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const nav = [
+  { label: 'Keyword Agent', href: `${base}/keyword-agent/` },
+  { label: 'LABs', href: `${base}/labs/` },
+  { label: 'Off-Page Agent', href: `${base}/off-page-agent/` },
+  { label: 'Pricing', href: `${base}/pricing/` },
+  { label: 'Blog', href: `${base}/blog/` },
+  { label: 'Contact Us', href: `${base}/contact/` },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={`${base}/`}>
+      <img src={`${base}/images/BFE-Logo-TRN-BG-3.png`} alt="Be Found Everywhere" />
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a class="btn btn--primary nav-cta" href={links.signIn} rel="noopener">Sign In</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 72px;
+  }
+  .brand img {
+    height: 42px;
+    width: auto;
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .site-nav a:not(.btn) {
+    color: var(--c-navy);
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .site-nav a:not(.btn):hover { color: var(--c-primary); text-decoration: none; }
+  .nav-cta { padding: 10px 20px; }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--c-navy);
+    border-radius: 2px;
+  }
+  @media (max-width: 900px) {
+    .nav-toggle { display: flex; }
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--c-white);
+      border-bottom: 1px solid var(--c-border);
+      padding: 16px 24px 24px;
+      gap: 16px;
+    }
+    .site-nav.open { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

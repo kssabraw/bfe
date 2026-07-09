@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PricingSection from '../components/PricingSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { faqGeneral } from '../lib/data';
+---
+
+<Base
+  title="Pricing – Be Found Everywhere"
+  description="One price. Every app. More credits when you need them. Every plan unlocks every app on the BFE platform — lock in your price today for life."
+>
+  <PricingSection />
+  <Testimonials />
+  <FaqSection items={faqGeneral} />
+</Base>

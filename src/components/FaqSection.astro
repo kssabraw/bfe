@@ -1,0 +1,64 @@
+---
+import { links } from '../lib/data';
+
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+
+<section class="section section--light">
+  <div class="container faq-container">
+    <div class="section-intro">
+      <span class="eyebrow">FAQ</span>
+      <h2>Your Questions, Answered</h2>
+      <p>Still got questions? Feel free to reach out to our incredible support team, 7 days a week.</p>
+      <a class="btn btn--ghost" href={links.messenger} rel="noopener">Ask Us Questions On Facebook</a>
+    </div>
+    <div class="faq-list">
+      {items.map((item) => (
+        <details class="faq-item">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-container { max-width: 820px; }
+  .faq-item {
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 0 22px;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--c-navy);
+    padding: 18px 0;
+    list-style: none;
+    position: relative;
+    padding-right: 32px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: var(--c-primary);
+    font-weight: 400;
+  }
+  .faq-item[open] summary::after { content: '–'; }
+  .faq-item p {
+    padding-bottom: 18px;
+    margin: 0;
+    font-size: 15px;
+  }
+</style>

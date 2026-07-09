@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Counters from '../components/Counters.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import UpcomingApps from '../components/UpcomingApps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { faqGeneral } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base
+  title="Be Found Everywhere"
+  description="Control search rankings and AI visibility from one platform. AI-powered tools that help businesses be found everywhere — on search engines and LLMs."
+>
+  <Hero
+    eyebrow="Be Found Everywhere"
+    title="Control Search Rankings and AI Visibility From One Platform"
+    text="Lock in your pricing for Keyword Agent and LABs LLM tracker. Signing up now will lock in your price for life. With more tools in the pipeline the value only gets better with time."
+    ctaLabel="Start Your 7 Day Trial for Only $1"
+    ctaHref={`${base}/pricing/`}
+    image="/images/labs_analytics_light.png"
+    banner="Lock in $50/month before pricing increases"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">About us</span>
+        <h2>We build AI-powered tools that help businesses be found everywhere — on search engines and LLMs</h2>
+        <p>
+          Search is splitting in two. Your customers are Googling you and asking AI about you. We
+          built two apps to make sure you show up in both places — and stay ahead of the businesses
+          that don't.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+      <Counters />
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Products</span>
+        <h2>AI Powered Apps That Make a Difference</h2>
+        <p>
+          Find the keywords that drive real revenue and get your business cited by ChatGPT, Gemini,
+          Perplexity, and more. Two apps. One goal: making sure customers find you everywhere that
+          matters.
+        </p>
+      </div>
+      <FeatureRow
+        title="Simple Analytics"
+        desc="Track your citations on all 6 LLMs."
+        image="/images/labs_analytics_graph.jpg"
+      />
+      <FeatureRow
+        title="Find Keywords that Drive Revenue"
+        desc="With our Keyword Agent, you can find keywords that will drive leads and revenue in seconds."
+        image="/images/Screenshot-2026-02-27-at-5.16.39-PM.png"
+        flip
+      />
+      <FeatureRow
+        title="Roll Over Credits"
+        desc="Never deal with wasted credits. All credits for our apps have a 3 month subscription pool to protect the usage you paid for."
+        image="/images/credit-balance.png"
+      />
+      <FeatureRow
+        title="Track Unlimited Businesses"
+        desc="That's right — track any business you want at no extra cost."
+        image="/images/your-businesses.png"
+        flip
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Making LLM Discovery Easy</span>
+        <h2>Not Showing Up in AI? We'll Tell You Exactly Why — And How to Fix It</h2>
+        <p>
+          Choose any keyword and any LLM. One click tells you why you're not being cited and exactly
+          what to change to start showing up.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+      <FeatureRow
+        title="One-click LLM diagnosis"
+        desc="See exactly why you're not being cited — and what to change."
+        image="/images/Screenshot-2026-02-27-at-7.23.13-PM.png"
+      />
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Full Local Keyword Campaigns</span>
+        <h2>Your Entire Keyword Campaign, Built in Seconds</h2>
+        <p>
+          Tell the AI what your business does and where you're located. It builds a complete keyword
+          campaign — targeting high-intent buyers on search engines and middle-funnel keywords that
+          get you cited by LLMs like ChatGPT and Gemini.
+        </p>
+      </div>
+      <FeatureRow
+        title="Full Keyword Campaigns, Created in Seconds"
+        desc="Just describe your business & location. AI-generated campaigns in seconds — targeting both search engines & LLM citations."
+        image="/images/Screenshot-2026-02-27-at-7.33.11-PM.png"
+        flip
+      />
+      <div class="section-cta">
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+    </div>
+  </section>
+
+  <UpcomingApps />
+  <Testimonials />
+  <PricingSection />
+  <FaqSection items={faqGeneral} />
+</Base>
+
+<style>
+  .section-cta {
+    text-align: center;
+    margin-top: 40px;
+  }
+</style>

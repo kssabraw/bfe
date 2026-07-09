@@ -1,0 +1,59 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  heading: string;
+  updated: string;
+}
+const { title, heading, updated } = Astro.props;
+---
+
+<Base title={title} description={`${heading} for Be Found Everywhere Inc.`}>
+  <section class="section">
+    <div class="container legal-container">
+      <h1>{heading}</h1>
+      <p class="legal-updated">Last Updated: {updated}</p>
+      <div class="legal-body">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal-container { max-width: 780px; }
+  .legal-updated {
+    color: var(--c-muted);
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+  .legal-body :global(h2) {
+    font-size: 1.35rem;
+    margin-top: 2em;
+  }
+  .legal-body :global(h3) {
+    font-size: 1.05rem;
+    margin-top: 1.5em;
+  }
+  .legal-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1em 0 1.5em;
+  }
+  .legal-body :global(th),
+  .legal-body :global(td) {
+    border: 1px solid var(--c-border);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .legal-body :global(th) {
+    background: var(--c-bg-light);
+    color: var(--c-navy);
+  }
+  .legal-body :global(li) {
+    margin-bottom: 0.3em;
+  }
+</style>

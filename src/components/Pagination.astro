@@ -1,0 +1,70 @@
+---
+interface Props {
+  current: number;
+  total: number;
+}
+const { current, total } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pageUrl = (n: number) => (n === 1 ? `${base}/blog/` : `${base}/blog/page/${n}/`);
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+
+{
+  total > 1 && (
+    <nav class="pagination" aria-label="Blog pages">
+      {current > 1 && (
+        <a href={pageUrl(current - 1)} class="page-link" rel="prev">
+          ← Prev
+        </a>
+      )}
+      {pages.map((n) =>
+        n === current ? (
+          <span class="page-link page-link--current" aria-current="page">
+            {n}
+          </span>
+        ) : (
+          <a href={pageUrl(n)} class="page-link">
+            {n}
+          </a>
+        )
+      )}
+      {current < total && (
+        <a href={pageUrl(current + 1)} class="page-link" rel="next">
+          Next →
+        </a>
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .page-link {
+    display: inline-block;
+    min-width: 40px;
+    padding: 9px 14px;
+    text-align: center;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    color: var(--c-navy);
+    font-weight: 600;
+    font-size: 14px;
+    background: var(--c-white);
+  }
+  .page-link:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+    text-decoration: none;
+  }
+  .page-link--current {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: var(--c-white);
+  }
+</style>

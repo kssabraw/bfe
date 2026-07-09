@@ -1,0 +1,42 @@
+---
+import { upcomingApps } from '../lib/data';
+---
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-intro">
+      <span class="eyebrow">Upcoming Apps</span>
+      <h2>Subscribe now and get every future app and agent the moment it drops.</h2>
+      <p>
+        Your subscription grows with us. Lock in today's price and get every future app and feature
+        the moment it drops — no upgrade required.
+      </p>
+    </div>
+    <div class="grid grid--3">
+      {upcomingApps.map((app) => (
+        <div class="upcoming-card">
+          <h3>{app.title}</h3>
+          {app.desc && <p>{app.desc}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .upcoming-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .upcoming-card h3 {
+    color: var(--c-white);
+    margin-bottom: 10px;
+  }
+  .upcoming-card p {
+    color: var(--c-lavender);
+    font-size: 14px;
+    margin: 0;
+  }
+</style>

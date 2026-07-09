@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Counters from '../components/Counters.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import UpcomingApps from '../components/UpcomingApps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PricingSection from '../components/PricingSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import { faqLabs } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base
+  title="LABs – Be Found Everywhere"
+  description="LABs tracks your brand across all 6 major LLMs — ChatGPT, Gemini, Claude, Perplexity, Google AI Mode, and AI Overviews — and tells you exactly why you're not showing up."
+>
+  <Hero
+    eyebrow="LLM Visibility Tracker"
+    title="Find out if AI is recommending you — or if you're losing business."
+    text="LABs tracks your brand across all 6 major LLMs — ChatGPT, Gemini, Claude, Perplexity, Google AI Mode, and AI Overviews. When you don't show up, it tells you exactly why, and exactly what to fix."
+    ctaLabel="Start Your 7 Day Trial for Only $1"
+    ctaHref={`${base}/pricing/`}
+    videoId="zb9exPrkut8"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">LLM visibility, finally measurable</span>
+        <h2>The first LLM tracker that doesn't just tell you you're invisible. It tells you why.</h2>
+        <p>
+          Search is splitting in two. Half your customers are Googling you. The other half are asking
+          ChatGPT, Gemini, and Perplexity who they should hire. If AI engines aren't recommending
+          you, you're losing leads you'll never see — and you'll never know it happened.
+        </p>
+        <p>
+          LABs runs anonymous, unbiased scans across all 6 major LLMs and gives you a real-time
+          visibility scorecard for every keyword you care about. When you're not being cited, our
+          one-click diagnosis tells you why — who's ranking instead, what they're doing right, and
+          the exact steps to take to start showing up.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+      <Counters />
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Key Features of LABs</span>
+        <h2>Track every LLM. Diagnose every gap. Fix what's costing you leads.</h2>
+        <p>
+          Most LLM trackers stop at "you're not showing up." LABs goes further — telling you why
+          you're invisible, what your competitors are doing right, and exactly what to change to
+          start getting cited.
+        </p>
+      </div>
+      <FeatureRow
+        title="See what the world actually sees — not your personalized results"
+        desc="When you check ChatGPT about your own business, you're getting a personalized answer shaped by your history and your account. You might be showing up when nobody else sees you. LABs runs every scan anonymously so you see the real answer the rest of the world is getting."
+        image="/images/Screenshot-2026-05-11-at-11.20.19-PM.png"
+      />
+      <FeatureRow
+        title="One click tells you exactly why you're not being cited"
+        desc="For one credit, LABs tells you exactly why you're not being cited for a keyword — who's ranking instead, why they rank, and a step-by-step action plan to start showing up."
+        image="/images/Screenshot-2026-05-11-at-11.21.28-PM.png"
+        flip
+      />
+      <FeatureRow
+        title="Track Unlimited Businesses"
+        desc="Pay for scans, not seats. Add as many businesses as you want — your own, your clients', your competitors' — and only burn credits when you actually run a scan. Agencies love it. So do multi-location brands."
+        image="/images/your-businesses.png"
+      />
+      <FeatureRow
+        title="Schedule scans. Watch your progress"
+        desc="Set LABs to scan on any cadence you want and watch your visibility climb over time on the Analytics dashboard — a complete picture of how you show up across every engine that matters."
+        image="/images/Screenshot-2026-05-11-at-11.24.01-PM.png"
+        flip
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">The easiest decision you'll make today</span>
+        <h2>You can't fix what you can't see.</h2>
+        <p>
+          Every day you're not tracking your LLM visibility is a day customers are asking AI who to
+          hire — and getting an answer that isn't you. LABs gives you the data, the diagnosis, and
+          the action plan in one tool. And every plan includes every other app on the BFE platform
+          on the same subscription.
+        </p>
+        <a class="btn btn--primary" href={`${base}/pricing/`}>Start Your 7 Day Trial for Only $1</a>
+      </div>
+    </div>
+  </section>
+
+  <UpcomingApps />
+  <Testimonials />
+  <PricingSection />
+  <FaqSection items={faqLabs} />
+</Base>

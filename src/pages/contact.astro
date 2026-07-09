@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../lib/data';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base
+  title="Contact Us – Be Found Everywhere"
+  description="Get in touch with the Be Found Everywhere team."
+>
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-intro">
+        <span class="eyebrow">Contact Us</span>
+        <h1>Let's Get In Touch</h1>
+        <p>Have a question, idea, or need help getting started? Our team is here to support you. Drop us a message — we'd love to hear from you!</p>
+      </div>
+      <div class="grid grid--2 contact-channels">
+        <div class="card contact-channel">
+          <h3>Phone</h3>
+          <a href="tel:+13027042664">{contact.phone}</a>
+        </div>
+        <div class="card contact-channel">
+          <h3>Email</h3>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </div>
+      </div>
+      <form id="contact-form" class="card contact-card" data-thanks-url={`${base}/thank-you/`} novalidate>
+        <div class="form-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-field">
+          <label for="cf-company">Company <span class="optional">(optional)</span></label>
+          <input type="text" id="cf-company" name="company" placeholder="Company name" />
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+        </div>
+        <div class="honeypot" aria-hidden="true">
+          <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <button type="submit" class="btn btn--primary btn-block">Send Message</button>
+        <div id="contact-message" class="form-message" role="status"></div>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-card {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .contact-channels {
+    max-width: 640px;
+    margin: 0 auto 28px;
+  }
+  .contact-channel {
+    text-align: center;
+    padding: 24px;
+  }
+  .contact-channel h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .optional {
+    font-weight: 400;
+    color: var(--c-muted);
+  }
+  .btn-block {
+    width: 100%;
+  }
+</style>

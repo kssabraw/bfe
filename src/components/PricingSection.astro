@@ -1,0 +1,107 @@
+---
+import { pricingTiers } from '../lib/data';
+
+interface Props {
+  heading?: boolean;
+}
+const { heading = true } = Astro.props;
+---
+
+<section class="section" id="pricing">
+  <div class="container">
+    {heading && (
+      <div class="section-intro">
+        <span class="eyebrow">Pricing</span>
+        <h2>One Price. Every App. More Credits When You Need Them.</h2>
+        <p>
+          Every plan unlocks every app on the BFE platform — LABs, Keyword Agent, and every future
+          agent we ship. You just pay for the usage. Lock in your price today for life.
+        </p>
+      </div>
+    )}
+    <div class="grid grid--3 pricing-grid">
+      {pricingTiers.map((tier) => (
+        <div class={`card tier ${tier.featured ? 'tier--featured' : ''}`}>
+          <h3>{tier.name}</h3>
+          <p class="tier-price">{tier.price}<span> /Month</span></p>
+          <p class="tier-desc">{tier.description}</p>
+          <p class="tier-highlight">{tier.highlight}</p>
+          <a class={`btn ${tier.featured ? 'btn--primary' : 'btn--ghost'}`} href={tier.href} rel="noopener">
+            {tier.cta}
+          </a>
+          <p class="tier-including">Including:</p>
+          <ul>
+            {tier.features.map((f) => <li>{f}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-grid {
+    align-items: stretch;
+  }
+  .tier {
+    display: flex;
+    flex-direction: column;
+  }
+  .tier--featured {
+    border-color: var(--c-primary);
+    box-shadow: 0 12px 40px rgba(149, 84, 255, 0.18);
+  }
+  .tier h3 {
+    color: var(--c-primary);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tier-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--c-navy);
+    margin: 4px 0 8px;
+  }
+  .tier-price span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--c-muted);
+  }
+  .tier-desc {
+    font-size: 14px;
+    min-height: 3.4em;
+  }
+  .tier-highlight {
+    font-weight: 700;
+    color: var(--c-navy);
+    font-size: 14px;
+  }
+  .tier .btn {
+    margin: 10px 0 22px;
+    text-align: center;
+  }
+  .tier-including {
+    font-weight: 700;
+    color: var(--c-navy);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .tier ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tier li {
+    padding: 6px 0 6px 26px;
+    font-size: 14px;
+    position: relative;
+  }
+  .tier li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--c-primary);
+    font-weight: 700;
+  }
+</style>

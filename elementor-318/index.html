@@ -205,7 +205,32 @@ fbq('track', 'PageView');
 				
 			<div class="mf-widget-container">
 				
-		<div id="metform-wrap-59e008de-760" class="mf-form-wrapper" data-form-id="760" data-action="/wp-json/metform/v1/entries/insert/760" data-wp-nonce="19af0d2de2" data-form-nonce="c99c6aef7b" data-quiz-summery="false" data-save-progress="false" data-form-type="contact_form" data-stop-vertical-effect=""></div>
+		<style>
+.bfe-contact-card{background:#fff;border:1px solid #ece6f7;border-radius:16px;padding:36px;max-width:640px;margin:0 auto;box-shadow:0 8px 30px rgba(60,34,102,.08);font-family:inherit}
+.bfe-contact-card .bfe-field{margin-bottom:18px}
+.bfe-contact-card label{display:block;font-size:14px;font-weight:600;color:var(--e-global-color-secondary,#070523);margin-bottom:6px}
+.bfe-contact-card input,.bfe-contact-card textarea{width:100%;padding:12px 14px;border:1px solid #d9d2ea;border-radius:8px;font-size:15px;color:#070523;background:var(--e-global-color-53e4ed2,#FAF8FF);box-sizing:border-box}
+.bfe-contact-card input:focus,.bfe-contact-card textarea:focus{outline:none;border-color:var(--e-global-color-primary,#9554FF);box-shadow:0 0 0 3px rgba(149,84,255,.15)}
+.bfe-contact-card button[type=submit]{display:inline-block;width:100%;padding:14px 28px;background:var(--e-global-color-primary,#9554FF);color:#fff;font-size:16px;font-weight:600;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+.bfe-contact-card button[type=submit]:hover{background:#7c3ee6}
+.bfe-contact-card button[type=submit]:disabled{opacity:.6;cursor:default}
+.bfe-form-message{margin-top:14px;font-size:14px;min-height:1em}
+.bfe-form-error{color:#c62828}
+.bfe-hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+</style>
+<form id="bfe-contact-form" class="bfe-contact-card" novalidate="">
+  <div class="bfe-field"><label for="bfe-name">Name</label>
+    <input type="text" id="bfe-name" name="name" placeholder="Your name" required=""></div>
+  <div class="bfe-field"><label for="bfe-email">Email</label>
+    <input type="email" id="bfe-email" name="email" placeholder="you@company.com" required=""></div>
+  <div class="bfe-field"><label for="bfe-company">Company <span style="font-weight:400;color:#8C8EA3">(optional)</span></label>
+    <input type="text" id="bfe-company" name="company" placeholder="Company name"></div>
+  <div class="bfe-field"><label for="bfe-message">Message</label>
+    <textarea id="bfe-message" name="message" rows="5" placeholder="How can we help?" required=""></textarea></div>
+  <div class="bfe-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <button type="submit">Send Message</button>
+  <div id="bfe-contact-message" class="bfe-form-message" role="status"></div>
+</form>
 
 
 		<!----------------------------- 
@@ -494,5 +519,5 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 //# sourceURL=/wp-includes/js/wp-emoji-loader.min.js
 </script>
 
-</body>
+<script src="/assets/bfe-forms.js"></script></body>
 </html>

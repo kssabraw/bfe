@@ -20,15 +20,6 @@ export const contact = {
   email: 'info@bfeai.com',
 };
 
-export const logoStrip = [
-  '/images/logoipsum-2.png',
-  '/images/Logo4.png',
-  '/images/logoipsum-1.png',
-  '/images/Logo9.png',
-  '/images/logoipsum-4.png',
-  '/images/logoipsum-5.png',
-];
-
 export const counters = [
   { value: 6, label: 'LLMs to Track' },
   { value: 2, label: 'Powerful Apps' },

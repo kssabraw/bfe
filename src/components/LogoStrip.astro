@@ -1,12 +1,15 @@
 ---
-import { logoStrip } from '../lib/data';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <div class="logo-strip-wrap">
-  <p class="logo-strip-label">Used by global powerhouses like</p>
+  <p class="logo-strip-label">As seen on</p>
   <div class="logo-strip">
-    {logoStrip.map((src) => <img src={`${base}${src}`} alt="Customer logo" loading="lazy" />)}
+    <img
+      src={`${base}/images/as-seen-on.png`}
+      alt="As seen on ABC, CBS, FOX, and NBC"
+      loading="lazy"
+    />
   </div>
 </div>
 
@@ -26,14 +29,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .logo-strip {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    opacity: 0.65;
   }
   .logo-strip img {
-    height: 28px;
+    height: 38px;
     width: auto;
-    filter: grayscale(1);
+    max-width: 100%;
+    opacity: 0.85;
   }
 </style>

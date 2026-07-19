@@ -17,6 +17,11 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// heroImage may be a repo-local path (/images/...) or an absolute URL from the
+// publishing platform — only local paths get the base prefix.
+const heroSrc = post.data.heroImage
+  ? (/^https?:\/\//.test(post.data.heroImage) ? post.data.heroImage : `${base}${post.data.heroImage}`)
+  : undefined;
 const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -39,9 +44,7 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
           <time datetime={post.data.pubDate.toISOString()}>{dateFmt}</time>
           · {post.data.author}
         </p>
-        {post.data.heroImage && (
-          <img src={`${base}${post.data.heroImage}`} alt="" class="post-hero" />
-        )}
+        {heroSrc && <img src={heroSrc} alt="" class="post-hero" />}
       </header>
       <div class="post-body">
         <Content />
@@ -84,8 +87,73 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
   }
   .post-body :global(blockquote) {
     border-left: 3px solid var(--c-primary);
-    margin: 1.5em 0;
-    padding: 0.2em 0 0.2em 1.2em;
+    background: var(--c-bg-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.8em 0;
+    padding: 1em 1.4em;
     color: var(--c-navy);
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+  .post-body :global(blockquote p) {
+    margin: 0;
+  }
+  .post-body :global(.key-takeaways) {
+    background: var(--c-bg-light);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 1.6em 1.8em;
+    margin: 2em 0;
+  }
+  .post-body :global(.key-takeaways h2),
+  .post-body :global(.key-takeaways h3) {
+    margin: 0 0 0.7em;
+    font-size: 1.2rem;
+    color: var(--c-deep-purple);
+  }
+  .post-body :global(.key-takeaways h2)::before,
+  .post-body :global(.key-takeaways h3)::before {
+    content: '✦ ';
+    color: var(--c-primary);
+  }
+  .post-body :global(.key-takeaways ul),
+  .post-body :global(.key-takeaways ol) {
+    margin: 0;
+    padding-left: 1.3em;
+  }
+  .post-body :global(.key-takeaways li) {
+    margin-bottom: 0.5em;
+  }
+  .post-body :global(.key-takeaways li:last-child) {
+    margin-bottom: 0;
+  }
+  .post-body :global(.table-wrap) {
+    overflow-x: auto;
+    margin: 1.8em 0;
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+  .post-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .post-body :global(th) {
+    background: var(--c-bg-light);
+    color: var(--c-navy);
+    text-align: left;
+    font-weight: 600;
+    padding: 0.7em 1em;
+    border-bottom: 2px solid var(--c-border);
+    white-space: nowrap;
+  }
+  .post-body :global(td) {
+    padding: 0.7em 1em;
+    border-bottom: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+  .post-body :global(tr:last-child td) {
+    border-bottom: none;
   }
 </style>

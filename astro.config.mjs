@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import rehypePostEnhance from './src/lib/rehype-post-enhance.mjs';
 
 // SITE_URL / BASE_PATH are set by the deploy environment:
 //  - GitHub Pages preview: SITE_URL=https://kssabraw.github.io BASE_PATH=bfe
@@ -14,6 +15,9 @@ export default defineConfig({
   site: process.env.SITE_URL || 'https://kssabraw.github.io',
   base,
   integrations: [sitemap()],
+  markdown: {
+    rehypePlugins: [rehypePostEnhance],
+  },
   redirects: {
     // old WordPress URLs — destinations need the base prefixed manually;
     // Astro only applies base to the redirect *sources*.

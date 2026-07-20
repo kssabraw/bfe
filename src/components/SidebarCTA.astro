@@ -1,0 +1,121 @@
+---
+// Sidebar CTA card shown alongside every blog post. Drives readers to the
+// $1 bundle trial. Brand tokens come from global.css; the darker shades that
+// only appear on this dark card are kept local (see the CTA-specific values
+// noted in the design handoff).
+import { links } from '../lib/data';
+
+const benefits = [
+  'Track all 6 major AI engines',
+  "See who's cited instead of you",
+  'A step-by-step plan to fix it',
+];
+---
+
+<div class="cta">
+  <span class="cta__pill">Be Found Everywhere</span>
+  <h3 class="cta__title">See where AI is hiding your business</h3>
+  <p class="cta__lead">
+    Run a scan across ChatGPT, Gemini, Perplexity, Claude &amp; Google AI. Find
+    out if you're being recommended — or ignored.
+  </p>
+  <ul class="cta__benefits">
+    {
+      benefits.map((benefit) => (
+        <li class="cta__benefit">
+          <span class="cta__check" aria-hidden="true">✓</span>
+          {benefit}
+        </li>
+      ))
+    }
+  </ul>
+  <a class="cta__button" href={links.bundleTrial} rel="noopener">Start for $1 →</a>
+  <p class="cta__fine">7-day trial · Cancel anytime</p>
+</div>
+
+<style>
+  .cta {
+    background: linear-gradient(165deg, var(--c-navy) 0%, var(--c-deep-purple) 100%);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: 0 18px 50px rgba(60, 34, 102, 0.28);
+    color: var(--c-lavender);
+    overflow: hidden;
+    position: relative;
+  }
+  .cta__pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b98bff;
+    background: rgba(149, 84, 255, 0.18);
+    padding: 5px 11px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .cta__title {
+    color: var(--c-white);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .cta__lead {
+    margin: 0 0 18px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #cbb8e8;
+  }
+  .cta__benefits {
+    list-style: none;
+    margin: 0 0 22px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .cta__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #e6dcf7;
+  }
+  .cta__check {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(149, 84, 255, 0.25);
+    color: var(--c-lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .cta__button {
+    display: block;
+    text-align: center;
+    background: var(--c-primary);
+    color: var(--c-white) !important;
+    padding: 14px 20px;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+  .cta__button:hover {
+    background: #a874ff;
+    text-decoration: none;
+  }
+  .cta__fine {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: #9d8bc0;
+  }
+</style>

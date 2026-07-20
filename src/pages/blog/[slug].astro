@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import SidebarCTA from '../../components/SidebarCTA.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -35,8 +36,8 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
   ogImage={post.data.heroImage}
   ogType="article"
 >
-  <article class="section">
-    <div class="container post-container">
+  <div class="section">
+    <div class="container">
       <header class="post-header">
         <a href={`${base}/blog/`} class="back-link">← All posts</a>
         <h1>{post.data.title}</h1>
@@ -44,17 +45,22 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
           <time datetime={post.data.pubDate.toISOString()}>{dateFmt}</time>
           · {post.data.author}
         </p>
-        {heroSrc && <img src={heroSrc} alt="" class="post-hero" />}
       </header>
-      <div class="post-body">
-        <Content />
+      {heroSrc && <img src={heroSrc} alt="" class="post-hero" />}
+      <div class="post-grid">
+        <article class="post-body">
+          <Content />
+        </article>
+        <aside class="post-aside">
+          <SidebarCTA />
+        </aside>
       </div>
     </div>
-  </article>
+  </div>
 </Base>
 
 <style>
-  .post-container { max-width: 780px; }
+  .post-header { max-width: 760px; }
   .back-link {
     font-size: 14px;
     font-weight: 600;
@@ -69,7 +75,26 @@ const dateFmt = post.data.pubDate.toLocaleDateString('en-US', {
   .post-hero {
     width: 100%;
     border-radius: var(--radius-lg);
-    margin-bottom: 36px;
+    margin-bottom: 44px;
+  }
+  .post-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 56px;
+    align-items: start;
+  }
+  .post-body { max-width: 720px; }
+  .post-aside {
+    position: sticky;
+    top: 92px;
+    min-width: 0;
+  }
+  @media (max-width: 900px) {
+    .post-grid { grid-template-columns: 1fr; }
+    .post-aside {
+      position: static;
+      max-width: 480px;
+    }
   }
   .post-body :global(h2) {
     margin-top: 1.8em;

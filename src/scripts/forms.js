@@ -26,7 +26,8 @@ async function submitToN8n(payload) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
 }
 
-/* ---- Contact form ---- */
+/* ---- Contact form (Web3Forms) ---- */
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 const contact = document.getElementById('contact-form');
 if (contact) {
   contact.addEventListener('submit', async (e) => {
@@ -45,13 +46,15 @@ if (contact) {
     msg.className = 'form-message';
 
     try {
-      await submitToN8n({
-        form: 'contact',
-        name: contact.querySelector('[name="name"]').value,
-        email: contact.querySelector('[name="email"]').value,
-        company: contact.querySelector('[name="company"]').value,
-        message: contact.querySelector('[name="message"]').value,
+      const formData = new FormData(contact);
+      formData.delete('website'); // drop honeypot from the email payload
+      const res = await fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
       });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || `HTTP ${res.status}`);
       window.location.href = contact.dataset.thanksUrl || '/thank-you/';
     } catch {
       btn.disabled = false;

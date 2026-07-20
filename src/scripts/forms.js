@@ -1,30 +1,9 @@
 /**
- * Submits the contact form and footer newsletter signups to an n8n webhook.
- *
- * SETUP: replace the URL below with your n8n webhook Production URL and
- * leave the Webhook node's "Allowed Origins (CORS)" at * (or your domain).
- * Payloads carry a `form` field ("contact" | "newsletter") for routing.
+ * Submits the contact form and footer newsletter signups to Web3Forms.
+ * Each form carries its own `access_key` hidden field, so this script just
+ * posts the form's FormData to the Web3Forms endpoint.
  */
-const N8N_WEBHOOK_URL = 'https://YOUR-N8N-INSTANCE/webhook/REPLACE-ME';
-
-const configured = !N8N_WEBHOOK_URL.includes('REPLACE-ME');
-
-async function submitToN8n(payload) {
-  if (!configured) {
-    console.warn('forms: N8N_WEBHOOK_URL is not configured yet.');
-    throw new Error('webhook not configured');
-  }
-  const res = await fetch(N8N_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...payload,
-      page: window.location.pathname,
-      submittedAt: new Date().toISOString(),
-    }),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-}
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
 /* ---- Contact form ---- */
 const contact = document.getElementById('contact-form');
@@ -45,13 +24,15 @@ if (contact) {
     msg.className = 'form-message';
 
     try {
-      await submitToN8n({
-        form: 'contact',
-        name: contact.querySelector('[name="name"]').value,
-        email: contact.querySelector('[name="email"]').value,
-        company: contact.querySelector('[name="company"]').value,
-        message: contact.querySelector('[name="message"]').value,
+      const formData = new FormData(contact);
+      formData.delete('website'); // drop honeypot from the email payload
+      const res = await fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
       });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || `HTTP ${res.status}`);
       window.location.href = contact.dataset.thanksUrl || '/thank-you/';
     } catch {
       btn.disabled = false;
@@ -67,17 +48,28 @@ if (contact) {
 for (const form of document.querySelectorAll('form[data-newsletter]')) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = form.querySelector('input[type="email"]');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     const msg = form.querySelector('.form-message');
     const btn = form.querySelector('button[type="submit"]');
-    if (!email.value) return;
-
     btn.disabled = true;
+    msg.textContent = '';
+    msg.className = 'form-message';
+
     try {
-      await submitToN8n({ form: 'newsletter', email: email.value });
+      const res = await fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || `HTTP ${res.status}`);
       msg.textContent = 'Thanks — you’re subscribed!';
       msg.className = 'form-message form-message--success';
-      email.value = '';
+      form.reset();
     } catch {
       msg.textContent = 'Something went wrong. Please try again.';
       msg.className = 'form-message form-message--error';

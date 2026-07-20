@@ -14,11 +14,20 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-brand">
         <img src={`${base}/images/BFE-Brand-Styles-white.png`} alt="Be Found Everywhere" class="footer-logo" />
-        <form data-newsletter>
+        <form data-newsletter class="newsletter-form">
+          <input type="hidden" name="access_key" value="457ceb13-c961-4710-9e1a-715a9cc35393" />
+          <input type="hidden" name="subject" value="New newsletter subscriber – Be Found Everywhere" />
+          <input type="hidden" name="from_name" value="Be Found Everywhere website" />
+          <div class="newsletter-row">
+            <input type="text" name="name" placeholder="Your name" required aria-label="Name" />
+          </div>
           <div class="newsletter-row">
             <input type="email" name="email" placeholder="Enter Your Email" required aria-label="Email address" />
             <button type="submit" class="btn btn--primary">Subscribe</button>
           </div>
+          <label class="newsletter-botcheck" aria-hidden="true">
+            Leave this empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+          </label>
           <div class="form-message" role="status"></div>
         </form>
       </div>
@@ -84,6 +93,18 @@ const year = new Date().getFullYear();
     margin-bottom: 10px;
   }
   .footer-col a:hover { color: var(--c-white); }
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .newsletter-botcheck {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   .newsletter-row {
     display: flex;
     gap: 10px;

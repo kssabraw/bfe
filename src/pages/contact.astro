@@ -26,6 +26,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </div>
       </div>
       <form id="contact-form" class="card contact-card" data-thanks-url={`${base}/thank-you/`}>
+        <input type="hidden" name="access_key" value="0aad16c0-03a8-4287-a274-8cabd6c3bef7" />
+        <input type="hidden" name="subject" value="New contact enquiry – Be Found Everywhere" />
+        <input type="hidden" name="from_name" value="Be Found Everywhere website" />
         <div class="form-field">
           <label for="cf-name">Name</label>
           <input type="text" id="cf-name" name="name" placeholder="Your name" required />

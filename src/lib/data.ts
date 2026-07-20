@@ -82,13 +82,6 @@ export const upcomingApps = [
 export const testimonials = [
   {
     quote:
-      "We tried three other platforms before Aivory, and nothing came close. The interface is clean, the API is powerful, and their support team actually responds. We've scaled from 5 to 50 users without needing a single workaround.",
-    name: 'Clement Fairbank',
-    role: 'Marketing at NovaTech',
-    photo: '/images/portrait-of-middle-aged-man-with-brown-eyes-gray-hair-mimic-wrinkles-on-face.jpg',
-  },
-  {
-    quote:
       "We were looking for a flexible tool that could grow with us. This SaaS solution delivered more than we expected. It's now a core part of our tech stack.",
     name: 'Sapphire Wheeler',
     role: 'CEO of Insightify',
@@ -96,7 +89,7 @@ export const testimonials = [
   },
   {
     quote:
-      'We were drowning in unstructured data with no way to extract insights fast. Aivory AI engine helped us clean, visualize, and act on our data in real time. What used to take a week of analysis now takes an hour.',
+      'We were drowning in unstructured data with no way to extract insights fast. BFE AI engine helped us clean, visualize, and act on our data in real time. What used to take a week of analysis now takes an hour.',
     name: 'Jenson Wheeler',
     role: 'Owner at DeployIQ',
     photo: '/images/studio-portrait-of-young-man-with-skin-pigmentation-disorder-looking-at-camera-e1747921183327.jpg',
@@ -110,7 +103,7 @@ export const testimonials = [
   },
   {
     quote:
-      'Our reporting used to take 4–5 hours a week — manual exports, formatting, and spreadsheet chaos. Aivory completely automated the process. Now we get beautiful, real-time dashboards with zero effort. Investors love the clarity. So do we.',
+      'Our reporting used to take 4–5 hours a week — manual exports, formatting, and spreadsheet chaos. BFE AI completely automated the process. Now we get beautiful, real-time dashboards with zero effort. Investors love the clarity. So do we.',
     name: 'Jeff Coleman',
     role: 'Manager at DataNest',
     photo: '/images/portrait-of-handsome-bearded-hispanic-man-e1747921294354.jpg',

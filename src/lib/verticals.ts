@@ -3,6 +3,11 @@
 // that folder's index.js — so this module stays the single place the public
 // title and URL formats are defined.
 
+// Keeps the AI tracking pages out of search results while they are being
+// reviewed. Flip to false to launch them; the matching sitemap exclusion in
+// astro.config.mjs has to come out at the same time.
+export const AI_TRACKING_NOINDEX = true;
+
 /** The title format applied to every AI tracking page. */
 export const aiTrackingTitle = (name: string) =>
   `AI Tracking For ${name} 2026 | See Your Ranking In ChatGPT, AI Overviews, And More | Be Found Everywhere`;

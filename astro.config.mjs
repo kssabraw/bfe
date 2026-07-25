@@ -14,7 +14,10 @@ const withBase = (path) => (base === '/' ? path : `${base}${path}`);
 export default defineConfig({
   site: process.env.SITE_URL || 'https://kssabraw.github.io',
   base,
-  integrations: [sitemap()],
+  // The AI tracking pages carry <meta name="robots" content="noindex"> while
+  // they are under review (AI_TRACKING_NOINDEX in src/lib/verticals.ts), so
+  // they are held out of the sitemap too. Both come out together at launch.
+  integrations: [sitemap({ filter: (page) => !/\/ai-tracking-[^/]+\/?$/.test(page) })],
   markdown: {
     rehypePlugins: [rehypePostEnhance],
   },

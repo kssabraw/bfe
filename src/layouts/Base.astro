@@ -8,8 +8,10 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: string;
+  /** Keep the page out of search results. Also drops it from the sitemap — see astro.config.mjs. */
+  noindex?: boolean;
 }
-const { title, description = '', ogImage, ogType = 'website' } = Astro.props;
+const { title, description = '', ogImage, ogType = 'website', noindex = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -37,6 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex, follow" />}
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />

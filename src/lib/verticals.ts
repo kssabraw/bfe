@@ -12,6 +12,14 @@ export const AI_TRACKING_NOINDEX = true;
 export const aiTrackingTitle = (name: string) =>
   `AI Tracking For ${name} 2026 | See Your Ranking In ChatGPT, AI Overviews, And More | Be Found Everywhere`;
 
+/**
+ * The H1 format: the target phrase leads, then the vertical's own headline.
+ * Kept here rather than baked into the 36 copy files so the phrase stays
+ * identical on every page and can be reworded in one place.
+ */
+export const aiTrackingH1 = (name: string, headline: string) =>
+  `AI Tracking For ${name}: ${headline}`;
+
 /** The page segment under /<slug>/ — the vertical repeats by design. */
 export const aiTrackingSlug = (slug: string) => `ai-tracking-${slug}`;
 

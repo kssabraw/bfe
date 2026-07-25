@@ -1,0 +1,304 @@
+---
+import type { Vertical } from '../data/verticals/types';
+import { trialHref, tiers, testimonial, related, pricingIntro } from '../data/verticals/shared';
+import { aiTrackingH1 } from '../lib/verticals';
+
+export interface Props { data: Vertical; accent?: string }
+const { data: v, accent = '#9554ff' } = Astro.props;
+
+// Site-relative paths in the data files and in `shared` are authored without
+// the base prefix; the GitHub Pages preview serves the site from /bfe.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path: string) => `${base}${path}`;
+
+const answerParas = v.answer.split(/(?<=\.)\s+(?=[A-Z])/).filter(Boolean);
+---
+
+<div class="bfe-verticals" style={`font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #545356; background: #ffffff; line-height: 1.65; font-size: 16px; --accent: ${accent};`}>
+
+  <div style="border-bottom: 1px solid #f1ecfa; background: #faf8ff;">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; font-size: 13px; color: #8c8ea3; display: flex; gap: 8px; align-items: center;">
+      <a href={url('/')} style="color: #8c8ea3;">Home</a><span>/</span>
+      <span style="color: #545356; font-weight: 600;">{v.name}</span>
+    </div>
+  </div>
+
+  <section style="background: linear-gradient(180deg, #faf8ff 0%, #ffffff 100%);">
+    <div class="bfe-hero" style="max-width: 1140px; margin: 0 auto; padding: 72px 24px 64px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;">
+      <div>
+        <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">{v.eyebrow}</span>
+        <!-- Type scale is a step below the other page headings: the "AI Tracking
+             For <vertical>" prefix adds up to 52 characters, and at the original
+             3.25rem the longest verticals ran to eight lines and pushed the CTAs
+             off screen. -->
+        <h1 style="color: #070523; font-size: clamp(1.85rem, 3.3vw, 2.5rem); font-weight: 800; line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.02em; text-wrap: balance;">{aiTrackingH1(v.name, v.h1)}</h1>
+        <p style="font-size: 1.2rem; color: #545356; margin: 0 0 26px; max-width: 33ch;">{v.subhead}</p>
+        <ul style="list-style: none; padding: 0; margin: 0 0 30px; display: grid; gap: 12px;">
+          {v.heroPoints.map((pt) => (
+            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #070523; font-weight: 500;">
+              <span style="flex: none; width: 22px; height: 22px; border-radius: 999px; background: color-mix(in oklab, var(--accent), white 82%); color: var(--accent); display: grid; place-items: center; font-size: 13px; font-weight: 800; margin-top: 1px;">✓</span>
+              <span>{pt}</span>
+            </li>
+          ))}
+        </ul>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+          <a class="bfe-btn-primary" href={trialHref} style="background: var(--accent); color: #fff; padding: 15px 30px; border-radius: 11px; font-weight: 700; font-size: 16px;">{v.ctaLabel}</a>
+          <a class="bfe-btn-secondary" href={url("/contact/")} style="border: 1px solid #d9d2ea; color: #070523; padding: 15px 26px; border-radius: 11px; font-weight: 600; font-size: 16px;">Book a walkthrough</a>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <div style="position: absolute; inset: -18px -18px 24px 24px; background: linear-gradient(150deg, color-mix(in oklab, var(--accent), white 70%), #faf8ff); border-radius: 28px; z-index: 0;"></div>
+        <div style="position: relative; z-index: 1; border-radius: 18px; overflow: hidden; box-shadow: 0 24px 60px rgba(60,34,102,0.18); border: 1px solid #ece6f7; background: #fff;">
+          <img src={url("/images/labs_analytics_light.png")} alt="BFE visibility dashboard" style="display: block; width: 100%; height: auto;" />
+        </div>
+      </div>
+      <div style="grid-column: 1 / -1; margin-top: 40px; text-align: center;">
+        <p style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8c8ea3; margin: 0 0 14px;">As seen on</p>
+        <img src={url("/images/as-seen-on.png")} alt="As seen on" style="max-width: 420px; width: 100%; opacity: 0.8; margin: 0 auto;" />
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 60px 24px 8px;">
+    <div style="max-width: 720px; margin: 0 auto 32px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">See it in action</span>
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; text-wrap: balance;">Watch a 2-Minute Walkthrough</h2>
+      <p style="margin: 0; font-size: 1.05rem;">See exactly how BFE scans your visibility across every AI engine — and hands you the plan to fix it.</p>
+    </div>
+    <div style="position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; border: 1px solid #ece6f7; box-shadow: 0 24px 60px rgba(60,34,102,0.18); background: linear-gradient(150deg, #070523 0%, #3c2266 100%); display: grid; place-items: center;">
+      <div style="position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 22px);"></div>
+      <div style="position: relative; text-align: center; color: #d3b7ff;">
+        <div style="width: 84px; height: 84px; margin: 0 auto 18px; border-radius: 999px; background: var(--accent); display: grid; place-items: center; box-shadow: 0 12px 40px rgba(149,84,255,0.5);">
+          <span style="display: block; width: 0; height: 0; border-left: 26px solid #fff; border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 6px;"></span>
+        </div>
+        <p style="margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;">Video walkthrough — coming soon</p>
+        <p style="margin: 6px 0 0; font-size: 13px; color: #9d8ac9;">Replace this block with your embed or &lt;video&gt; tag</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bfe-answer" style="max-width: 1140px; margin: 0 auto; padding: 60px 24px 8px; display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 44px; align-items: start;">
+    <div>
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;">What BFE does for {v.name}</span>
+      {answerParas.map((para) => (
+        <p style="font-size: 1.35rem; line-height: 1.55; color: #070523; font-weight: 500; margin: 0 0 16px; text-wrap: pretty;">{para}</p>
+      ))}
+    </div>
+    <aside style="background: #faf8ff; border: 1px solid #ece6f7; border-left: 4px solid var(--accent); border-radius: 14px; padding: 26px;">
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8c8ea3; margin-bottom: 8px;">Definition</div>
+      <h3 style="color: #070523; font-size: 1.15rem; font-weight: 700; margin: 0 0 8px;">{v.definition.term}</h3>
+      <p style="margin: 0; font-size: 14px; line-height: 1.6;">{v.definition.def}</p>
+    </aside>
+  </section>
+
+  <section style="background: #070523;">
+    <div class="bfe-stats" style="max-width: 1140px; margin: 0 auto; padding: 44px 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center;">
+      {v.stats.map((st) => (
+        <div style="padding: 8px 12px;">
+          <div style="font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.02em;">{st.value}</div>
+          <div style="margin-top: 10px; font-size: 14px; color: #d3b7ff; font-weight: 500;">{st.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 76px 24px 40px;">
+    <div style="max-width: 720px; margin: 0 auto 44px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">The problem</span>
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 14px; letter-spacing: -0.01em;">{v.painHeadline}</h2>
+      <p style="margin: 0; font-size: 1.05rem;">{v.painIntro}</p>
+    </div>
+    <div class="bfe-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      {v.pains.map((p) => (
+        <div style="background: #faf8ff; border: 1px solid #ece6f7; border-radius: 16px; padding: 28px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: color-mix(in oklab, var(--accent), white 84%); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 18px; margin-bottom: 16px;">{p.mark}</div>
+          <h3 style="color: #070523; font-size: 1.15rem; font-weight: 700; margin: 0 0 8px;">{p.title}</h3>
+          <p style="margin: 0; font-size: 15px;">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="background: #faf8ff; border-top: 1px solid #f1ecfa; border-bottom: 1px solid #f1ecfa;">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 76px 24px;">
+      <div style="max-width: 720px; margin: 0 auto 44px; text-align: center;">
+        <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">How {v.name} use BFE</span>
+        <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0; letter-spacing: -0.01em;">{v.useCaseHeadline}</h2>
+      </div>
+      <div class="bfe-grid-2" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        {v.useCases.map((uc) => (
+          <div style="background: #fff; border: 1px solid #ece6f7; border-radius: 18px; padding: 30px; box-shadow: 0 8px 30px rgba(60,34,102,0.06); display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: none; width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(150deg, var(--accent), #3c2266); color: #fff; display: grid; place-items: center; font-size: 20px; font-weight: 800;">{uc.icon}</div>
+            <div>
+              <h3 style="color: #070523; font-size: 1.18rem; font-weight: 700; margin: 0 0 8px;">{uc.title}</h3>
+              <p style="margin: 0 0 12px; font-size: 15px;">{uc.body}</p>
+              <a href={url(uc.href)} style="font-weight: 600; font-size: 15px; color: var(--accent);">{uc.link} →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 76px 24px;">
+    <div style="max-width: 720px; margin: 0 auto 40px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Why BFE</span>
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0; letter-spacing: -0.01em;">{v.compareHeadline}</h2>
+    </div>
+    <div style="overflow-x: auto; border: 1px solid #ece6f7; border-radius: 18px; box-shadow: 0 8px 30px rgba(60,34,102,0.06);">
+      <table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15px;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 20px 24px; color: #8c8ea3; font-weight: 600; background: #faf8ff; position: sticky; left: 0;">&nbsp;</th>
+            <th style="text-align: center; padding: 20px 24px; color: #8c8ea3; font-weight: 700; background: #faf8ff; width: 26%;">{v.compareColA}</th>
+            <th style="text-align: center; padding: 20px 24px; color: #fff; font-weight: 800; background: #070523; width: 26%;">With BFE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {v.compareRows.map((row) => (
+            <tr style="border-top: 1px solid #ece6f7;">
+              <td style="padding: 18px 24px; color: #070523; font-weight: 600; background: #fff; position: sticky; left: 0;">{row.label}</td>
+              <td style="padding: 18px 24px; text-align: center; color: #8c8ea3;">{row.manual}</td>
+              <td style="padding: 18px 24px; text-align: center; color: #070523; font-weight: 600; background: color-mix(in oklab, var(--accent), white 92%);">{row.bfe}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="background: #faf8ff; border-top: 1px solid #f1ecfa; border-bottom: 1px solid #f1ecfa;">
+    <div style="max-width: 820px; margin: 0 auto; padding: 76px 24px;">
+      {v.body.map((sec) => (
+        <div style="margin-bottom: 40px;">
+          <h2 style="color: #070523; font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; text-wrap: balance;">{sec.h}</h2>
+          {sec.paras.map((para) => (
+            <p style="margin: 0 0 16px; font-size: 1.05rem; line-height: 1.7; color: #545356; text-wrap: pretty;">{para}</p>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 84px 24px 20px;">
+    <div style="max-width: 760px; margin: 0 auto 52px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Track + fix</span>
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: balance;">{v.roadmap.headline}</h2>
+      <p style="margin: 0; font-size: 1.08rem;">{v.roadmap.intro}</p>
+    </div>
+    <div class="bfe-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+      {v.roadmap.steps.map((step) => (
+        <div style="position: relative; background: #faf8ff; border: 1px solid #ece6f7; border-radius: 16px; padding: 28px 24px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(150deg, var(--accent), #3c2266); color: #fff; display: grid; place-items: center; font-size: 18px; font-weight: 800; margin-bottom: 16px;">{step.n}</div>
+          <h3 style="color: #070523; font-size: 1.1rem; font-weight: 700; margin: 0 0 8px;">{step.title}</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6;">{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="background: linear-gradient(160deg, #070523 0%, #3c2266 100%); color: #d3b7ff;">
+    <div class="bfe-proof" style="max-width: 1140px; margin: 0 auto; padding: 76px 24px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center;">
+      <div>
+        <div style="font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 800; color: #fff; line-height: 1; letter-spacing: -0.02em;">{v.proof.metric}</div>
+        <p style="color: #fff; font-size: 1.25rem; font-weight: 600; margin: 16px 0 10px;">{v.proof.headline}</p>
+        <p style="margin: 0 0 20px; font-size: 15px; color: #d3b7ff;">{v.proof.body}</p>
+        <a href={url("/contact/")} style="color: #fff; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 2px;">Read the case studies →</a>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(211,183,255,0.22); border-radius: 20px; padding: 36px;">
+        <div style="font-size: 40px; line-height: 0.6; color: var(--accent); font-weight: 800;">“</div>
+        <p style="color: #fff; font-size: 1.22rem; line-height: 1.55; margin: 8px 0 26px; font-weight: 500; text-wrap: pretty;">{testimonial.quote}</p>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src={url(testimonial.photo)} alt={testimonial.name} style="width: 52px; height: 52px; border-radius: 999px; object-fit: cover; border: 2px solid rgba(211,183,255,0.35);" />
+          <div>
+            <div style="color: #fff; font-weight: 700; font-size: 15px;">{testimonial.name}</div>
+            <div style="color: #d3b7ff; font-size: 13px;">{testimonial.role}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #faf8ff; border-top: 1px solid #f1ecfa;">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 76px 24px;">
+      <div style="max-width: 720px; margin: 0 auto 44px; text-align: center;">
+        <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Pricing</span>
+        <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em;">One Price, Every App, Every Agent</h2>
+        <p style="margin: 0; font-size: 1.05rem;">{pricingIntro}</p>
+      </div>
+      <div class="bfe-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch;">
+        {tiers.map((tier) => (
+          <div style={`background: ${tier.cardBg}; border: 1px solid ${tier.cardBorder}; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; box-shadow: ${tier.cardShadow}; position: relative;`}>
+            {tier.featured && (
+              <span style="position: absolute; top: 18px; right: 18px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px;">Most popular</span>
+            )}
+            <h3 style={`font-size: 1.3rem; font-weight: 700; margin: 0 0 6px; color: ${tier.nameColor};`}>{tier.name}</h3>
+            <div style="display: flex; align-items: baseline; gap: 6px; margin: 6px 0 4px;">
+              <span style={`font-size: 2.6rem; font-weight: 800; color: ${tier.nameColor}; letter-spacing: -0.02em;`}>{tier.price}</span>
+              <span style={`color: ${tier.muted}; font-size: 14px;`}>/mo</span>
+            </div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--accent); margin: 0 0 20px;">{tier.highlight}</p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 12px; flex: 1;">
+              {tier.features.map((f) => (
+                <li style={`display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: ${tier.featureColor};`}>
+                  <span style="color: var(--accent); font-weight: 800;">✓</span><span>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={tier.href} style={`text-align: center; padding: 13px 20px; border-radius: 11px; font-weight: 700; font-size: 15px; background: ${tier.btnBg}; color: ${tier.btnColor}; border: 1px solid ${tier.btnBorder};`}>{tier.cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 820px; margin: 0 auto; padding: 76px 24px;">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">FAQ</span>
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0; letter-spacing: -0.01em;">Frequently Asked Questions</h2>
+    </div>
+    <div style="display: grid; gap: 14px;">
+      {v.faqs.map((faq) => (
+        <details class="bfe-details" style="background: #fff; border: 1px solid #ece6f7; border-radius: 14px; padding: 4px 24px; box-shadow: 0 4px 18px rgba(60,34,102,0.04);">
+          <summary style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; color: #070523; font-size: 1.05rem;">
+            <span>{faq.q}</span>
+            <span class="bfe-chev" style="flex: none; width: 12px; height: 12px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); transition: transform 0.2s;"></span>
+          </summary>
+          <p style="margin: 0; padding: 0 0 22px; font-size: 15px; color: #545356;">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 72px 24px;">
+    <div style="max-width: 720px; margin: 0 auto 40px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Keep exploring</span>
+      <h2 style="color: #070523; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin: 0; letter-spacing: -0.01em;">Related Pages</h2>
+    </div>
+    <div class="bfe-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      {related.map((rel) => (
+        <a class="bfe-related-card" href={url(rel.href)} style="display: block; background: #fff; border: 1px solid #ece6f7; border-radius: 16px; padding: 28px; box-shadow: 0 8px 30px rgba(60,34,102,0.06);">
+          <h3 style="color: #070523; font-size: 1.15rem; font-weight: 700; margin: 0 0 8px;">{rel.title}</h3>
+          <p style="margin: 0 0 14px; font-size: 14px; color: #545356;">{rel.blurb}</p>
+          <span style="font-weight: 600; font-size: 14px; color: var(--accent);">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</div>
+
+<style>
+  .bfe-verticals a { color: var(--accent); text-decoration: none; }
+  .bfe-verticals a:hover { text-decoration: underline; }
+  .bfe-btn-primary:hover { background: color-mix(in oklab, var(--accent), black 12%) !important; text-decoration: none !important; }
+  .bfe-btn-secondary:hover { border-color: var(--accent) !important; text-decoration: none !important; }
+  .bfe-related-card:hover { border-color: var(--accent) !important; text-decoration: none !important; box-shadow: 0 14px 40px rgba(60,34,102,0.12) !important; }
+  .bfe-details > summary { list-style: none; cursor: pointer; }
+  .bfe-details > summary::-webkit-details-marker { display: none; }
+  .bfe-details[open] .bfe-chev { transform: rotate(-135deg) !important; }
+  @media (max-width: 900px) {
+    .bfe-hero, .bfe-answer, .bfe-proof { grid-template-columns: 1fr !important; }
+    .bfe-grid-2, .bfe-grid-3, .bfe-grid-4, .bfe-stats { grid-template-columns: 1fr !important; }
+  }
+</style>

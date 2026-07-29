@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import rehypePostEnhance from './src/lib/rehype-post-enhance.mjs';
+import { aiSeoPages, aiSeoPath } from './src/data/ai-seo-pages.js';
 
 // SITE_URL / BASE_PATH are set by the deploy environment:
 //  - GitHub Pages preview: SITE_URL=https://kssabraw.github.io BASE_PATH=bfe
@@ -10,11 +11,19 @@ import rehypePostEnhance from './src/lib/rehype-post-enhance.mjs';
 // local builds. It is normalized to a /-prefixed base here.
 const base = process.env.BASE_PATH ? `/${process.env.BASE_PATH.replace(/^\/+/, '')}` : '/';
 const withBase = (path) => (base === '/' ? path : `${base}${path}`);
+const site = process.env.SITE_URL || 'https://kssabraw.github.io';
+
+// The AI SEO trade pages are static HTML in public/, so the sitemap integration
+// can't discover them from the route table — they're added by hand. Pages still
+// waiting on screenshots ship noindex and are held back until they're complete.
+const aiSeoSitemapUrls = aiSeoPages
+  .filter((p) => p.indexed)
+  .map((p) => new URL(withBase(aiSeoPath(p.slug)), site).href);
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://kssabraw.github.io',
+  site,
   base,
-  integrations: [sitemap()],
+  integrations: [sitemap({ customPages: aiSeoSitemapUrls })],
   markdown: {
     rehypePlugins: [rehypePostEnhance],
   },

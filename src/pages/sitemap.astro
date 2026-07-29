@@ -7,6 +7,7 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { verticals } from '../data/verticals/index.js';
 import { aiTrackingPath } from '../lib/verticals';
+import { aiSeoPages, aiSeoPath } from '../data/ai-seo-pages.js';
 import { sortPosts } from '../lib/blog';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -44,6 +45,13 @@ const groups = [
 ];
 
 const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
+
+// The AI SEO pages carry the same 36 slugs as the verticals, so their display
+// names come from the same place rather than being spelled out a second time.
+const verticalName = new Map(verticals.map((v) => [v.slug, v.name]));
+const aiSeo = aiSeoPages
+  .map((p) => ({ ...p, name: verticalName.get(p.slug) ?? p.slug }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Base
@@ -77,6 +85,16 @@ const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
         <ul class="sitemap-list sitemap-list--columns">
           {industries.map((v) => (
             <li><a href={`${url(aiTrackingPath(v.slug))}/`}>AI Tracking for {v.name}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="sitemap-block">
+        <h2>AI SEO by industry</h2>
+        <p class="sitemap-block-note">{aiSeo.length} industry pages.</p>
+        <ul class="sitemap-list sitemap-list--columns">
+          {aiSeo.map((p) => (
+            <li><a href={url(aiSeoPath(p.slug))}>AI SEO for {p.name}</a></li>
           ))}
         </ul>
       </section>

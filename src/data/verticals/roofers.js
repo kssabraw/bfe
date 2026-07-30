@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "roofers",
   "name": "Roofers",
-  "hub": {
-    "subhead": "The estimate list is built before you hear about the job. AI SEO puts your company on it.",
-    "intro": {
-      "h": "The Estimate List Is Built Inside an AI Answer",
-      "paras": [
-        "Roofing is high-consideration and high-ticket, which is exactly the kind of decision homeowners now hand to an AI assistant. They ask whether hail damage is claimable, what a replacement costs, how to tell a storm-chaser from a real local company, and who to trust nearby. Two or three names come back with reasons attached, and the estimate list starts there.",
-        "That list is not drawn from your Google ranking alone. The engines weigh review recency and volume, Google Business Profile completeness, manufacturer certifications and association listings, local press mentions, and how thoroughly your site covers each service and city you sell in. AI SEO is the work of moving those signals deliberately."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company for repair, replacement and storm-damage searches in every market you serve."
-  },
   "eyebrow": "For Roofing Companies",
   "h1": "After the Storm, Does AI Send Roof Jobs to You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend your roofing company for repair, replacement and storm-damage searches — and fix it when they don’t.",

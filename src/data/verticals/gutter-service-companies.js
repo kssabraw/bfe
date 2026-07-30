@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "gutter-service-companies",
   "name": "Gutter Service Companies",
-  "hub": {
-    "subhead": "Demand arrives in weather-driven bursts. AI SEO makes sure the answers already point to you when it does.",
-    "intro": {
-      "h": "The Window Is Short and It Opens Without Warning",
-      "paras": [
-        "Gutter work does not trickle in evenly. A week of heavy rain or the first real leaf drop produces a surge of homeowners asking an assistant whether overflowing gutters are urgent, what cleaning costs, and who does it nearby. The surge lasts days, and whoever the answers name through it books out the season.",
-        "You cannot build visibility during the burst — it has to already be there. Reviews arriving steadily through the year, a profile that covers cleaning, guards and repair separately, seasonal content that answers the questions people actually type, and consistent listings are what put you in the answer when the weather turns. That preparation is what AI SEO means here."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company for gutter cleaning, guards and repair when demand spikes."
-  },
   "eyebrow": "For Gutter Service Companies",
   "h1": "Does AI Recommend Your Gutter Company Before the Rain?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for cleaning, repair and guard installation — and fix it when they don’t.",

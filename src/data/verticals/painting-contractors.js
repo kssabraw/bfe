@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "painting-contractors",
   "name": "Painting Contractors",
-  "hub": {
-    "subhead": "Painting means strangers in the house for a week. People want a recommendation, and AI is giving them one.",
-    "intro": {
-      "h": "A Trust Purchase, Answered by an Assistant",
-      "paras": [
-        "Hiring a painter means handing someone keys and living around them for days. That makes it a trust decision far more than a price decision, and trust decisions are exactly what people now take to an AI assistant: who is good, who is reliable, what should this cost, how long will it take. A directory listing does not move that conversation. A recommendation does.",
-        "What earns one is reviews that speak to cleanliness and communication as much as finish, a profile that separates interior, exterior, cabinets and commercial work, project photography the engines can see, and consistent listings. AI SEO is how a reputation built on referrals starts showing up in machine-generated ones."
-      ]
-    },
-    "trackingBlurb": "Check whether AI engines recommend your company for interior, exterior and cabinet painting in your area."
-  },
   "eyebrow": "For Painting Contractors",
   "h1": "Does AI Recommend Your Painting Company for Interior and Exterior Jobs?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you when homeowners look for painters — and fix it when they don’t.",

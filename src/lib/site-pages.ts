@@ -2,7 +2,7 @@
  * The registry behind both sitemaps — the human-readable /sitemap and the
  * XML /sitemap.xml crawlers read.
  *
- * The generated sections of that page — blog posts, the vertical silos — come
+ * The generated sections of that page — blog posts, AI tracking pages — come
  * from the same sources their routes do, so they can never drift. The one-off
  * pages under src/pages have no such source, so they are listed here, and
  * `assertSitemapCoverage` fails the build when a file in src/pages is missing
@@ -49,8 +49,7 @@ export const excludedPages: Record<string, string> = {
 export const dynamicRoutes: Record<string, string> = {
   '/src/pages/blog/[slug].astro': 'the "Blog posts" section',
   '/src/pages/blog/page/[page].astro': 'pagination over the "Blog posts" section',
-  '/src/pages/[vertical]/index.astro': 'the "Industries" section',
-  '/src/pages/[vertical]/[page].astro': 'the "Industries" section, indented under each vertical',
+  '/src/pages/[vertical]/[page].astro': 'the "AI tracking by industry" section',
 };
 
 /** File extensions Astro turns into HTML pages. */

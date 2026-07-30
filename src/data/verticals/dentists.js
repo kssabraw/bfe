@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "dentists",
   "name": "Dentists",
-  "hub": {
-    "subhead": "A new patient is worth years of care. AI SEO decides whether the assistant recommending one says your name.",
-    "intro": {
-      "h": "One Recommendation, Years of Recurring Care",
-      "paras": [
-        "Someone new to the area asking an AI assistant for a good dentist is not making a small decision. That single recommendation typically starts a relationship measured in years of cleanings, family appointments and restorative work. Being absent from the answer does not cost you one visit — it costs the whole lifetime of that patient.",
-        "The engines decide who to name using review volume and recency, how completely your profile describes insurance, hours and services, whether your site covers procedures and patient questions in real depth, and how reliably your practice details match across health directories. AI SEO is the work of aligning all of it."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants recommend your practice to new patients searching your area, and which practices they name instead."
-  },
   "eyebrow": "For Dental Practices",
   "h1": "Does AI Recommend Your Dental Practice to New Patients?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name your practice for cleanings, emergencies and insurance questions — and fix it when they don’t.",

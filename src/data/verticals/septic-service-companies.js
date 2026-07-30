@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "septic-service-companies",
   "name": "Septic Service Companies",
-  "hub": {
-    "subhead": "Rural service areas are wide and providers are few. AI SEO decides which towns your calls come from.",
-    "intro": {
-      "h": "Geography Decides the Answer, Town by Town",
-      "paras": [
-        "Septic work covers a lot of ground with few providers competing for it, which makes AI visibility unusually geographic. A homeowner twenty miles out asking who pumps tanks nearby gets a different answer than one in the next town over, and those differences quietly determine where your trucks spend the day.",
-        "Coverage is what the engines reward: service areas stated explicitly rather than left implied, content covering pumping, inspection, drain fields and emergencies separately, reviews arriving from across your territory, and listings that agree town to town. AI SEO here is largely about making the shape of your service area unmistakable."
-      ]
-    },
-    "trackingBlurb": "Track whether AI engines name your company for pumping, inspection and emergency septic work town by town."
-  },
   "eyebrow": "For Septic Service Companies",
   "h1": "When a Septic System Backs Up, Does AI Name You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for pumping, inspection and repair — and fix it when they don’t.",

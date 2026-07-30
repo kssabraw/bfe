@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "plumbers",
   "name": "Plumbers",
-  "hub": {
-    "subhead": "A burst pipe is a now-or-never call. AI SEO decides whether you get the chance to answer it.",
-    "intro": {
-      "h": "Emergency Plumbing Never Reaches a Results Page",
-      "paras": [
-        "Water coming through the ceiling does not produce a careful comparison of local plumbers. It produces one question to an assistant and one phone call to whatever name comes back. The homeowner never scrolls a results page, never sees your ad, and never learns you were available — being outside the answer is indistinguishable from not existing.",
-        "What gets you inside it is concrete: emergency hours and service areas stated plainly on your profile, reviews arriving recently and mentioning response time, content that covers specific failures — burst pipes, sewer backups, water heater leaks — and business details that agree across every listing. AI SEO is the work of assembling that before the next emergency."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company for emergency plumbing calls across every market you serve."
-  },
   "eyebrow": "For Plumbers",
   "h1": "When a Pipe Bursts at Midnight, Does AI Recommend You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name your plumbing company on emergency and repair searches — and fix it when they don’t.",

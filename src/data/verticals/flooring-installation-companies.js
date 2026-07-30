@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "flooring-installation-companies",
   "name": "Flooring Installation Companies",
-  "hub": {
-    "subhead": "Buyers choose the material before the installer. AI SEO puts your company in both answers.",
-    "intro": {
-      "h": "Two Questions, and You Need to Be in Both",
-      "paras": [
-        "Flooring purchases run in two stages. First the homeowner asks what to put down — luxury vinyl or engineered hardwood, what survives dogs, what works over a concrete slab. Then they ask who installs it well nearby. Those are two separate AI conversations, and a company can easily be missing from both without ever knowing.",
-        "Winning either one depends on content that treats materials as real subjects, a profile that lists the products and rooms you handle, reviews that keep arriving with detail, and consistent business information across the listings the engines cross-check. AI SEO is the work of covering both halves of that decision."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company when buyers ask what flooring to choose and who installs it nearby."
-  },
   "eyebrow": "For Flooring Installation Companies",
   "h1": "Does AI Recommend Your Flooring Company During Their Research?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for hardwood, LVP and tile installation — and fix it when they don’t.",

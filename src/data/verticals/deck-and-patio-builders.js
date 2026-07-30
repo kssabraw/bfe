@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "deck-and-patio-builders",
   "name": "Deck And Patio Builders",
-  "hub": {
-    "subhead": "Outdoor projects get designed in conversation months before a quote. AI SEO puts your company in that conversation.",
-    "intro": {
-      "h": "The Project Is Planned Long Before You Hear About It",
-      "paras": [
-        "A deck or patio starts as a daydream in February and becomes a bid request in May. In between, the homeowner asks an AI assistant about composite versus cedar, what a 400-square-foot deck runs, whether they need a permit, and who builds well nearby. The bid list is drawn from those answers — months before your phone rings.",
-        "Builders earn a place in them through project galleries that are actually indexed, reviews that keep arriving, material and permit content that answers the real questions, and listings that agree with each other everywhere they appear. AI SEO is how you make that groundwork count."
-      ]
-    },
-    "trackingBlurb": "Track whether AI assistants name your company when homeowners plan decks, patios and outdoor living projects nearby."
-  },
   "eyebrow": "For Deck And Patio Builders",
   "h1": "Does AI Recommend Your Deck Company for Backyard Projects?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for decks, patios and outdoor living builds — and fix it when they don’t.",

@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "water-damage-restoration-companies",
   "name": "Water Damage Restoration Companies",
-  "hub": {
-    "subhead": "Same-hour work with insurance money attached. AI SEO decides which company the answer assigns it to.",
-    "intro": {
-      "h": "The Answer Effectively Assigns the Job",
-      "paras": [
-        "Standing water in a finished basement is a same-hour emergency, and it is usually insurance-funded, which makes it both urgent and valuable. The homeowner asks an assistant who to call right now, gets a name, and that company is on site before any competitor is aware of the loss. There is no second round.",
-        "Because the work is urgent and insurance-adjacent, the engines weigh 24/7 availability, IICRC certification, insurance-claim expertise, review recency, and content that walks through the first hours of a water loss honestly. AI SEO is the work of being the company an assistant trusts with an emergency."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company for same-hour water damage and flood response nearby."
-  },
   "eyebrow": "For Water Damage Restoration Companies",
   "h1": "When a Basement Floods, Does AI Send Them to You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for flood, burst-pipe and 24-hour restoration — and fix it when they don’t.",

@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "home-security-installation-companies",
   "name": "Home Security Installation Companies",
-  "hub": {
-    "subhead": "National brands own these answers by default. AI SEO is how a local installer gets named alongside them.",
-    "intro": {
-      "h": "Competing With National Brands in the Answer",
-      "paras": [
-        "Ask an assistant about home security and the reply is a roll call of national brands and DIY kits. Local professional installers — who handle the wiring, the monitoring contracts and the jobs a kit cannot do — barely register, because the category content skews overwhelmingly toward products. The homeowner never learns there was a local option.",
-        "Getting named alongside the brands means giving the engines something specific to cite: content on professional monitoring versus self-monitoring, camera placement and wiring realities, licensing and alarm-permit expertise, reviews describing real installations, and listings that identify you as an installer rather than a retailer. That is the job AI SEO does in this category."
-      ]
-    },
-    "trackingBlurb": "Track whether AI assistants name your company when homeowners ask who installs home security systems nearby."
-  },
   "eyebrow": "For Home Security Installation Companies",
   "h1": "Does AI Recommend Your Security Company or the DIY Kit?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for camera, alarm and monitored system installs — and fix it when they don’t.",

@@ -4,7 +4,7 @@
  * It is built from the same sources the routes are — the page registry in
  * src/lib/site-pages, the verticals data, and the blog collection — so it
  * updates itself on every build: publish a post and it appears here, add a
- * vertical and its whole silo appears here. Nothing to remember.
+ * vertical and its AI tracking page appears here. Nothing to remember.
  *
  * Drift on the static pages is caught upstream: /sitemap (the human-readable
  * version) calls `assertSitemapCoverage` with the real contents of src/pages
@@ -23,7 +23,7 @@
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
 import { verticals } from '../data/verticals/index.js';
-import { aiTrackingPath, verticalPath } from '../lib/verticals';
+import { aiTrackingPath } from '../lib/verticals';
 import { PAGE_SIZE, sortPosts } from '../lib/blog';
 import { staticPages } from '../lib/site-pages';
 
@@ -69,13 +69,7 @@ export async function GET(context: APIContext): Promise<Response> {
 
     ...posts.map((post) => ({ path: `/blog/${post.id}/`, lastmod: post.data.pubDate })),
 
-    // Both levels of every vertical silo: the vertical page and the topic
-    // pages under it. A topic added to a vertical needs a line here too — the
-    // route table is not what this file reads.
-    ...verticals.flatMap((v) => [
-      { path: `${verticalPath(v.slug)}/` },
-      { path: `${aiTrackingPath(v.slug)}/` },
-    ]),
+    ...verticals.map((v) => ({ path: `${aiTrackingPath(v.slug)}/` })),
   ];
 
   // Absolute URLs are required, and they have to carry the base path: the

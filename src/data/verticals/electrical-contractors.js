@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "electrical-contractors",
   "name": "Electrical Contractors",
-  "hub": {
-    "subhead": "Electrical work is a trust decision, so people want a recommendation. AI SEO determines whose name they get.",
-    "intro": {
-      "h": "People Want a Name They Can Trust, and AI Gives Them One",
-      "paras": [
-        "Nobody wants a list of ten electricians. Electrical work carries real safety weight, so homeowners ask for a recommendation and expect a name — whether the question is a dead outlet, a panel upgrade, or whether the flickering lights mean something serious. AI assistants answer in exactly that register, and the contractor they cite is the one who gets considered.",
-        "Licensing and insurance signals count for more in this trade than most, and they sit alongside review recency, profile completeness, how specifically your site addresses panel work, EV chargers, rewiring and code questions, and whether your details agree across every listing. AI SEO is the work of making that whole picture legible to the engines."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants recommend your company for panel upgrades, EV chargers and emergency electrical work nearby."
-  },
   "eyebrow": "For Electrical Contractors",
   "h1": "Does AI Recommend Your Electrical Company for the Jobs You Want?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for panel upgrades, EV chargers and emergency electrical work — and fix it when they don’t.",

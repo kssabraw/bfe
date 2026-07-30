@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "handyman-companies",
   "name": "Handyman Companies",
-  "hub": {
-    "subhead": "The request is vague, so the AI answer does all the filtering. AI SEO gets you through that filter.",
-    "intro": {
-      "h": "A Generic Request Means the Answer Decides Everything",
-      "paras": [
-        "Someone with a short list of odd jobs does not know what trade they need — they just need a reliable person. That vagueness hands enormous power to the AI answer: with no specific criteria to narrow by, the assistant picks two names on general trust signals alone, and everyone else is invisible. Win it and you often win a customer who calls back for years.",
-        "Because the query is broad, breadth is what gets rewarded. A profile that enumerates what you actually do, reviews that mention reliability and showing up on time, content covering the specific small jobs people ask about, and business details that match across listings all feed it. AI SEO is the work of making a generalist legible to a system that prefers specifics."
-      ]
-    },
-    "trackingBlurb": "Check whether AI assistants name your company when people ask who can handle a list of small jobs nearby."
-  },
   "eyebrow": "For Handyman Companies",
   "h1": "Does AI Recommend Your Handyman Company for the Small Jobs?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for repairs, mounting and punch-list work — and fix it when they don’t.",

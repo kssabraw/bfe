@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "personal-injury-lawyers",
   "name": "Personal Injury Lawyers",
-  "hub": {
-    "subhead": "Injury clients research anonymously long before they call. AI SEO decides which firms they find.",
-    "intro": {
-      "h": "The Research Is Anonymous and It Happens Early",
-      "paras": [
-        "Someone hurt in a collision does not call a firm first. They ask, privately, whether they even have a case, what their claim might be worth, how long they have to file, and whether they need a lawyer at all. That entire conversation happens with an AI assistant, invisible to every ad you are running — and it ends with firm names attached.",
-        "Firms get named on signals the engines can verify: content that answers legal questions substantively rather than funnelling to a form, case results and credentials presented clearly, review depth, bar and directory listings that agree, and authority signals from legitimate legal sources. AI SEO is how a firm becomes citable in a research process it never sees."
-      ]
-    },
-    "trackingBlurb": "See which firms AI assistants name when injury victims in your market ask whether they have a case."
-  },
   "eyebrow": "For Personal Injury Law Firms",
   "h1": "Does AI Recommend Your Firm to Injured Clients?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name your firm for car accident, slip-and-fall and injury searches — and fix it when they don’t.",

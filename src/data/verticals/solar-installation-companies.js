@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "solar-installation-companies",
   "name": "Solar Installation Companies",
-  "hub": {
-    "subhead": "Solar is a months-long research purchase. AI SEO puts your company in it from the first question.",
-    "intro": {
-      "h": "A Long Research Cycle Starts With an Assistant",
-      "paras": [
-        "Nobody signs a solar contract quickly. The homeowner spends months asking whether it pays back, how incentives work in their state, what battery capacity they need, and whether their roof is even suitable. Assistants handle that entire arc — and the installers named early tend to be the ones invited to propose at the end.",
-        "Citations go to companies whose content handles payback maths, incentives and equipment honestly rather than optimistically, whose certifications are visible, whose reviews describe how installs actually went, and whose listings are consistent. AI SEO is the work of being useful across a long research cycle instead of only at the quote stage."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company when homeowners research payback, incentives and solar installers nearby."
-  },
   "eyebrow": "For Solar Installation Companies",
   "h1": "Does AI Recommend Your Solar Company During Their Research?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for panels, batteries and incentive questions — and fix it when they don’t.",

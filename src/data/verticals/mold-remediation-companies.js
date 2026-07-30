@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "mold-remediation-companies",
   "name": "Mold Remediation Companies",
-  "hub": {
-    "subhead": "Homeowners ask whether mold is dangerous before they ask who removes it. AI SEO puts you in the answer to both.",
-    "intro": {
-      "h": "A Health Question Carries Unusual Authority",
-      "paras": [
-        "The first question is never who removes mold — it is whether the black patch behind the washing machine is dangerous. Assistants answer health questions carefully and with visible authority, and the company named at the end of that careful answer inherits a great deal of trust. Few categories convert a citation into a booking as reliably.",
-        "Because the subject is health, the engines lean hard on credibility markers: certifications, content that handles remediation protocol and testing honestly rather than alarmingly, reviews describing thorough work, and listings that line up. AI SEO here is largely the work of being demonstrably credible in a category full of scare tactics."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company when homeowners ask whether mold is dangerous and who removes it."
-  },
   "eyebrow": "For Mold Remediation Companies",
   "h1": "When Someone Finds Mold, Does AI Recommend You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for testing, remediation and air-quality work — and fix it when they don’t.",

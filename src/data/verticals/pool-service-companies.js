@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "pool-service-companies",
   "name": "Pool Service Companies",
-  "hub": {
-    "subhead": "A weekly customer is worth thousands over time. AI SEO decides who the assistant names when they first search.",
-    "intro": {
-      "h": "One Recommendation, Years of Weekly Billing",
-      "paras": [
-        "Pool service is recurring revenue, which changes what a single AI answer is worth. A homeowner asking who maintains pools nearby is not buying one visit — they are choosing who bills them weekly for years. Losing that answer to a competitor does not cost a job, it costs an annuity.",
-        "The engines name companies with steady review flow, profiles that distinguish maintenance, repair, openings and closings, content that answers real chemistry and equipment questions, and consistent listings across the area you cover. AI SEO is how you make sure the recommendation lands on you at the moment it is worth the most."
-      ]
-    },
-    "trackingBlurb": "Check whether AI engines recommend your company for weekly pool service and repairs in your area."
-  },
   "eyebrow": "For Pool Service Companies",
   "h1": "Does AI Recommend Your Pool Company When Season Starts?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for weekly service, repairs and openings — and fix it when they don’t.",

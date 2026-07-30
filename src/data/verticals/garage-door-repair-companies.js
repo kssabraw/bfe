@@ -1,17 +1,6 @@
 export const vertical = {
   "slug": "garage-door-repair-companies",
   "name": "Garage Door Repair Companies",
-  "hub": {
-    "subhead": "A car trapped behind a broken door means a name is needed in ten minutes. AI SEO decides whose name that is.",
-    "intro": {
-      "h": "Same-Day Work Is Decided in the First Answer",
-      "paras": [
-        "A broken spring with a car stuck inside is not a research project. The homeowner asks an assistant who can fix a garage door today, takes the first credible name, and calls. There is no comparison stage and no second look — which makes being absent from that answer functionally identical to being closed.",
-        "Same-day intent puts unusual weight on operational signals: hours and emergency availability on your profile, review recency, response-time mentions in those reviews, and service-area coverage that lines up across listings. AI SEO is how you make an assistant confident enough to hand a stranger your number for an urgent job."
-      ]
-    },
-    "trackingBlurb": "See whether AI assistants name your company for same-day garage door repair across the areas you cover."
-  },
   "eyebrow": "For Garage Door Repair Companies",
   "h1": "When a Garage Door Won’t Open, Does AI Give Them Your Name?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for broken springs, openers and full door replacement — and fix it when they don’t.",

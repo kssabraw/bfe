@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import rehypePostEnhance from './src/lib/rehype-post-enhance.mjs';
 
 // SITE_URL / BASE_PATH are set by the deploy environment:
@@ -14,7 +13,10 @@ const withBase = (path) => (base === '/' ? path : `${base}${path}`);
 export default defineConfig({
   site: process.env.SITE_URL || 'https://kssabraw.github.io',
   base,
-  integrations: [sitemap()],
+  // The XML sitemap is src/pages/sitemap.xml.ts, not @astrojs/sitemap: the
+  // integration can only write `sitemap-index.xml` + `sitemap-0.xml`, and it
+  // indexes every built route, including the two the site deliberately keeps
+  // out (see excludedPages in src/lib/site-pages.ts).
   markdown: {
     rehypePlugins: [rehypePostEnhance],
   },

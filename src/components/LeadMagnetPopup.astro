@@ -1,0 +1,272 @@
+---
+// Sitewide lead-magnet popup. Markup is rendered on every page (hidden until
+// a trigger fires) so the offer can also be opened on demand from any element
+// with `data-lead-magnet-open`. Copy and trigger settings live in lib/data.ts;
+// the open/close and submit logic lives in scripts/lead-magnet.js.
+import { leadMagnet } from '../lib/data';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { triggers } = leadMagnet;
+const assetUrl = leadMagnet.assetUrl
+  ? leadMagnet.assetUrl.startsWith('http')
+    ? leadMagnet.assetUrl
+    : `${base}${leadMagnet.assetUrl}`
+  : '';
+---
+
+<div
+  class="lm"
+  id="lead-magnet"
+  hidden
+  data-delay={triggers.delaySeconds}
+  data-scroll={triggers.scrollPercent}
+  data-exit-intent={triggers.exitIntent ? 'true' : 'false'}
+  data-dismiss-days={triggers.dismissDays}
+  data-asset-url={assetUrl}
+>
+  <div class="lm__backdrop" data-lead-magnet-close></div>
+  <div
+    class="lm__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lead-magnet-title"
+    aria-describedby="lead-magnet-subtitle"
+  >
+    <button class="lm__close" type="button" aria-label="Close" data-lead-magnet-close>&times;</button>
+
+    <div class="lm__body" data-lead-magnet-offer>
+      <span class="lm__eyebrow">{leadMagnet.eyebrow}</span>
+      <h2 class="lm__title" id="lead-magnet-title">{leadMagnet.title}</h2>
+      <p class="lm__subtitle" id="lead-magnet-subtitle">{leadMagnet.subtitle}</p>
+
+      {
+        leadMagnet.bullets.length > 0 && (
+          <ul class="lm__bullets">
+            {leadMagnet.bullets.map((bullet) => (
+              <li class="lm__bullet">
+                <span class="lm__check" aria-hidden="true">
+                  ✓
+                </span>
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <form class="lm__form" id="lead-magnet-form">
+        <input type="hidden" name="access_key" value={leadMagnet.accessKey} />
+        <input type="hidden" name="subject" value={leadMagnet.subject} />
+        <input type="hidden" name="from_name" value="Be Found Everywhere website" />
+        <input type="hidden" name="lead_magnet" value={leadMagnet.title} />
+        <input type="hidden" name="source_page" value="" data-lead-magnet-source />
+        <label class="honeypot" aria-hidden="true">
+          Leave this empty
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+        </label>
+        <input type="text" name="name" placeholder="Your name" required aria-label="Name" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your best email"
+          required
+          aria-label="Email address"
+        />
+        <button type="submit" class="btn btn--primary lm__submit">{leadMagnet.buttonLabel}</button>
+        <div class="form-message" role="status"></div>
+      </form>
+
+      <p class="lm__fine">{leadMagnet.fineprint}</p>
+    </div>
+
+    <div class="lm__body lm__success" data-lead-magnet-success hidden>
+      <span class="lm__check lm__check--big" aria-hidden="true">✓</span>
+      <h2 class="lm__title">You're in.</h2>
+      <p class="lm__subtitle" data-lead-magnet-success-text></p>
+      <a class="btn btn--primary lm__submit" href={assetUrl} download hidden data-lead-magnet-download>
+        Download it now
+      </a>
+      <button type="button" class="lm__dismiss" data-lead-magnet-close>Back to the site</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lm {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lm[hidden] { display: none; }
+  /* .btn and the flex/block rules below set `display`, which beats the UA
+     `[hidden] { display: none }` — pin it so hidden panels really stay hidden. */
+  .lm [hidden] { display: none !important; }
+  .lm__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 5, 35, 0.62);
+    backdrop-filter: blur(3px);
+    animation: lm-fade 0.25s ease;
+  }
+  .lm__dialog {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: linear-gradient(165deg, var(--c-navy) 0%, var(--c-deep-purple) 100%);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 70px rgba(7, 5, 35, 0.5);
+    padding: 40px 34px 32px;
+    color: var(--c-lavender);
+    animation: lm-rise 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+  .lm__close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--c-lavender);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lm__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--c-white);
+  }
+  .lm__eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b98bff;
+    background: rgba(149, 84, 255, 0.18);
+    padding: 5px 11px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .lm__title {
+    color: var(--c-white);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .lm__subtitle {
+    margin: 0 0 20px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #cbb8e8;
+  }
+  .lm__bullets {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .lm__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #e6dcf7;
+  }
+  .lm__check {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(149, 84, 255, 0.25);
+    color: var(--c-lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .lm__check--big {
+    width: 46px;
+    height: 46px;
+    font-size: 24px;
+    margin: 0 auto 18px;
+  }
+  .lm__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .lm__form input[type='text'],
+  .lm__form input[type='email'] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--c-white);
+    font-family: inherit;
+    font-size: 15px;
+  }
+  .lm__form input::placeholder { color: var(--c-muted); }
+  .lm__form input:focus {
+    outline: none;
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(149, 84, 255, 0.25);
+  }
+  .lm__submit {
+    width: 100%;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .lm__form .form-message { margin-top: 0; }
+  .lm__fine {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: #9d8bc0;
+  }
+  .lm__success { text-align: center; }
+  .lm__success[hidden] { display: none; }
+  .lm__dismiss {
+    display: block;
+    margin: 16px auto 0;
+    padding: 4px;
+    border: none;
+    background: none;
+    color: #9d8bc0;
+    font-family: inherit;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .lm__dismiss:hover { color: var(--c-lavender); }
+
+  @keyframes lm-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes lm-rise {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lm__backdrop,
+    .lm__dialog { animation: none; }
+  }
+  @media (max-width: 520px) {
+    .lm__dialog { padding: 36px 22px 26px; }
+    .lm__title { font-size: 1.4rem; }
+  }
+</style>

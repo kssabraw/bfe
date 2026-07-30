@@ -20,6 +20,42 @@ export const contact = {
   email: 'info@bfeai.com',
 };
 
+// Sitewide lead-magnet popup. Rendered by Base.astro on every page that does
+// not pass `noPopup`, and driven by src/scripts/lead-magnet.js.
+//
+// To swap the offer, edit the copy below and drop the asset in
+// public/downloads/. `assetUrl` is what the visitor gets immediately after
+// submitting — leave it null to show a "check your inbox" message instead and
+// deliver the file from your email tool.
+export const leadMagnet = {
+  eyebrow: 'Free download',
+  title: 'The AI Visibility Checklist',
+  subtitle:
+    'The 12 things ChatGPT, Gemini, Perplexity and Google AI look at before they recommend a local business — and how to fix each one.',
+  bullets: [
+    'What AI engines actually read about you',
+    'The profile and citation gaps that hide you',
+    'A 30-day order of operations to fix it',
+  ],
+  buttonLabel: 'Send me the checklist',
+  fineprint: 'No spam. Unsubscribe anytime.',
+  /** Path under public/, or an absolute URL. null = deliver by email only. */
+  assetUrl: null as string | null,
+  /** Web3Forms access key — same account the contact and newsletter forms use. */
+  accessKey: '457ceb13-c961-4710-9e1a-715a9cc35393',
+  subject: 'New lead magnet download – Be Found Everywhere',
+  triggers: {
+    /** Seconds on page before the popup opens. 0 disables the timer. */
+    delaySeconds: 25,
+    /** Percent of page scrolled before the popup opens. 0 disables. */
+    scrollPercent: 50,
+    /** Open when the cursor leaves the top of the viewport (desktop only). */
+    exitIntent: true,
+    /** Days to stay quiet after a visitor dismisses it. Submitters never see it again. */
+    dismissDays: 30,
+  },
+};
+
 export const counters = [
   { value: 6, label: 'LLMs to Track' },
   { value: 2, label: 'Powerful Apps' },

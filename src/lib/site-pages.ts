@@ -1,5 +1,6 @@
 /**
- * The registry behind the human-readable sitemap (/sitemap).
+ * The registry behind both sitemaps — the human-readable /sitemap and the
+ * XML /sitemap.xml crawlers read.
  *
  * The generated sections of that page — blog posts, AI tracking pages — come
  * from the same sources their routes do, so they can never drift. The one-off
@@ -119,8 +120,9 @@ export function assertSitemapCoverage(pageFiles: string[]): void {
   for (const file of pageFiles) {
     if (!isPageFile(file)) continue;
 
-    // Raw HTML in public bypasses routing entirely — @astrojs/sitemap never
-    // sees it either, so this page is the only index it can appear in.
+    // Raw HTML in public bypasses routing entirely, so nothing derived from
+    // the route table would ever see it — being listed here is the only way it
+    // reaches either sitemap.
     if (file.startsWith('/public/')) {
       const route = routeFromPublicFile(file);
       found.add(route);

@@ -19,7 +19,7 @@ import { SITEMAP_GROUPS, assertSitemapCoverage, staticPages } from '../lib/site-
 // back by hand. If a page isn't accounted for in the registry, the build fails.
 assertSitemapCoverage([
   ...Object.keys(import.meta.glob('/src/pages/**/*.{astro,md,mdx,html}')),
-  ...Object.keys(import.meta.glob('/public/**/*.html')),
+  ...Object.keys(import.meta.glob('/public/**/*.{html,htm}')),
   '/src/pages/sitemap.astro',
 ]);
 

@@ -52,7 +52,7 @@ export const dynamicRoutes: Record<string, string> = {
 };
 
 /** File extensions Astro turns into HTML pages. */
-const PAGE_EXTENSIONS = ['.astro', '.md', '.mdx', '.html'];
+const PAGE_EXTENSIONS = ['.astro', '.md', '.mdx', '.html', '.htm'];
 
 const isPageFile = (file: string) => PAGE_EXTENSIONS.some((ext) => file.endsWith(ext));
 
@@ -67,12 +67,11 @@ export function routeFromPageFile(file: string): string {
 
 /**
  * '/public/offer.html' -> '/offer.html'. Files in public are copied through
- * untouched, so unlike a route their URL keeps the extension.
+ * untouched, so unlike a route their URL keeps the extension — except an
+ * index file, which is served as its directory: '/public/a/index.html' -> '/a/'.
  */
 export function routeFromPublicFile(file: string): string {
-  const path = file.replace(/^.*\/public\//, '');
-  const asDir = path.replace(/(^|\/)index\.html$/, '$1');
-  return asDir === path ? `/${path}` : `/${asDir}`;
+  return `/${file.replace(/^.*\/public\//, '').replace(/(^|\/)index\.html?$/, '$1')}`;
 }
 
 /**
@@ -92,6 +91,30 @@ export function assertSitemapCoverage(pageFiles: string[]): void {
   const listed = new Set(staticPages.map((page) => page.route));
   const excluded = new Set(Object.keys(excludedPages));
   const found = new Set<string>();
+
+  // A registered page still has to survive rendering. The sitemap matches
+  // groups by name, so an entry whose group isn't one of SITEMAP_GROUPS is
+  // dropped on the floor — covered as far as the loop below is concerned, yet
+  // absent from the page. There is no tsconfig.json in this project, so the
+  // SitemapGroup union is not enforced anywhere; this check is what catches it.
+  const groupNames = new Set<string>(SITEMAP_GROUPS);
+  const seen = new Set<string>();
+  for (const page of staticPages) {
+    if (!groupNames.has(page.group)) {
+      problems.push(
+        `${page.route} has group "${page.group}", which is not one of ${SITEMAP_GROUPS.join(', ')} — the link would silently never render.`,
+      );
+    }
+    if (seen.has(page.route)) {
+      problems.push(`${page.route} is listed twice in staticPages — it would render twice.`);
+    }
+    seen.add(page.route);
+    if (page.route in excludedPages) {
+      problems.push(
+        `${page.route} is in both staticPages and excludedPages — it does render, so drop the excludedPages entry.`,
+      );
+    }
+  }
 
   for (const file of pageFiles) {
     if (!isPageFile(file)) continue;
@@ -130,7 +153,7 @@ export function assertSitemapCoverage(pageFiles: string[]): void {
   for (const route of [...listed, ...excluded]) {
     if (!found.has(route)) {
       problems.push(
-        `${route} is listed in src/lib/site-pages.ts but no longer exists under src/pages — remove the entry.`,
+        `${route} is listed in src/lib/site-pages.ts but no file under src/pages or public produces it — remove the entry.`,
       );
     }
   }

@@ -11,13 +11,15 @@ import { aiTrackingPath } from '../lib/verticals';
 import { sortPosts } from '../lib/blog';
 import { SITEMAP_GROUPS, assertSitemapCoverage, staticPages } from '../lib/site-pages';
 
-// Every file under src/pages, resolved at build time. Nothing is imported —
-// only the keys are used — so this costs a directory walk and no page code.
-// Vite leaves the globbing module out of its own results, so this file is
-// added back by hand. If a page isn't accounted for in the registry, the
-// build fails.
+// Every page file in the project, resolved at build time — routes under
+// src/pages, plus any hand-written HTML in public, which is copied through
+// without a route and so appears in no other index. Nothing is imported, only
+// the keys are used, so this costs a directory walk and no page code. Vite
+// leaves the globbing module out of its own results, so this file is added
+// back by hand. If a page isn't accounted for in the registry, the build fails.
 assertSitemapCoverage([
   ...Object.keys(import.meta.glob('/src/pages/**/*.{astro,md,mdx,html}')),
+  ...Object.keys(import.meta.glob('/public/**/*.html')),
   '/src/pages/sitemap.astro',
 ]);
 

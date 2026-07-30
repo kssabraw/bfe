@@ -66,12 +66,25 @@ export function routeFromPageFile(file: string): string {
 }
 
 /**
- * Throws unless every page file under src/pages is either listed on the
- * sitemap, explicitly excluded, or a dynamic route covered by a generated
- * section — and unless every route listed here still exists.
+ * '/public/offer.html' -> '/offer.html'. Files in public are copied through
+ * untouched, so unlike a route their URL keeps the extension.
+ */
+export function routeFromPublicFile(file: string): string {
+  const path = file.replace(/^.*\/public\//, '');
+  const asDir = path.replace(/(^|\/)index\.html$/, '$1');
+  return asDir === path ? `/${path}` : `/${asDir}`;
+}
+
+/**
+ * Throws unless every page under src/pages — and every hand-written HTML file
+ * in public, which Astro copies through without registering a route — is
+ * either listed on the sitemap, explicitly excluded, or a dynamic route
+ * covered by a generated section. Also throws when a route listed here no
+ * longer exists.
  *
- * Called from src/pages/sitemap.astro with the real contents of src/pages, so
- * a mismatch fails `astro build` rather than shipping a stale sitemap.
+ * Called from src/pages/sitemap.astro with the real contents of both
+ * directories, so a mismatch fails `astro build` rather than shipping a stale
+ * sitemap.
  */
 export function assertSitemapCoverage(pageFiles: string[]): void {
   const problems: string[] = [];
@@ -82,6 +95,19 @@ export function assertSitemapCoverage(pageFiles: string[]): void {
 
   for (const file of pageFiles) {
     if (!isPageFile(file)) continue;
+
+    // Raw HTML in public bypasses routing entirely — @astrojs/sitemap never
+    // sees it either, so this page is the only index it can appear in.
+    if (file.startsWith('/public/')) {
+      const route = routeFromPublicFile(file);
+      found.add(route);
+      if (!listed.has(route) && !excluded.has(route)) {
+        problems.push(
+          `${route} (${file}) is a hand-written page in public/ that no sitemap lists — add it to staticPages in src/lib/site-pages.ts, or to excludedPages with a reason.`,
+        );
+      }
+      continue;
+    }
 
     if (file.includes('[')) {
       if (!(file in dynamicRoutes)) {

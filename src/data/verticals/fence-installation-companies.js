@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "fence-installation-companies",
   "name": "Fence Installation Companies",
+  "hub": {
+    "subhead": "Fencing gets researched material-first and permit-first. AI SEO makes your company the one cited in those answers.",
+    "intro": {
+      "h": "The Questions Come Before the Measure",
+      "paras": [
+        "A new fence starts with questions, not quotes. What holds up better in this climate, vinyl or cedar? How tall can it legally be? Does the property line need surveying first? Homeowners take all of that to an AI assistant, and the companies named inside the answers are the ones invited out to measure.",
+        "Being that company means having a site that genuinely covers materials, heights, permits and local code, reviews that keep coming in, a profile that lists every fence type you install, and listings that match everywhere. AI SEO is how those pieces get built into a citation instead of sitting there unread."
+      ]
+    },
+    "trackingBlurb": "Track whether AI engines name your company for fence material, permit and installation questions in your service area."
+  },
   "eyebrow": "For Fence Installation Companies",
   "h1": "Does AI Recommend Your Fence Company for New Installs?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for wood, vinyl and aluminum fencing — and fix it when they don’t.",

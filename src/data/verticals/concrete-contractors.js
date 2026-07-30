@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "concrete-contractors",
   "name": "Concrete Contractors",
+  "hub": {
+    "subhead": "Homeowners price the pour with an AI assistant before they call anyone. AI SEO puts your company inside that conversation.",
+    "intro": {
+      "h": "The Research Happens Before the Estimate Request",
+      "paras": [
+        "Concrete is permanent and expensive, so buyers research it hard. They ask what a driveway costs per square foot, how long a slab needs to cure, whether they need rebar or fiber, and who in the area does clean work. By the time anyone requests a bid, the shortlist already exists — and it was assembled from AI answers.",
+        "Those answers reward contractors whose sites take the technical questions seriously, whose project photos and reviews are current, and whose business details line up across every listing that mentions them. AI SEO is the work of making your company the obvious one to cite when someone asks about cost, cure time or quality of finish."
+      ]
+    },
+    "trackingBlurb": "Find out which concrete contractors AI engines name for driveway, patio and slab questions across the markets you pour in."
+  },
   "eyebrow": "For Concrete Contractors",
   "h1": "Does AI Recommend Your Concrete Company for Driveways and Slabs?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for driveways, patios and foundations — and fix it when they don’t.",

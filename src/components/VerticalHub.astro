@@ -1,0 +1,144 @@
+---
+// The top of a vertical silo — /<slug>/, "AI SEO for <Vertical>".
+//
+// Its job is to be the entry point the silo hangs off: it targets the head
+// term, then links down to every page that belongs to the vertical. The AI
+// tracking page is one of those children, not the parent — see
+// src/lib/verticals for the shape of the silo.
+//
+// Deliberately shares no copy with VerticalPage.astro. The two pages sit in
+// the same silo, so anything reused here would set them competing for the same
+// query; the hub speaks to the trade's search problem in general and leaves
+// the product story to the child page.
+import type { Vertical } from '../data/verticals/types';
+import { trialHref, related } from '../data/verticals/shared';
+import { verticalH1, aiTrackingPath } from '../lib/verticals';
+
+interface Post {
+  id: string;
+  data: { title: string; description: string; pubDate: Date };
+}
+
+interface Props {
+  data: Vertical;
+  posts: Post[];
+  accent?: string;
+}
+
+const { data: v, posts, accent = '#9554ff' } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path: string) => `${base}${path}`;
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<div class="bfe-verticals" style={`font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #545356; background: #ffffff; line-height: 1.65; font-size: 16px; --accent: ${accent};`}>
+
+  <div style="border-bottom: 1px solid #f1ecfa; background: #faf8ff;">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; font-size: 13px; color: #8c8ea3; display: flex; gap: 8px; align-items: center;">
+      <a href={url('/')} style="color: #8c8ea3;">Home</a><span>/</span>
+      <span style="color: #545356; font-weight: 600;">{v.name}</span>
+    </div>
+  </div>
+
+  <section style="background: linear-gradient(180deg, #faf8ff 0%, #ffffff 100%);">
+    <div class="bfe-hero" style="max-width: 1140px; margin: 0 auto; padding: 72px 24px 64px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;">
+      <div>
+        <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">{v.eyebrow}</span>
+        <h1 style="color: #070523; font-size: clamp(2.1rem, 3.8vw, 3rem); font-weight: 800; line-height: 1.1; margin: 0 0 18px; letter-spacing: -0.02em; text-wrap: balance;">{verticalH1(v.name)}</h1>
+        <p style="font-size: 1.2rem; color: #545356; margin: 0 0 30px; max-width: 42ch;">{v.hub.subhead}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+          <a class="bfe-btn-primary" href={trialHref} style="background: var(--accent); color: #fff; padding: 15px 30px; border-radius: 11px; font-weight: 700; font-size: 16px;">{v.ctaLabel}</a>
+          <a class="bfe-btn-secondary" href={url("/contact/")} style="border: 1px solid #d9d2ea; color: #070523; padding: 15px 26px; border-radius: 11px; font-weight: 600; font-size: 16px;">Book a walkthrough</a>
+        </div>
+      </div>
+      <div style="position: relative;">
+        <div style="position: absolute; inset: -18px -18px 24px 24px; background: linear-gradient(150deg, color-mix(in oklab, var(--accent), white 70%), #faf8ff); border-radius: 28px; z-index: 0;"></div>
+        <div style="position: relative; z-index: 1; border-radius: 18px; overflow: hidden; box-shadow: 0 24px 60px rgba(60,34,102,0.18); border: 1px solid #ece6f7; background: #fff;">
+          <img src={url("/images/labs_analytics_light.png")} alt="BFE visibility dashboard" style="display: block; width: 100%; height: auto;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 820px; margin: 0 auto; padding: 72px 24px 8px;">
+    <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 20px; letter-spacing: -0.01em; text-wrap: balance;">{v.hub.intro.h}</h2>
+    {v.hub.intro.paras.map((para) => (
+      <p style="margin: 0 0 18px; font-size: 1.05rem;">{para}</p>
+    ))}
+  </section>
+
+  <!-- The silo itself: every page belonging to this vertical, linked from its
+       top. The tracking page is the anchor child; the guides are the blog
+       posts matched to this vertical by src/lib/vertical-posts. -->
+  <section style="max-width: 1140px; margin: 0 auto; padding: 64px 24px 20px;">
+    <div style="max-width: 720px; margin: 0 auto 36px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">In this section</span>
+      <h2 style="color: #070523; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin: 0; letter-spacing: -0.01em; text-wrap: balance;">Everything We Cover for {v.name}</h2>
+    </div>
+
+    <a class="bfe-related-card" href={`${url(aiTrackingPath(v.slug))}/`} style="display: block; background: linear-gradient(160deg, #070523 0%, #3c2266 100%); border: 1px solid transparent; border-radius: 18px; padding: 36px; box-shadow: 0 20px 50px rgba(60,34,102,0.28); margin-bottom: 28px;">
+      <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d3b7ff; margin-bottom: 10px;">Start here</span>
+      <h3 style="color: #fff; font-size: 1.5rem; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em;">AI Tracking for {v.name}</h3>
+      <p style="margin: 0 0 16px; font-size: 15px; color: #e9dcff; max-width: 62ch;">{v.hub.trackingBlurb}</p>
+      <span style="font-weight: 600; font-size: 14px; color: #fff;">See how tracking works →</span>
+    </a>
+
+    {posts.length > 0 && (
+      <div style="background: #fff; border: 1px solid #ece6f7; border-radius: 18px; padding: 8px 28px; box-shadow: 0 8px 30px rgba(60,34,102,0.06);">
+        <h3 style="color: #070523; font-size: 1.15rem; font-weight: 700; margin: 24px 0 4px;">Guides for {v.name}</h3>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+          {posts.map((post) => (
+            <li style="padding: 18px 0; border-top: 1px solid #f1ecfa;">
+              <a href={url(`/blog/${post.id}/`)} style="font-weight: 600; font-size: 1.02rem; color: #070523;">{post.data.title}</a>
+              <p style="margin: 6px 0 0; font-size: 14px; color: #8c8ea3;">
+                {post.data.description && <span>{post.data.description} </span>}
+                <time datetime={post.data.pubDate.toISOString()}>{dateFmt(post.data.pubDate)}</time>
+              </p>
+            </li>
+          ))}
+        </ul>
+        <div style="height: 20px;"></div>
+      </div>
+    )}
+  </section>
+
+  <section style="max-width: 1140px; margin: 0 auto; padding: 64px 24px 72px;">
+    <div style="max-width: 720px; margin: 0 auto 40px; text-align: center;">
+      <span style="display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">The tools</span>
+      <h2 style="color: #070523; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin: 0; letter-spacing: -0.01em;">What You Get With Every Plan</h2>
+    </div>
+    <div class="bfe-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+      {related.map((rel) => (
+        <a class="bfe-related-card" href={url(rel.href)} style="display: block; background: #fff; border: 1px solid #ece6f7; border-radius: 16px; padding: 28px; box-shadow: 0 8px 30px rgba(60,34,102,0.06);">
+          <h3 style="color: #070523; font-size: 1.15rem; font-weight: 700; margin: 0 0 8px;">{rel.title}</h3>
+          <p style="margin: 0 0 14px; font-size: 14px; color: #545356;">{rel.blurb}</p>
+          <span style="font-weight: 600; font-size: 14px; color: var(--accent);">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section style="background: #faf8ff; border-top: 1px solid #f1ecfa;">
+    <div style="max-width: 820px; margin: 0 auto; padding: 72px 24px; text-align: center;">
+      <h2 style="color: #070523; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: balance;">See Where You Stand in AI Answers</h2>
+      <p style="margin: 0 auto 28px; max-width: 60ch;">Run your first scan across all six engines and find out whether the answers your customers get already name you.</p>
+      <a class="bfe-btn-primary" href={trialHref} style="display: inline-block; background: var(--accent); color: #fff; padding: 15px 32px; border-radius: 11px; font-weight: 700; font-size: 16px;">{v.ctaLabel}</a>
+    </div>
+  </section>
+
+</div>
+
+<style>
+  .bfe-verticals a { color: var(--accent); text-decoration: none; }
+  .bfe-verticals a:hover { text-decoration: underline; }
+  .bfe-btn-primary:hover { background: color-mix(in oklab, var(--accent), black 12%) !important; text-decoration: none !important; }
+  .bfe-btn-secondary:hover { border-color: var(--accent) !important; text-decoration: none !important; }
+  .bfe-related-card:hover { text-decoration: none !important; box-shadow: 0 14px 40px rgba(60,34,102,0.12) !important; }
+  @media (max-width: 900px) {
+    .bfe-hero { grid-template-columns: 1fr !important; }
+    .bfe-grid-3 { grid-template-columns: 1fr !important; }
+  }
+</style>

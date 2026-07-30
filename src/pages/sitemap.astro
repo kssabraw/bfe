@@ -7,7 +7,7 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { verticals } from '../data/verticals/index.js';
-import { aiTrackingPath } from '../lib/verticals';
+import { aiTrackingPath, verticalPath } from '../lib/verticals';
 import { sortPosts } from '../lib/blog';
 import { SITEMAP_GROUPS, assertSitemapCoverage, staticPages } from '../lib/site-pages';
 
@@ -65,12 +65,20 @@ const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
         ))}
       </div>
 
+      <!-- One entry per vertical silo: the vertical page on top, the topic
+           pages that belong to it indented beneath. The silo's blog posts are
+           not repeated here — they are all listed in "Blog posts" below. -->
       <section class="sitemap-block">
-        <h2>AI tracking by industry</h2>
-        <p class="sitemap-block-note">{industries.length} industry pages.</p>
-        <ul class="sitemap-list sitemap-list--columns">
+        <h2>Industries</h2>
+        <p class="sitemap-block-note">{industries.length} industry silos.</p>
+        <ul class="sitemap-list sitemap-list--silos">
           {industries.map((v) => (
-            <li><a href={`${url(aiTrackingPath(v.slug))}/`}>AI Tracking for {v.name}</a></li>
+            <li>
+              <a href={`${url(verticalPath(v.slug))}/`}>AI SEO for {v.name}</a>
+              <ul class="sitemap-list">
+                <li><a href={`${url(aiTrackingPath(v.slug))}/`}>AI Tracking for {v.name}</a></li>
+              </ul>
+            </li>
           ))}
         </ul>
       </section>
@@ -130,6 +138,24 @@ const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
   .sitemap-list--columns li {
     break-inside: avoid;
   }
+  .sitemap-list--silos {
+    columns: 2;
+    column-gap: 40px;
+  }
+  .sitemap-list--silos > li {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .sitemap-list--silos > li > ul {
+    margin-top: 6px;
+    padding-left: 16px;
+    border-left: 2px solid var(--c-border);
+  }
+  .sitemap-list--silos > li > ul li {
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
   .sitemap-list--posts li {
     display: flex;
     justify-content: space-between;
@@ -151,6 +177,7 @@ const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
   @media (max-width: 640px) {
     .sitemap-grid { grid-template-columns: 1fr; }
     .sitemap-list--columns { columns: 1; }
+    .sitemap-list--silos { columns: 1; }
     .sitemap-list--posts li {
       flex-direction: column;
       gap: 4px;

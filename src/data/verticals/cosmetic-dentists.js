@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "cosmetic-dentists",
   "name": "Cosmetic Dentists",
+  "hub": {
+    "subhead": "Elective cases are researched for months. AI SEO decides whether your practice is present at the start of that research.",
+    "intro": {
+      "h": "Months of Research Start With One Question",
+      "paras": [
+        "Nobody books veneers on impulse. Patients spend weeks or months asking whether the procedure is worth it, what it costs, how long it lasts, and what the alternatives are. AI assistants have become the natural place to have that conversation — and the practices named early in it stay on the list all the way to the consultation.",
+        "Getting named comes down to signals the engines can verify: review depth and recency, before-and-after evidence, whether your site treats each procedure as its own subject with real detail on cost and candidacy, and how consistently your practice appears across dental and local directories. AI SEO is the process of building those signals deliberately."
+      ]
+    },
+    "trackingBlurb": "See which practices the AI engines recommend for veneers, whitening and smile makeovers in your market."
+  },
   "eyebrow": "For Cosmetic Dental Practices",
   "h1": "Does AI Recommend Your Practice for Veneers and Implants?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for veneers, implants and smile makeovers — and fix it when they don’t.",

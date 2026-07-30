@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "window-replacement-companies",
   "name": "Window Replacement Companies",
+  "hub": {
+    "subhead": "A five-figure decision made over weeks. AI SEO puts your company on the shortlist before the calls start.",
+    "intro": {
+      "h": "The Shortlist Forms Weeks Before Anyone Calls",
+      "paras": [
+        "Whole-home window replacement is a considered five-figure purchase. Homeowners spend weeks asking an assistant about energy savings, frame materials, what a full replacement costs, and how to spot a high-pressure sales operation. The shortlist that emerges from those conversations is the only list that matters — everyone outside it is never contacted.",
+        "The engines cite companies whose content covers efficiency ratings, materials and warranties in real terms, whose reviews describe the sales process as much as the install, whose manufacturer certifications are visible, and whose listings agree. AI SEO is how you get onto a shortlist that forms without you."
+      ]
+    },
+    "trackingBlurb": "Track whether AI engines name your company when homeowners research window replacement costs and installers nearby."
+  },
   "eyebrow": "For Window Replacement Companies",
   "h1": "Does AI Recommend Your Window Company on Five-Figure Jobs?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for whole-home window replacement — and fix it when they don’t.",

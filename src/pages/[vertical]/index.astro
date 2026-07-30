@@ -1,0 +1,26 @@
+---
+// /<vertical>/ — the vertical page, top of the silo. One per vertical, 36 in
+// total. The AI tracking page in [page].astro sits beneath this one; adding a
+// topic for a vertical means adding it under this route, not alongside it.
+import Base from '../../layouts/Base.astro';
+import VerticalHub from '../../components/VerticalHub.astro';
+import { getCollection } from 'astro:content';
+import { verticals } from '../../data/verticals/index.js';
+import { verticalTitle } from '../../lib/verticals';
+import { sortPosts } from '../../lib/blog';
+import { postsForVertical } from '../../lib/vertical-posts';
+
+export async function getStaticPaths() {
+  const posts = sortPosts(await getCollection('blog'));
+  return verticals.map((v) => ({
+    params: { vertical: v.slug },
+    props: { data: v, posts: postsForVertical(v, posts, verticals) },
+  }));
+}
+
+const { data, posts } = Astro.props;
+---
+
+<Base title={verticalTitle(data.name)} description={data.hub.subhead}>
+  <VerticalHub data={data} posts={posts} />
+</Base>

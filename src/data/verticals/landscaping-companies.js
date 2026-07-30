@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "landscaping-companies",
   "name": "Landscaping Companies",
+  "hub": {
+    "subhead": "The season is planned before it starts. AI SEO puts your company in the answers homeowners get while planning it.",
+    "intro": {
+      "h": "Next Season Is Decided in the Off Season",
+      "paras": [
+        "Landscaping demand is planned, not impulsive. Homeowners spend the cold months asking an assistant what to plant, what a full yard redesign costs, whether to sod or seed, and who does good work nearby. By the time the weather turns, the estimate requests are already routed — and they were routed by answers given weeks earlier.",
+        "Companies named in those answers tend to have galleries the engines can index, reviews arriving year-round rather than in a summer clump, content covering design, maintenance and regional planting properly, and listings that agree everywhere. AI SEO is the work of doing that before the season, not during it."
+      ]
+    },
+    "trackingBlurb": "Track whether AI engines name your company when homeowners plan landscaping, hardscaping and yard projects nearby."
+  },
   "eyebrow": "For Landscaping Companies",
   "h1": "Does AI Recommend Your Landscaping Company in Spring?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for design, maintenance and hardscape searches — and fix it when they don’t.",

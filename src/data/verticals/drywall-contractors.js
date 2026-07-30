@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "drywall-contractors",
   "name": "Drywall Contractors",
+  "hub": {
+    "subhead": "Drywall has always run on referrals. AI answers are the new referral — and they are measurable.",
+    "intro": {
+      "h": "The Referral Went Automated",
+      "paras": [
+        "Drywall work has moved by word of mouth for decades: a GC recommends someone, a neighbour passes a number along. That mechanism has not disappeared, it has been automated. Homeowners and contractors alike now ask an AI assistant who does clean drywall repair nearby, and the assistant answers with names — the same function a referral served, at far greater scale.",
+        "Unlike a referral, this one leaves a trail you can influence. Reviews that mention finish quality and cleanliness, a profile that spells out repair versus new construction versus texture matching, photos of completed work, and consistent listings all feed the answer. AI SEO is the practice of feeding it on purpose."
+      ]
+    },
+    "trackingBlurb": "Check whether AI engines name your company for drywall repair, texture and finishing work in your area."
+  },
   "eyebrow": "For Drywall Contractors",
   "h1": "Does AI Recommend Your Drywall Company for Repairs and New Builds?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for patching, hanging and finishing work — and fix it when they don’t.",

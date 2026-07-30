@@ -1,7 +1,7 @@
 ---
 import type { Vertical } from '../data/verticals/types';
 import { trialHref, tiers, testimonial, related, pricingIntro } from '../data/verticals/shared';
-import { aiTrackingH1 } from '../lib/verticals';
+import { aiTrackingH1, verticalPath } from '../lib/verticals';
 
 export interface Props { data: Vertical; accent?: string }
 const { data: v, accent = '#9554ff' } = Astro.props;
@@ -19,7 +19,8 @@ const answerParas = v.answer.split(/(?<=\.)\s+(?=[A-Z])/).filter(Boolean);
   <div style="border-bottom: 1px solid #f1ecfa; background: #faf8ff;">
     <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; font-size: 13px; color: #8c8ea3; display: flex; gap: 8px; align-items: center;">
       <a href={url('/')} style="color: #8c8ea3;">Home</a><span>/</span>
-      <span style="color: #545356; font-weight: 600;">{v.name}</span>
+      <a href={`${url(verticalPath(v.slug))}/`} style="color: #8c8ea3;">{v.name}</a><span>/</span>
+      <span style="color: #545356; font-weight: 600;">AI Tracking</span>
     </div>
   </div>
 

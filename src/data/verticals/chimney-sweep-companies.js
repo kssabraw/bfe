@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "chimney-sweep-companies",
   "name": "Chimney Sweep Companies",
+  "hub": {
+    "subhead": "Your whole season is decided in a few autumn weeks. AI SEO is how you make sure the answers point your way before it starts.",
+    "intro": {
+      "h": "A Short Season Makes AI Visibility Urgent",
+      "paras": [
+        "Chimney work compresses into a narrow window. The first cold night sends thousands of homeowners to an AI assistant asking how often a chimney needs sweeping, whether their fireplace is safe to use, and who nearby does the work. Within a few weeks the calendars are full — and if the answers named someone else through that stretch, there is no second chance until next year.",
+        "The engines weigh certification and association listings unusually heavily in safety trades like this one, alongside review recency, profile completeness, and whether your site treats creosote, liner inspection and CSIA credentials as real subjects rather than bullet points. AI SEO is getting those signals in place before the season opens, not during it."
+      ]
+    },
+    "trackingBlurb": "Track whether AI assistants name your company for sweeping, inspection and safety questions as the season builds."
+  },
   "eyebrow": "For Chimney Sweep Companies",
   "h1": "Does AI Recommend Your Chimney Company Before First Fire?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for sweeping, inspection and repair — and fix it when they don’t.",

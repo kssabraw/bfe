@@ -48,7 +48,8 @@ export const excludedPages: Record<string, string> = {
 export const dynamicRoutes: Record<string, string> = {
   '/src/pages/blog/[slug].astro': 'the "Blog posts" section',
   '/src/pages/blog/page/[page].astro': 'pagination over the "Blog posts" section',
-  '/src/pages/[vertical]/[page].astro': 'the "AI tracking by industry" section',
+  '/src/pages/[vertical]/index.astro': 'the "Industries" section',
+  '/src/pages/[vertical]/[page].astro': 'the "Industries" section, indented under each vertical',
 };
 
 /** File extensions Astro turns into HTML pages. */

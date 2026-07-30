@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import LeadMagnetPopup from '../components/LeadMagnetPopup.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -11,17 +10,8 @@ interface Props {
   ogType?: string;
   /** Keep the page out of search results. Also drops it from the sitemap — see astro.config.mjs. */
   noindex?: boolean;
-  /** Suppress the sitewide lead-magnet popup (conversion pages, thank-you pages). */
-  noPopup?: boolean;
 }
-const {
-  title,
-  description = '',
-  ogImage,
-  ogType = 'website',
-  noindex = false,
-  noPopup = false,
-} = Astro.props;
+const { title, description = '', ogImage, ogType = 'website', noindex = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -65,9 +55,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
-    {!noPopup && <LeadMagnetPopup />}
     <script src="../scripts/forms.js"></script>
-    {/* Astro hoists bundled scripts, so this always ships; it no-ops when the popup is absent. */}
-    <script src="../scripts/lead-magnet.js"></script>
   </body>
 </html>

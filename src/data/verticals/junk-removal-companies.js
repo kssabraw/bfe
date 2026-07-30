@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "junk-removal-companies",
   "name": "Junk Removal Companies",
+  "hub": {
+    "subhead": "National franchises win these answers by default, but the signals behind them are local and fixable. That is what AI SEO is for.",
+    "intro": {
+      "h": "Franchise Recognition Is Not the Same as an Earned Citation",
+      "paras": [
+        "Ask an assistant who can haul something away and a franchise name usually comes back. That looks like brand power, and partly it is — but the underlying reason is more prosaic: franchises maintain complete profiles, steady review flow and consistent listings at scale. Those are the same signals available to an independent operator, and none of them are locked behind a national marketing budget.",
+        "Independents get named by covering what franchises do generically — specific item types, same-day availability, what actually gets recycled, transparent pricing — with reviews arriving steadily and business details matching everywhere. AI SEO is how a local hauler competes on the signals rather than the ad spend."
+      ]
+    },
+    "trackingBlurb": "See whether AI assistants name your company or only the national franchises when people ask who hauls junk nearby."
+  },
   "eyebrow": "For Junk Removal Companies",
   "h1": "Does AI Name Your Junk Removal Company or the Franchise?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for hauling, cleanouts and same-day pickup — and fix it when they don’t.",

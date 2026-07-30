@@ -6,9 +6,28 @@ export interface BodySection { h: string; paras: string[] }
 export interface Step { n: string; title: string; body: string }
 export interface Faq { q: string; a: string }
 
+/**
+ * Copy unique to the vertical page — the top of the silo at /<slug>/.
+ *
+ * Everything else on this interface belongs to the AI tracking page beneath
+ * it, so these fields are deliberately separate: the two pages sit in the same
+ * silo targeting different terms, and reusing the tracking copy up top would
+ * make them compete with each other. Keep this block about the trade's search
+ * problem in general; leave the tracking product story to the child page.
+ */
+export interface Hub {
+  /** Hero sub-line, one sentence. */
+  subhead: string;
+  /** The opening section: what AI SEO means for this trade. */
+  intro: BodySection;
+  /** One sentence pitching the AI tracking page as a topic within the silo. */
+  trackingBlurb: string;
+}
+
 export interface Vertical {
   slug: string;
   name: string;
+  hub: Hub;
   eyebrow: string;
   h1: string;
   subhead: string;

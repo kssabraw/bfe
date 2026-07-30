@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "tree-service-companies",
   "name": "Tree Service Companies",
+  "hub": {
+    "subhead": "A tree on the roof is decided in minutes. AI SEO makes sure your name is the one available.",
+    "intro": {
+      "h": "Emergency Work Leaves No Room for Comparison",
+      "paras": [
+        "A limb through the roof after a storm produces a decision measured in minutes. The homeowner asks who can remove it, calls the name that comes back, and the job is assigned before anyone else in the market knows it existed. Storm weeks concentrate a large share of the year revenue into exactly these moments.",
+        "Assistants making urgent recommendations lean on emergency availability stated on your profile, review recency, certified arborist credentials, insurance signals, and content that covers removal, storm response and hazard assessment specifically. AI SEO is how you become the name that is ready when the weather is not."
+      ]
+    },
+    "trackingBlurb": "Check whether AI engines name your company for emergency removal and storm response across your service area."
+  },
   "eyebrow": "For Tree Service Companies",
   "h1": "When a Tree Comes Down, Does AI Give Them Your Number?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for removal, trimming and emergency storm work — and fix it when they don’t.",

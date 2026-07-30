@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "appliance-repair-companies",
   "name": "Appliance Repair Companies",
+  "hub": {
+    "subhead": "When someone asks an AI assistant whether a repair is worth it, the answer names a company. Here is how appliance repair businesses earn that mention.",
+    "intro": {
+      "h": "Appliance Repair Now Gets Decided in One Answer",
+      "paras": [
+        "Almost nobody searches \"appliance repair near me\" as their first move any more. They ask whether a nine-year-old dishwasher is worth fixing, what a control board usually costs, and whether the noise their dryer is making is serious. The AI answer settles the repair-or-replace question and hands over a company name in the same breath — which means one response decides both whether the job exists and who gets it.",
+        "That answer is assembled from signals you already own: review recency and volume, how completely your Google Business Profile describes the brands and appliances you service, whether your site covers specific symptoms rather than a generic services list, and where your name shows up across local directories. AI SEO is the work of shaping those signals on purpose instead of hoping they add up."
+      ]
+    },
+    "trackingBlurb": "Check whether ChatGPT, Gemini and AI Overviews name your shop for repair-or-replace questions across every brand and appliance you service."
+  },
   "eyebrow": "For Appliance Repair Companies",
   "h1": "When a Fridge Dies, Does AI Recommend Your Repair Company?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for refrigerator, washer and oven repair — and fix it when they don’t.",

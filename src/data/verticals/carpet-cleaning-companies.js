@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "carpet-cleaning-companies",
   "name": "Carpet Cleaning Companies",
+  "hub": {
+    "subhead": "Dozens of cleaners serve your area and the AI answer names two. AI SEO is how you become one of them.",
+    "intro": {
+      "h": "In a Crowded Category, the AI Answer Is the Filter",
+      "paras": [
+        "Carpet cleaning is one of the most saturated local categories there is, and that saturation is exactly why AI assistants have become so influential in it. A homeowner asking who to call does not want a directory of thirty companies — they want a name. The assistant obliges with two or three, and everyone else in your market is simply absent from the decision.",
+        "Being one of those names is not luck. AI systems lean heavily on review velocity, whether your profile spells out the services and fabrics you handle, how consistently your business details appear across listings, and whether your site answers the questions people actually ask — drying times, pet stains, what a room really costs. AI SEO is the discipline of making those signals unmistakable."
+      ]
+    },
+    "trackingBlurb": "See which carpet cleaners the six major AI engines recommend in your service area, and what is putting them there instead of you."
+  },
   "eyebrow": "For Carpet Cleaning Companies",
   "h1": "Does AI Recommend Your Carpet Cleaning Company Locally?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for carpet, upholstery and pet-stain cleaning — and fix it when they don’t.",

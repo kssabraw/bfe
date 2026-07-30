@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "pressure-washing-companies",
   "name": "Pressure Washing Companies",
+  "hub": {
+    "subhead": "Curb-appeal work is booked on impulse. AI SEO makes sure the impulse lands on your company.",
+    "intro": {
+      "h": "Booked This Week, Decided in One Answer",
+      "paras": [
+        "Someone notices green algae on the siding or a driveway that has gone grey, and wants it dealt with soon. There is no drawn-out comparison — they ask an assistant what it costs and who does it nearby, then book. The whole decision fits inside a single conversation, which makes presence in that conversation the entire game.",
+        "Assistants respond to before-and-after evidence, reviews that arrive steadily through the season, profiles that list surfaces and services specifically — house washing, roof cleaning, concrete, decks — and listings that match. AI SEO is the work of being the ready answer to an impulse."
+      ]
+    },
+    "trackingBlurb": "See whether AI assistants name your company when homeowners ask who can wash a house or driveway nearby."
+  },
   "eyebrow": "For Pressure Washing Companies",
   "h1": "Does AI Recommend Your Pressure Washing Company?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for house, driveway and roof washing — and fix it when they don’t.",

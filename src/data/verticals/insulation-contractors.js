@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "insulation-contractors",
   "name": "Insulation Contractors",
+  "hub": {
+    "subhead": "Efficiency questions are exactly what AI answers well. AI SEO puts your company inside those answers.",
+    "intro": {
+      "h": "Ideal AI Territory — If You Are In It",
+      "paras": [
+        "How do I lower my heating bill? Is spray foam worth the cost? What R-value does an attic need in this climate? These are explanatory questions with real technical answers, which makes them perfect material for AI assistants — and assistants answering them routinely name contractors who can do the work. The homeowner goes from curiosity to assessment request inside one conversation.",
+        "Contractors get cited when their content genuinely explains the technical ground rather than selling around it, when rebate and energy-audit expertise is visible, when reviews describe measured results, and when listings are consistent. AI SEO is how that expertise becomes something an assistant quotes."
+      ]
+    },
+    "trackingBlurb": "Check whether AI engines name your company when homeowners ask about attic insulation, spray foam and energy bills."
+  },
   "eyebrow": "For Insulation Contractors",
   "h1": "Does AI Recommend Your Insulation Company for Efficiency Upgrades?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for attic, spray foam and rebate-driven work — and fix it when they don’t.",

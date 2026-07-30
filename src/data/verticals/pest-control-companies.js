@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "pest-control-companies",
   "name": "Pest Control Companies",
+  "hub": {
+    "subhead": "Someone who just found termites wants a name now. AI SEO makes sure it is yours.",
+    "intro": {
+      "h": "Urgent, Emotional, and Worth Years of Revenue",
+      "paras": [
+        "Finding termite damage or bed bugs produces a very particular kind of search: urgent, slightly panicked, and completely trusting of the first credible answer. The homeowner asks what the damage means and who to call, and the company named gets a contract that often renews for years. Few first impressions in local services are worth more.",
+        "Assistants weigh licensing and treatment expertise heavily here, along with review recency, a profile that lists specific pests rather than \"pest control\", content that identifies infestations and explains treatment honestly, and listings that match. AI SEO is the work of being the company an assistant reaches for in an emergency."
+      ]
+    },
+    "trackingBlurb": "Track whether AI engines name your company for termite, bed bug and rodent emergencies across your service area."
+  },
   "eyebrow": "For Pest Control Companies",
   "h1": "When Someone Spots a Roach, Does AI Name Your Company?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for termite, rodent and general pest searches — and fix it when they don’t.",

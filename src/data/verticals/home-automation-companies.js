@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "home-automation-companies",
   "name": "Home Automation Companies",
+  "hub": {
+    "subhead": "These answers default to product names. AI SEO is how a professional integrator earns the citation instead.",
+    "intro": {
+      "h": "The Answers Are Full of Products, Not Installers",
+      "paras": [
+        "Ask an assistant about setting up a smart home and you will get hardware — hubs, cameras, thermostats, brand comparisons. Professional integrators are largely missing from that conversation by default, because the category is dominated by consumer product content. Homeowners who would happily pay for a proper installation never learn that local integrators exist.",
+        "Changing that takes deliberate work: content that addresses whole-home design, protocol choices and retrofit realities rather than restating spec sheets, reviews describing complex installs, certifications with the platforms you deploy, and listings that place you firmly in the professional category. AI SEO is how an installer breaks into an answer that assumes DIY."
+      ]
+    },
+    "trackingBlurb": "See whether AI engines name your company — or only product brands — when homeowners ask about smart home installation."
+  },
   "eyebrow": "For Home Automation Companies",
   "h1": "Does AI Recommend Your Smart Home Company or a Product?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for lighting, audio and whole-home integration — and fix it when they don’t.",

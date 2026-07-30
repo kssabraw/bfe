@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "chiropractors",
   "name": "Chiropractors",
+  "hub": {
+    "subhead": "Patients describe the pain before they ever name a practice. AI SEO decides whether yours is in the answer they get back.",
+    "intro": {
+      "h": "Patients Ask About Symptoms, Not Practices",
+      "paras": [
+        "The search that leads to a new patient rarely starts with \"chiropractor near me\". It starts with a description — a lower back that seizes up after sitting, numbness running down an arm, a neck that has hurt since a rear-end collision. AI assistants are strikingly good at that conversation, and they finish it by naming practices. The clinic cited inside the explanation captures the appointment before a comparison ever happens.",
+        "Earning that citation depends on things you control: how thoroughly your site addresses individual conditions rather than listing services, the depth and freshness of your patient reviews, whether your profile makes your techniques and credentials explicit, and how consistently your practice appears across health directories. That is what AI SEO covers for a chiropractic practice."
+      ]
+    },
+    "trackingBlurb": "See whether the AI answers to symptom questions in your area name your practice or the clinic down the road."
+  },
   "eyebrow": "For Chiropractic Practices",
   "h1": "Does AI Recommend Your Chiropractic Practice for Back Pain?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for back, neck and injury care — and fix it when they don’t.",

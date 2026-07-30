@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "hvac-companies",
   "name": "HVAC Companies",
+  "hub": {
+    "subhead": "The highest-intent call you get starts with an AI question. AI SEO decides whether your name is in the answer.",
+    "intro": {
+      "h": "Emergency Intent Meets the Answer Layer",
+      "paras": [
+        "An air conditioner failing in July produces the most valuable lead in your business, and it now begins with a question to an assistant: why is the unit blowing warm, is this a repair or a replacement, who can come out today. The answer arrives with names attached, and the homeowner calls one. Ranking well on Google does not help if the decision never reaches a results page.",
+        "What earns the mention is measurable: review recency and volume, a profile that spells out emergency hours and service areas, content that addresses specific symptoms and the repair-versus-replace question honestly, licensing signals, and listings that agree with each other. AI SEO is the work of getting all of it pointing the same way."
+      ]
+    },
+    "trackingBlurb": "See whether AI assistants name your company for emergency AC and furnace calls across every market you serve."
+  },
   "eyebrow": "For HVAC Companies",
   "h1": "When Their AC Dies, Does AI Name Your HVAC Company?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for emergency and replacement searches — and get the plan to fix it when they don’t.",

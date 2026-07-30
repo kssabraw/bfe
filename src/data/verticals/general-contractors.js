@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "general-contractors",
   "name": "General Contractors",
+  "hub": {
+    "subhead": "Remodels are researched for months before anyone bids. AI SEO puts your company in that research.",
+    "intro": {
+      "h": "Six Months of Trust, Decided in Early Research",
+      "paras": [
+        "Handing someone the house for half a year is among the largest decisions a homeowner makes, and it starts with questions rather than calls: what a kitchen really costs, how long a full remodel takes, what permits are involved, how to tell a good contractor from a bad one. AI assistants field all of it — and the contractors named while that thinking is forming are the ones who get asked to bid.",
+        "Getting cited rests on a portfolio the engines can actually see, reviews that describe how projects were run rather than just the result, licensing and insurance signals, content that addresses budget and timeline candidly, and listings that agree everywhere. AI SEO is the work of turning your track record into something an assistant can quote."
+      ]
+    },
+    "trackingBlurb": "Track whether AI engines name your company when homeowners research remodels, additions and whole-home projects."
+  },
   "eyebrow": "For General Contractors",
   "h1": "Does AI Recommend Your Contracting Company for Remodels?",
   "subhead": "See whether ChatGPT, Gemini and Google AI name you for kitchens, additions and whole-home renovation — and fix it when they don’t.",

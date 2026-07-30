@@ -1,6 +1,17 @@
 export const vertical = {
   "slug": "foundation-repair-companies",
   "name": "Foundation Repair Companies",
+  "hub": {
+    "subhead": "A homeowner staring at a crack asks AI two things: how bad is it, and who do I call. AI SEO answers the second one with your name.",
+    "intro": {
+      "h": "Fear-Driven Questions Get Answered by AI First",
+      "paras": [
+        "Someone who has just noticed a stair-step crack in the brick is worried, and worry goes to an AI assistant before it goes to a phone. Is this structural? Will it get worse? What does the repair cost? The assistant works through it calmly and then names companies — and in a category this fear-driven, the named company usually gets the inspection.",
+        "The engines look for evidence of expertise: content that explains crack types, pier systems and warranties honestly, engineering credentials and association memberships, reviews that speak to how the work held up, and listings that agree. AI SEO is the work of assembling that evidence where the engines can read it."
+      ]
+    },
+    "trackingBlurb": "Find out whether AI engines name your company when homeowners ask about foundation cracks, settling and repair costs."
+  },
   "eyebrow": "For Foundation Repair Companies",
   "h1": "When a Homeowner Sees a Crack, Does AI Name You?",
   "subhead": "See whether ChatGPT, Gemini and Google AI recommend you for settling, cracks and waterproofing — and fix it when they don’t.",

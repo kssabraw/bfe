@@ -1,7 +1,7 @@
 ---
 import type { Vertical } from '../data/verticals/types';
 import { trialHref, tiers, testimonial, related, pricingIntro } from '../data/verticals/shared';
-import { aiTrackingH1 } from '../lib/verticals';
+import { aiTrackingVerticalH1 } from '../lib/ai-tracking-verticals';
 
 export interface Props { data: Vertical; accent?: string }
 const { data: v, accent = '#9554ff' } = Astro.props;
@@ -31,7 +31,7 @@ const answerParas = v.answer.split(/(?<=\.)\s+(?=[A-Z])/).filter(Boolean);
              For <vertical>" prefix adds up to 52 characters, and at the original
              3.25rem the longest verticals ran to eight lines and pushed the CTAs
              off screen. -->
-        <h1 style="color: #070523; font-size: clamp(1.85rem, 3.3vw, 2.5rem); font-weight: 800; line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.02em; text-wrap: balance;">{aiTrackingH1(v.name, v.h1)}</h1>
+        <h1 style="color: #070523; font-size: clamp(1.85rem, 3.3vw, 2.5rem); font-weight: 800; line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.02em; text-wrap: balance;">{aiTrackingVerticalH1(v.name, v.h1)}</h1>
         <p style="font-size: 1.2rem; color: #545356; margin: 0 0 26px; max-width: 33ch;">{v.subhead}</p>
         <ul style="list-style: none; padding: 0; margin: 0 0 30px; display: grid; gap: 12px;">
           {v.heroPoints.map((pt) => (

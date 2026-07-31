@@ -1,13 +1,13 @@
 ---
 // /<vertical>/ai-tracking-<vertical> — one page per vertical, 36 in total.
 import Base from '../../layouts/Base.astro';
-import VerticalPage from '../../components/VerticalPage.astro';
+import AiTrackingVerticalPage from '../../components/AiTrackingVerticalPage.astro';
 import { verticals } from '../../data/verticals/index.js';
-import { aiTrackingTitle, aiTrackingSlug } from '../../lib/verticals';
+import { aiTrackingVerticalTitle, aiTrackingVerticalSlug } from '../../lib/ai-tracking-verticals';
 
 export function getStaticPaths() {
   return verticals.map((v) => ({
-    params: { vertical: v.slug, page: aiTrackingSlug(v.slug) },
+    params: { vertical: v.slug, page: aiTrackingVerticalSlug(v.slug) },
     props: { data: v },
   }));
 }
@@ -15,6 +15,6 @@ export function getStaticPaths() {
 const { data } = Astro.props;
 ---
 
-<Base title={aiTrackingTitle(data.name)} description={data.subhead}>
-  <VerticalPage data={data} />
+<Base title={aiTrackingVerticalTitle(data.name)} description={data.subhead}>
+  <AiTrackingVerticalPage data={data} />
 </Base>

@@ -23,7 +23,7 @@
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
 import { verticals } from '../data/verticals/index.js';
-import { aiTrackingPath } from '../lib/verticals';
+import { aiTrackingVerticalPath } from '../lib/ai-tracking-verticals';
 import { PAGE_SIZE, sortPosts } from '../lib/blog';
 import { staticPages } from '../lib/site-pages';
 
@@ -69,7 +69,7 @@ export async function GET(context: APIContext): Promise<Response> {
 
     ...posts.map((post) => ({ path: `/blog/${post.id}/`, lastmod: post.data.pubDate })),
 
-    ...verticals.map((v) => ({ path: `${aiTrackingPath(v.slug)}/` })),
+    ...verticals.map((v) => ({ path: `${aiTrackingVerticalPath(v.slug)}/` })),
   ];
 
   // Absolute URLs are required, and they have to carry the base path: the

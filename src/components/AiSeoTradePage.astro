@@ -21,13 +21,13 @@
  * The testimonial slot between the comparison table and pricing is still
  * intentionally empty. It stays empty until there is a real attributable quote.
  *
- * The footer is the site's own <Footer />, rendered by TradeLanding.astro
- * after this component's content — see that file for why. This component
- * still renders one section of its own after the long-form copy, "AI SEO by
- * trade": Footer already covers Product/Company/Contact, so repeating those
- * here would just be the extra-exit clutter the page design otherwise avoids,
- * but the cross-links between all 36 trades are unique to this page and worth
- * keeping.
+ * Nav and footer are both the site's own <Header /> and <Footer />, rendered
+ * by TradeLanding.astro around this component's content — see that file for
+ * why. This component still renders one section of its own after the
+ * long-form copy, "AI SEO by trade": Footer already covers Product/Company/
+ * Contact, so repeating those here would just be the extra-exit clutter the
+ * page design otherwise avoids, but the cross-links between all 36 trades are
+ * unique to this page and worth keeping.
  *
  * Everything below is wrapped in `.ai-seo-page`. That wrapper is what lets
  * this component's own `<style is:global>` block below coexist with
@@ -61,22 +61,6 @@ const url = (path: string) => `${base}${path}`;
 ---
 
 <div class="ai-seo-page">
-<!-- ══ NAV ══ -->
-<nav class="nav">
-  <div class="nav-in">
-    <a href={url('/')} class="brand">Be Found <span>Everywhere</span></a>
-    <div class="nav-links">
-      <a href={url('/keyword-agent/')}>Keyword Agent</a>
-      <a href={url('/labs/')}>LABS</a>
-      <a href={url('/off-page-agent/')}>Off-Page Agent</a>
-      <a href={url('/pricing/')}>Pricing</a>
-      <a href={url('/contact/')}>Contact</a>
-      <a href={links.signIn} rel="noopener" style="color:var(--ink);font-weight:600">Sign in</a>
-    </div>
-    <a href="#pricing" class="nav-cta">Start for $1</a>
-  </div>
-</nav>
-
 <!-- ══ HERO ══ -->
 <header class="hero">
   <div class="wrap">
@@ -526,26 +510,22 @@ const url = (path: string) => `${base}${path}`;
   /* buttons */
   .ai-seo-page .btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 Inter;padding:17px 30px;border-radius:999px;border:1px solid transparent;transition:transform .15s ease,box-shadow .15s ease}
   .btn:hover{transform:translateY(-1px)}
-  .btn-p{background:var(--grad);color:#fff;box-shadow:0 10px 24px -12px rgba(106,47,158,.7)}
-  .btn-p:hover{color:#fff;box-shadow:0 16px 30px -12px rgba(106,47,158,.75)}
-  .btn-s{background:#fff;color:var(--ink);border-color:#d7dce4}
-  .btn-s:hover{color:var(--ink);border-color:var(--ink)}
-  .btn-s.on-dark{background:transparent;color:#fff;border-color:#3a4a68}
-  .btn-s.on-dark:hover{color:#fff;border-color:#7c8aa5}
+  /* .ai-seo-page a{color:var(--purple)} above is (0,1,1) — one class plus the
+     `a` element. A bare single-class rule like `.btn-p{color:#fff}` is only
+     (0,1,0), so without this prefix that link-color rule would beat it on
+     every CTA rendered as an `<a>`, regardless of which comes later in the
+     file: real bug, caught by computed-style, not just visual review — the
+     gradient buttons rendered with barely-visible purple-on-purple text. */
+  .ai-seo-page .btn-p{background:var(--grad);color:#fff;box-shadow:0 10px 24px -12px rgba(106,47,158,.7)}
+  .ai-seo-page .btn-p:hover{color:#fff;box-shadow:0 16px 30px -12px rgba(106,47,158,.75)}
+  .ai-seo-page .btn-s{background:#fff;color:var(--ink);border-color:#d7dce4}
+  .ai-seo-page .btn-s:hover{color:var(--ink);border-color:var(--ink)}
+  .ai-seo-page .btn-s.on-dark{background:transparent;color:#fff;border-color:#3a4a68}
+  .ai-seo-page .btn-s.on-dark:hover{color:#fff;border-color:#7c8aa5}
   .btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .fineprint{font:400 14px/1.5 Inter;color:var(--mute);margin-top:14px}
   .dark .fineprint{color:var(--mute-2)}
   :focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
-
-  /* nav */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-2)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:16px var(--gut);max-width:var(--max);margin:0 auto}
-  .nav-links{display:flex;align-items:center;gap:28px;font:500 14px/1 Inter}
-  .nav-links a{color:var(--ink-3)}
-  .nav-cta{font:600 14px/1 Inter;color:#fff;background:var(--grad);padding:12px 20px;border-radius:999px}
-  .nav-cta:hover{color:#fff}
-  .brand{font:700 20px/1 Lexend;color:var(--ink);letter-spacing:-.02em}
-  .brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* hero */
   .hero{background:linear-gradient(180deg,#fbfaff 0%,#fff 72%);border-bottom:1px solid var(--line-2)}
@@ -648,7 +628,6 @@ const url = (path: string) => `${base}${path}`;
     :root{--pad:60px;--gut:24px}
     .hero-grid{grid-template-columns:1fr;gap:40px}
     .g3,.g4{grid-template-columns:1fr 1fr}
-    .nav-links{display:none}
     .split{grid-template-columns:1fr!important;gap:40px!important}
   }
   @media (max-width:680px){

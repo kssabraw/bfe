@@ -52,8 +52,8 @@ const REQUIRED = [
 const cap = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase());
 const article = (w) => (/^[aeiou]/i.test(w) ? 'an' : 'a');
 
-/** '/ai-seo-for-roofers/' — the URL each page ships at. */
-export const tradePath = (slug) => `/ai-seo-for-${slug}/`;
+/** '/roofers/' — the URL each page ships at. */
+export const tradePath = (slug) => `/${slug}/`;
 
 /** Footer link text: "Garage Door Repair Companies" -> "Garage Door Repair". */
 export const tradeLabel = (name) => name.replace(/ Companies$/, '');

@@ -1,6 +1,6 @@
 # AI SEO Trade Landing Pages
 
-**Applies to:** every page at `/ai-seo-for-<trade>/` — 36 of them
+**Applies to:** every page at `/<trade>/` — 36 of them
 **Owner:** Kyle / Amazing Rankings
 **Last updated:** July 2026
 
@@ -21,8 +21,15 @@ Nothing about the page's structure or copy changed in the move.
 | `data/trades-1..4.json` | `src/data/trades/*.json`, re-exported by `index.js` |
 | `scripts/generate.js` → `fields()` | `src/lib/trade-fields.js` → `tradeFields()` |
 | `templates/trade-template.html` | `src/components/AiSeoTradePage.astro` |
-| `ai-seo-for-<slug>.html` × 36 | `src/pages/ai-seo-for-[trade].astro` |
+| `ai-seo-for-<slug>.html` × 36 | `src/pages/[trade].astro` |
 | `img/` | `public/images/ai-seo-trades/` |
+
+**The URL shortened after import.** Pages shipped at `/ai-seo-for-<trade>/`
+first, then moved to the bare `/<trade>/` once it was confirmed that's what
+`src/lib/ai-tracking-verticals.ts` calls the "vertical" page type — reserved
+at that root since before this page existed, never built until now. See that
+file's header comment for how `/<trade>/` and `/<trade>/ai-tracking-<trade>/`
+coexist without either shadowing the other.
 
 **Adding or changing a trade is still one object in a JSON file.** The sentences
 are composed in `trade-fields.js`, so a trade only supplies what is genuinely
@@ -36,17 +43,20 @@ Three things changed on import, all of them deliberate:
    the page. Its open items are preserved in §7 below.
 2. **Missing screenshots resolve at build time**, not in the browser. The old
    page shipped a script that swapped in a placeholder when an image 404'd;
-   `src/pages/ai-seo-for-[trade].astro` now reads the capture folder during the
-   build and renders the placeholder directly. Drop a capture in and it appears
-   — same property, no client-side JS, no layout shift.
+   `src/pages/[trade].astro` now reads the capture folder during the build and
+   renders the placeholder directly. Drop a capture in and it appears — same
+   property, no client-side JS, no layout shift.
 3. **The pricing and sign-in links point at the real destinations.** The handoff
    used `/signup/?plan=lite` and `/signin/`, neither of which exists on this
    site. They now use the Stripe checkout URLs and accounts host from
    `src/lib/data.js`.
 
-The page keeps its own nav and footer and does **not** use `Base.astro` — see
-§3.1 (Nav) for why that matters. It does inherit the Meta Pixel, canonical URL
-and OG tags, via `src/layouts/TradeLanding.astro`.
+The page keeps its own nav and does **not** use `Base.astro`'s `<Header />` —
+see §3.1 (Nav) for why that matters. The footer is the site's own shared
+`<Footer />`, same as every other page — it wasn't originally; see §3.1
+(Footer) for why that changed and how the two stylesheets avoid colliding.
+`TradeLanding.astro` also carries what Base.astro would otherwise supply
+invisibly: the Meta Pixel, canonical URL, OG tags, favicon.
 
 ---
 
@@ -162,6 +172,32 @@ Each entry: what the section is for, what you can freely change, what you can't.
 **Free to change:** link list, brand lockup.
 **Careful:** the nav CTA is the only navigation element pointing at conversion.
 Adding more nav links raises the odds someone leaves before the hero lands.
+
+### Footer
+**Job:** carry the site's normal footer content — it isn't part of this
+page's conversion argument, and it's below every in-flow CTA already.
+**Not the same rule as Nav.** The single-navigation-element rule above is
+scoped to the hero-through-pricing span, not the whole page — the footer,
+above, was never in that zone, and neither is this one. The page originally
+shipped a hand-built footer distinct from the rest of the site's `<Footer />`
+because it arrived as standalone HTML with no shared component to reuse; that
+was fixed once these became routed Astro pages, and now every page — this one
+included — renders the identical `<Footer />` component. Verify that with a
+diff, not a screenshot compare, if you ever need to check it hasn't drifted.
+**The one thing that doesn't come from `<Footer />`:** the "AI SEO by trade"
+cross-links between all 36 pages, kept as `AiSeoTradePage.astro`'s own small
+section immediately above the shared footer.
+**Careful:** `<Footer />` depends on `global.css` for its CSS custom
+properties and its `.container`/`.btn`/`.card`/`.eyebrow` utility classes.
+This component defines its own `.btn`/`.card`/`.eyebrow` with different
+values (pill buttons vs. 10px-radius buttons, 14px card radius vs. shadowed
+cards) — those are scoped under the `.ai-seo-page` wrapper around this
+component's own markup precisely so they win by specificity inside the page
+without touching how the same class names render inside `<Footer />`, which
+sits outside that wrapper. If you add a new bare element or utility-class
+rule to this component's `<style is:global>` block, scope it under
+`.ai-seo-page` too, or check it doesn't already exist in `global.css` with
+different values.
 
 ### Hero
 **Job:** State the promise, prove it's real, and offer two ways in — all above
@@ -291,11 +327,13 @@ current agency, and how much time this takes monthly.
 **Free to change:** add questions freely; sales calls are the best source.
 **Careful:** keep the first one first, and keep it `open` by default.
 
-### Final CTA / long-form / footer
+### Final CTA / long-form / trade links
 **Job:** Last conversion chance; then SEO body; then internal linking.
 **Long-form is capped at 70ch single column** — v1 ran it in a two-column grid
 where reading order was ambiguous.
-**Trade links moved to the footer** from a mid-page card row.
+**Trade links moved out of a mid-page card row** into their own section
+directly above the footer — originally the footer itself, moved out of it
+once the footer became the site's shared `<Footer />` (§3.1 Footer).
 
 ---
 

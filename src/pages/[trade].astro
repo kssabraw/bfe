@@ -1,9 +1,16 @@
 ---
-// /ai-seo-for-<trade>/ — one landing page per trade, 36 in total.
+// /<trade>/ — one landing page per trade, 36 in total.
 //
-// Distinct from src/pages/[vertical]/[page].astro, which serves the AI tracking
-// pages at /<slug>/ai-tracking-<slug>/. Both cover the same trades; they are
-// different pages for different traffic, and neither URL space overlaps.
+// This is the "vertical" page type src/lib/ai-tracking-verticals.ts describes
+// as reserved-but-unbuilt at the bare /<slug>/ root — it's now this page.
+// Distinct from src/pages/[vertical]/[page].astro, which serves the AI
+// tracking pages one level down, at /<slug>/ai-tracking-<slug>/. Both cover
+// the same 36 trades — verified identical slug sets — for different traffic,
+// and Astro resolves the two by path depth (one segment vs. two), so a
+// request for either never reaches the other's route.
+//
+// Originally shipped at /ai-seo-for-<trade>/; shortened once it was confirmed
+// this page is what that reserved slot was for.
 import TradeLanding from '../layouts/TradeLanding.astro';
 import AiSeoTradePage from '../components/AiSeoTradePage.astro';
 import { trades } from '../data/trades/index.js';

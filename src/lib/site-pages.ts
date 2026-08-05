@@ -50,7 +50,7 @@ export const dynamicRoutes: Record<string, string> = {
   '/src/pages/blog/[slug].astro': 'the "Blog posts" section',
   '/src/pages/blog/page/[page].astro': 'pagination over the "Blog posts" section',
   '/src/pages/[vertical]/[page].astro': 'the "AI tracking by industry" section',
-  '/src/pages/ai-seo-for-[trade].astro': 'the "AI SEO by trade" section',
+  '/src/pages/[trade].astro': 'the "AI SEO by trade" section',
 };
 
 /** File extensions Astro turns into HTML pages. */

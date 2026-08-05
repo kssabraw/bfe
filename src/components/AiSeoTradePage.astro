@@ -20,6 +20,26 @@
  *
  * The testimonial slot between the comparison table and pricing is still
  * intentionally empty. It stays empty until there is a real attributable quote.
+ *
+ * The footer is the site's own <Footer />, rendered by TradeLanding.astro
+ * after this component's content — see that file for why. This component
+ * still renders one section of its own after the long-form copy, "AI SEO by
+ * trade": Footer already covers Product/Company/Contact, so repeating those
+ * here would just be the extra-exit clutter the page design otherwise avoids,
+ * but the cross-links between all 36 trades are unique to this page and worth
+ * keeping.
+ *
+ * Everything below is wrapped in `.ai-seo-page`. That wrapper is what lets
+ * this component's own `<style is:global>` block below coexist with
+ * global.css: both define bare `h1,h2,h3`, `a`, `p`, and — more sharply —
+ * both define `.btn`, `.card` and `.eyebrow` with different values (this
+ * page's pill buttons and 14px card radius vs. the site's 10px buttons and
+ * shadowed cards). Scoping this component's versions under `.ai-seo-page`
+ * gives them higher specificity than global.css's bare selectors, so they
+ * win inside this page regardless of stylesheet load order, without touching
+ * how those same class names render inside <Footer /> — which sits outside
+ * `.ai-seo-page` for exactly that reason, so it renders with the site's
+ * normal styling, unmodified.
  */
 import { links } from '../lib/data.js';
 import { tradeLabel, tradePath } from '../lib/trade-fields.js';
@@ -30,7 +50,7 @@ interface Props {
     chat: { file: string; exists: boolean };
     aio: { file: string; exists: boolean };
   };
-  /** Every other trade, for the footer's internal-linking block. */
+  /** Every other trade, for the "AI SEO by trade" cross-links. */
   others: { s: string; n: string }[];
 }
 const { fields: f, captures, others } = Astro.props;
@@ -40,6 +60,7 @@ const img = (file: string) => `${base}/images/ai-seo-trades/${file}`;
 const url = (path: string) => `${base}${path}`;
 ---
 
+<div class="ai-seo-page">
 <!-- ══ NAV ══ -->
 <nav class="nav">
   <div class="nav-in">
@@ -441,64 +462,36 @@ const url = (path: string) => `${base}${path}`;
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
-<footer class="foot">
+<!-- ══ AI SEO BY TRADE ══ -->
+<section class="trade-links">
   <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="brand" style="color:#fff;margin-bottom:18px">Be Found <span>Everywhere</span></div>
-        <p style="font:400 14px/1.6 Inter;color:var(--mute-2);max-width:280px">AI visibility, local content and authority for home service companies.</p>
-      </div>
-      <div>
-        <h4>Product</h4>
-        <div class="col">
-          <a href={url('/labs/')}>LABS</a>
-          <a href={url('/keyword-agent/')}>Keyword Agent</a>
-          <a href={url('/off-page-agent/')}>Off-Page Agent</a>
-          <a href={url('/pricing/')}>Pricing</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="col">
-          <a href={url('/blog/')}>Blog</a>
-          <a href={url('/contact/')}>Contact</a>
-          <a href={url('/sitemap/')}>Sitemap</a>
-          <a href={url('/terms-of-use/')}>Terms of Use</a>
-          <a href={url('/privacy-policy/')}>Privacy Policy</a>
-        </div>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <div class="col">
-          <span>P: 1 (302) 704-2664</span>
-          <span>E: support@bfeai.com</span>
-        </div>
-      </div>
+    <div class="trade-links-label">AI SEO by trade</div>
+    <div class="trades">
+      {others.map((x) => (
+        <a href={url(tradePath(x.s))}>{tradeLabel(x.n)}</a>
+      ))}
     </div>
-    <div style="border-top:1px solid #22304a;padding:28px 0">
-      <div style="font:600 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute-2);margin-bottom:16px">AI SEO by trade</div>
-      <div class="trades">
-        {others.map((x) => (
-          <a href={url(tradePath(x.s))} style="color:var(--mute-2)">{tradeLabel(x.n)}</a>
-        ))}
-      </div>
-    </div>
-    <div style="border-top:1px solid #22304a;padding-top:24px;padding-bottom:32px;font:400 13px/1.5 Inter;color:var(--mute)">Copyright © 2026 All rights reserved. Be Found Everywhere Inc.</div>
   </div>
-</footer>
+</section>
 
 <!-- ══ STICKY MOBILE CTA ══ -->
 <div class="sticky">
   <p>Get named by AI<br /><span style="font-weight:400;color:var(--mute-2)">7 days for $1, then $49/mo</span></p>
   <a href="#pricing" class="btn btn-p">Start for $1</a>
 </div>
+</div>
 
 <style is:global>
   /* Scoped to the pages that render this component — Astro only ships a
      component's CSS on the pages that use it — but written as global rules
-     because the page owns its own document: it sets body, resets the box model
-     and styles bare elements, none of which survive Astro's scoping. */
+     because the page needs to reset the box model and style bare elements
+     (h1/h2/h3/p/a), none of which would survive Astro's normal per-component
+     scoping.
+     Bare-element and .btn/.card/.eyebrow rules are additionally prefixed with
+     `.ai-seo-page` — the wrapper around this component's own markup — so they
+     win by specificity over the equivalent bare rules in global.css without
+     touching how those same selectors render inside <Footer />, which sits
+     outside that wrapper. See the file-level comment above for why. */
   :root{
     --ink:#0f172a; --ink-2:#334155; --ink-3:#475569; --mute:#64748b; --mute-2:#94a3b8;
     --line:#e6e9ef; --line-2:#eef1f5; --wash:#f8fafc; --wash-2:#fbfaff;
@@ -508,29 +501,30 @@ const url = (path: string) => `${base}${path}`;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:#fff;font-family:Inter,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink-3)}
-  a{color:var(--purple);text-decoration:none}
-  a:hover{color:var(--blue)}
+  body{margin:0}
+  .ai-seo-page{background:#fff;font-family:Inter,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink-3)}
+  .ai-seo-page a{color:var(--purple);text-decoration:none}
+  .ai-seo-page a:hover{color:var(--blue)}
   img{max-width:100%;display:block}
-  h1,h2,h3{font-family:Lexend,Helvetica,sans-serif;color:var(--ink);margin:0}
-  p{margin:0}
+  .ai-seo-page h1,.ai-seo-page h2,.ai-seo-page h3{font-family:Lexend,Helvetica,sans-serif;color:var(--ink);margin:0}
+  .ai-seo-page p{margin:0}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
   .sec{padding:var(--pad) 0}
-  .eyebrow{font:600 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
+  .ai-seo-page .eyebrow{font:600 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
   .eyebrow.on-dark{color:var(--lilac)}
-  h1{font:700 clamp(32px,5vw,52px)/1.08 Lexend;letter-spacing:-.025em;text-wrap:balance}
+  .ai-seo-page h1{font:700 clamp(32px,5vw,52px)/1.08 Lexend;letter-spacing:-.025em;text-wrap:balance}
   /* Keyword line lives inside the H1 — first text node, first in the DOM — but
      sized as an overline so the promise still carries the visual hierarchy. */
   .h1-kw{display:block;font:600 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
-  h2{font:700 clamp(27px,3.6vw,40px)/1.14 Lexend;letter-spacing:-.02em;text-wrap:balance}
-  h3{font:600 clamp(18px,2vw,21px)/1.3 Lexend}
+  .ai-seo-page h2{font:700 clamp(27px,3.6vw,40px)/1.14 Lexend;letter-spacing:-.02em;text-wrap:balance}
+  .ai-seo-page h3{font:600 clamp(18px,2vw,21px)/1.3 Lexend}
   .lede{font:400 clamp(16px,1.9vw,19px)/1.6 Inter;color:var(--ink-3);text-wrap:pretty}
   .dark{background:var(--ink)}
   .dark h2,.dark h3{color:#fff}
   .dark .lede,.dark p{color:var(--mute-2)}
 
   /* buttons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 Inter;padding:17px 30px;border-radius:999px;border:1px solid transparent;transition:transform .15s ease,box-shadow .15s ease}
+  .ai-seo-page .btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 Inter;padding:17px 30px;border-radius:999px;border:1px solid transparent;transition:transform .15s ease,box-shadow .15s ease}
   .btn:hover{transform:translateY(-1px)}
   .btn-p{background:var(--grad);color:#fff;box-shadow:0 10px 24px -12px rgba(106,47,158,.7)}
   .btn-p:hover{color:#fff;box-shadow:0 16px 30px -12px rgba(106,47,158,.75)}
@@ -579,7 +573,7 @@ const url = (path: string) => `${base}${path}`;
   .g2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  .card{border:1px solid var(--line);border-radius:14px;padding:30px;background:#fff}
+  .ai-seo-page .card{border:1px solid var(--line);border-radius:14px;padding:30px;background:#fff}
   .card p{font:400 16px/1.6 Inter;color:var(--ink-3);margin-top:10px}
   .card.on-dark{border-color:#22304a;background:#131c30}
   .card.on-dark p{color:var(--mute-2)}
@@ -636,15 +630,14 @@ const url = (path: string) => `${base}${path}`;
   .longform h3{margin:40px 0 12px}
   .longform p{font:400 17px/1.7 Inter;color:var(--ink-3);margin-bottom:14px}
 
-  /* trades */
+  /* AI SEO by trade — the only cross-page content Footer doesn't already
+     carry, kept as its own small section rather than folded into the site
+     footer so <Footer /> can stay the unmodified shared component. */
+  .trade-links{background:var(--ink);padding:36px 0}
+  .trade-links-label{font:600 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute-2);margin-bottom:16px}
   .trades{display:flex;flex-wrap:wrap;gap:10px 24px;font:400 15px/1.5 Inter}
-
-  /* footer */
-  .foot{background:var(--ink);color:var(--mute-2)}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:48px 0}
-  .foot h4{font:600 14px/1 Lexend;color:#fff;margin:0 0 16px}
-  .foot a,.foot span{color:var(--mute-2);font:400 14px/1.4 Inter}
-  .foot .col{display:flex;flex-direction:column;gap:10px}
+  .trades a{color:var(--mute-2)}
+  .trades a:hover{color:#fff}
 
   /* sticky mobile cta */
   .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(15,23,42,.97);backdrop-filter:blur(8px);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;gap:12px;align-items:center;justify-content:space-between}
@@ -656,7 +649,6 @@ const url = (path: string) => `${base}${path}`;
     .hero-grid{grid-template-columns:1fr;gap:40px}
     .g3,.g4{grid-template-columns:1fr 1fr}
     .nav-links{display:none}
-    .foot-grid{grid-template-columns:1fr 1fr}
     .split{grid-template-columns:1fr!important;gap:40px!important}
   }
   @media (max-width:680px){
@@ -664,7 +656,6 @@ const url = (path: string) => `${base}${path}`;
     .g2,.g3,.g4,.stat-grid{grid-template-columns:1fr}
     .btn{width:100%}
     .btn-row{flex-direction:column;align-items:stretch}
-    .foot-grid{grid-template-columns:1fr}
     .sticky{display:flex}
     body{padding-bottom:76px}
     /* comparison table → stacked cards */

@@ -490,18 +490,18 @@ const url = (path: string) => `${base}${path}`;
   .ai-seo-page a{color:var(--purple);text-decoration:none}
   .ai-seo-page a:hover{color:var(--blue)}
   img{max-width:100%;display:block}
-  .ai-seo-page h1,.ai-seo-page h2,.ai-seo-page h3{font-family:Lexend,Helvetica,sans-serif;color:var(--ink);margin:0}
+  .ai-seo-page h1,.ai-seo-page h2,.ai-seo-page h3{font-family:var(--font);color:var(--ink);margin:0}
   .ai-seo-page p{margin:0}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
   .sec{padding:var(--pad) 0}
   .ai-seo-page .eyebrow{font:600 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
   .eyebrow.on-dark{color:var(--lilac)}
-  .ai-seo-page h1{font:700 clamp(32px,5vw,52px)/1.08 Lexend;letter-spacing:-.025em;text-wrap:balance}
+  .ai-seo-page h1{font-weight:700;font-size:clamp(32px,5vw,52px);line-height:1.08;font-family:var(--font);letter-spacing:-.025em;text-wrap:balance}
   /* Keyword line lives inside the H1 — first text node, first in the DOM — but
      sized as an overline so the promise still carries the visual hierarchy. */
   .h1-kw{display:block;font:600 13px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin-bottom:18px}
-  .ai-seo-page h2{font:700 clamp(27px,3.6vw,40px)/1.14 Lexend;letter-spacing:-.02em;text-wrap:balance}
-  .ai-seo-page h3{font:600 clamp(18px,2vw,21px)/1.3 Lexend}
+  .ai-seo-page h2{font-weight:700;font-size:clamp(27px,3.6vw,40px);line-height:1.14;font-family:var(--font);letter-spacing:-.02em;text-wrap:balance}
+  .ai-seo-page h3{font-weight:600;font-size:clamp(18px,2vw,21px);line-height:1.3;font-family:var(--font)}
   .lede{font:400 clamp(16px,1.9vw,19px)/1.6 Inter;color:var(--ink-3);text-wrap:pretty}
   .dark{background:var(--ink)}
   .dark h2,.dark h3{color:#fff}
@@ -567,7 +567,7 @@ const url = (path: string) => `${base}${path}`;
   .outcomes b{color:var(--ink)}
   .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
   .stat{background:#fff;padding:22px 18px}
-  .stat-n{font:700 21px/1.15 Lexend;color:var(--ink);margin-bottom:8px}
+  .stat-n{font-weight:700;font-size:21px;line-height:1.15;font-family:var(--font);color:var(--ink);margin-bottom:8px}
   .stat p{font:400 13px/1.5 Inter;color:var(--mute)}
   .paybox{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--wash-2);margin-bottom:20px}
 
@@ -587,7 +587,7 @@ const url = (path: string) => `${base}${path}`;
   .price-card.feat h3,.price-card.feat .amt{color:#fff}
   .price-card.feat .sub,.price-card.feat .amt span{color:var(--mute-2)}
   .price-card.feat ul{color:#e2e8f0}
-  .amt{font:700 40px/1 Lexend;color:var(--ink);margin:16px 0 8px}
+  .amt{font-weight:700;font-size:40px;line-height:1;font-family:var(--font);color:var(--ink);margin:16px 0 8px}
   .amt span{font:400 16px/1 Inter;color:var(--mute-2)}
   .sub{font:400 15px/1.5 Inter;color:var(--mute);margin-bottom:20px}
   .price-card ul{list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:11px;font:400 15px/1.5 Inter;color:var(--ink-2)}
@@ -599,7 +599,7 @@ const url = (path: string) => `${base}${path}`;
 
   /* faq */
   .faq details{border-bottom:1px solid var(--line);padding:20px 0}
-  .faq summary{font:600 18px/1.4 Lexend;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+  .faq summary{font-weight:600;font-size:18px;line-height:1.4;font-family:var(--font);color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
   .faq summary::-webkit-details-marker{display:none}
   .faq summary::after{content:"+";font:400 24px/1 Inter;color:var(--purple);flex-shrink:0}
   .faq details[open] summary::after{content:"–"}

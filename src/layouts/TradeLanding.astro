@@ -74,10 +74,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         which is what would have produced an index. Base.astro still points at
         the index form and resolves to nothing. */}
     <link rel="sitemap" href={`${base}/sitemap.xml`} />
+    {/* Inter only — this page used to also load Lexend for its headings, a
+        display face the rest of the site never used. Base.astro now loads
+        this same Inter link, so this one is what makes these pages match it
+        rather than diverge from it. */}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>

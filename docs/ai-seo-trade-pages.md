@@ -51,12 +51,11 @@ Three things changed on import, all of them deliberate:
    site. They now use the Stripe checkout URLs and accounts host from
    `src/lib/data.js`.
 
-The page keeps its own nav and does **not** use `Base.astro`'s `<Header />` —
-see §3.1 (Nav) for why that matters. The footer is the site's own shared
-`<Footer />`, same as every other page — it wasn't originally; see §3.1
-(Footer) for why that changed and how the two stylesheets avoid colliding.
-`TradeLanding.astro` also carries what Base.astro would otherwise supply
-invisibly: the Meta Pixel, canonical URL, OG tags, favicon.
+Nav and footer are both the site's own shared `<Header />` and `<Footer />`,
+same as every other page — neither was true originally; see §3.1 (Nav) and
+§3.1 (Footer) for why that changed and how the two stylesheets avoid
+colliding. `TradeLanding.astro` also carries what `Base.astro` would
+otherwise supply invisibly: the Meta Pixel, canonical URL, OG tags, favicon.
 
 ---
 
@@ -105,6 +104,9 @@ Change these only with a specific reason, and expect conversion impact.
    them pre-empts both and makes refreshing them a scheduled task, not a debate.
 6. **No outbound links between the hero and pricing.** Everything above pricing
    either converts or continues down the page. v1 had 23 exits and one entrance.
+   **The shared `<Header />` is a deliberate exception**, not an oversight — it
+   sits above the hero, not between hero and pricing, and it replaced a custom
+   nav that carried nearly the same link list anyway. See §3.1 (Nav).
 7. **Long-form content sits below the final CTA.** Buyers see the offer first;
    the SEO body serves crawlers and the minority who read to the end. Do not
    move it above pricing "so people read it" — they don't.
@@ -168,36 +170,58 @@ arrives somewhere else. If you can't, don't move it.
 Each entry: what the section is for, what you can freely change, what you can't.
 
 ### Nav
-**Job:** Stay out of the way; provide one persistent conversion path.
-**Free to change:** link list, brand lockup.
-**Careful:** the nav CTA is the only navigation element pointing at conversion.
-Adding more nav links raises the odds someone leaves before the hero lands.
+**Job:** stay out of the way; provide one persistent conversion path.
+**It's the site's own shared `<Header />` now** — it wasn't originally. The
+handoff's custom nav existed to enforce "the nav CTA is the only navigation
+element pointing at conversion," and that CTA read "Start for $1" linking to
+`#pricing`. The real `<Header />` carries almost the identical link list
+(Keyword Agent, LABs, Off-Page Agent, Pricing, Contact — plus Blog, which the
+custom nav dropped) but its button reads "Sign In," not a trial CTA. That's
+the one thing this swap actually costs: the $1-trial CTA disappears from the
+single highest-traffic position on the page. It's still on the page seven
+more times — hero, pricing cards, sticky mobile bar — so this isn't losing the
+CTA, just its nav placement. Decided this was worth it for site-wide chrome
+consistency; revisit if nav-position CTA data ever says otherwise.
+**Genuine improvement, not just parity:** the custom nav's mobile behavior was
+`display:none` on its link list below 980px with no menu button at all — those
+links were simply unreachable on mobile. `<Header />`'s hamburger menu means
+mobile visitors can now actually reach them.
+**Careful:** `<Header />` depends on `global.css` the same way `<Footer />`
+does — see the Footer entry below for the utility-class collision it shares.
 
 ### Footer
 **Job:** carry the site's normal footer content — it isn't part of this
 page's conversion argument, and it's below every in-flow CTA already.
-**Not the same rule as Nav.** The single-navigation-element rule above is
-scoped to the hero-through-pricing span, not the whole page — the footer,
-above, was never in that zone, and neither is this one. The page originally
-shipped a hand-built footer distinct from the rest of the site's `<Footer />`
-because it arrived as standalone HTML with no shared component to reuse; that
-was fixed once these became routed Astro pages, and now every page — this one
-included — renders the identical `<Footer />` component. Verify that with a
-diff, not a screenshot compare, if you ever need to check it hasn't drifted.
+**Not the same rule as Nav** — or rather, it wasn't, before Nav became the
+shared `<Header />` too. The single-navigation-element rule was originally
+scoped to the hero-through-pricing span; the footer was never in that span
+even before either component changed. The page originally shipped a
+hand-built footer distinct from the rest of the site's `<Footer />` because it
+arrived as standalone HTML with no shared component to reuse; that was fixed
+once these became routed Astro pages, and now every page — this one included —
+renders the identical `<Footer />` component. Verify that with a diff, not a
+screenshot compare, if you ever need to check it hasn't drifted.
 **The one thing that doesn't come from `<Footer />`:** the "AI SEO by trade"
 cross-links between all 36 pages, kept as `AiSeoTradePage.astro`'s own small
 section immediately above the shared footer.
-**Careful:** `<Footer />` depends on `global.css` for its CSS custom
-properties and its `.container`/`.btn`/`.card`/`.eyebrow` utility classes.
-This component defines its own `.btn`/`.card`/`.eyebrow` with different
-values (pill buttons vs. 10px-radius buttons, 14px card radius vs. shadowed
-cards) — those are scoped under the `.ai-seo-page` wrapper around this
-component's own markup precisely so they win by specificity inside the page
-without touching how the same class names render inside `<Footer />`, which
-sits outside that wrapper. If you add a new bare element or utility-class
-rule to this component's `<style is:global>` block, scope it under
-`.ai-seo-page` too, or check it doesn't already exist in `global.css` with
-different values.
+**Careful:** both `<Header />` and `<Footer />` depend on `global.css` for
+their CSS custom properties and `.container`/`.btn`/`.card`/`.eyebrow`
+utility classes. This component defines its own `.btn`/`.card`/`.eyebrow`
+with different values (pill buttons vs. 10px-radius buttons, 14px card radius
+vs. shadowed cards) — those are scoped under the `.ai-seo-page` wrapper
+around this component's own markup precisely so they win by specificity
+inside the page without touching how the same class names render inside
+`<Header />` / `<Footer />`, which sit outside that wrapper.
+**The specificity trap this already caused once:** `.ai-seo-page a{color:...}`
+is a class-plus-element selector, specificity `(0,1,1)`. A single-class rule
+like `.btn-p{color:#fff}` is only `(0,1,0)` — lower — so without also scoping
+`.btn-p` under `.ai-seo-page`, the base link-color rule silently wins on every
+CTA rendered as an `<a>`, regardless of source order. That exact bug shipped
+once (barely-visible purple-on-purple button text) and was only caught by
+checking computed style, not by looking at a screenshot. If you add a new bare
+element or utility-class rule to this component's `<style is:global>` block:
+scope it under `.ai-seo-page`, check whether anything else in this file
+targets the same element with a single class, and bump that too if so.
 
 ### Hero
 **Job:** State the promise, prove it's real, and offer two ways in — all above

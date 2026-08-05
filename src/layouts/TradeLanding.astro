@@ -2,29 +2,33 @@
 /**
  * Shell for the "AI SEO for [trade]" landing pages.
  *
- * These deliberately do NOT use Base.astro's <Header /> — the handoff bundle's
- * CLAUDE.md is explicit about why: the page carries exactly one navigation
- * element pointing at conversion, because every extra nav link raises the odds
- * a visitor leaves before the hero lands. AiSeoTradePage.astro ships its own
- * nav for that reason, and that stays.
+ * Both <Header /> and <Footer /> here are the site's real, shared components —
+ * the same ones Base.astro renders everywhere else. Neither was true at
+ * first: the handoff's own CLAUDE.md documents a "single navigation element
+ * pointing at conversion" rule that the page's original custom nav was built
+ * around, and the custom footer existed only because the page arrived as
+ * standalone HTML with no shared component to reuse. Both were replaced once
+ * it was confirmed the site-wide chrome should win over that page-specific
+ * rule. AiSeoTradePage.astro no longer renders any nav or footer of its own.
  *
- * The footer is a different call, and not the same rule: it sits below the
- * final CTA and long-form section, after every in-flow conversion point, so
- * using the site's own <Footer /> here doesn't reopen an early exit — it's
- * the same swap Base.astro-based pages already make at that point in the
- * page. Using the real component (not a recreation) also means it never
- * drifts from the one every other page ships.
+ * The one thing that rule cost: <Header />'s nav button reads "Sign In",
+ * where the page's own custom nav read "Start for $1" linking to #pricing.
+ * That $1-trial CTA is still on the page seven more times — hero, pricing
+ * cards, sticky mobile bar, etc. — so this only removes it from the one
+ * highest-traffic position, the nav itself.
  *
- * global.css is imported for the footer's sake — it depends on the site's
- * CSS custom properties (--c-navy etc.) and its .container/.btn/.card/.eyebrow
- * utility classes, none of which the trade page defines on its own. Those
- * same class names are also used by the trade page's own content above the
- * footer, with different values (different button shape, different card
- * padding), so AiSeoTradePage.astro scopes its own rules under `.ai-seo-page`
- * to keep the two stylesheets from fighting over the same selectors — see the
- * comment on that wrapper there before changing either file.
+ * global.css is imported for <Header />'s and <Footer />'s sake — both depend
+ * on the site's CSS custom properties (--c-navy etc.) and its
+ * .container/.btn/.card/.eyebrow utility classes, none of which the trade
+ * page defines on its own. Those same class names are also used by the trade
+ * page's own content, with different values (different button shape,
+ * different card padding), so AiSeoTradePage.astro scopes its own rules under
+ * `.ai-seo-page` to keep the two stylesheets from fighting over the same
+ * selectors — see the comment on that wrapper there before changing either
+ * file.
  */
 import '../styles/global.css';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
@@ -78,6 +82,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     />
   </head>
   <body>
+    <Header />
     <slot />
     <Footer />
     <script src="../scripts/forms.js"></script>

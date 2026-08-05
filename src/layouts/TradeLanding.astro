@@ -1,0 +1,69 @@
+---
+/**
+ * Shell for the "AI SEO for [trade]" landing pages.
+ *
+ * These deliberately do NOT use Base.astro. They are cold-traffic landing
+ * pages that ship their own nav and footer, and the handoff bundle's CLAUDE.md
+ * is explicit about why: the page carries exactly one navigation element
+ * pointing at conversion, because every extra nav link raises the odds a
+ * visitor leaves before the hero lands. Dropping the site header and footer on
+ * top would both duplicate the chrome and undo that decision.
+ *
+ * What it does keep from Base.astro is everything invisible — the Meta Pixel,
+ * canonical URL, OG tags and favicon — so these pages are tracked and indexed
+ * on the same terms as the rest of the site.
+ */
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '804361289062226');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=804361289062226&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    {/* /sitemap.xml, not /sitemap-index.xml — this site builds its own XML
+        sitemap in src/pages/sitemap.xml.ts rather than using @astrojs/sitemap,
+        which is what would have produced an index. Base.astro still points at
+        the index form and resolves to nothing. */}
+    <link rel="sitemap" href={`${base}/sitemap.xml`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

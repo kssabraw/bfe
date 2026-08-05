@@ -1,12 +1,52 @@
-# CLAUDE.md — AI SEO Trade Landing Page
+# AI SEO Trade Landing Pages
 
-**Applies to:** `ai-seo-hvac-v2.html` and every trade variant built from it
+**Applies to:** every page at `/ai-seo-for-<trade>/` — 36 of them
 **Owner:** Kyle / Amazing Rankings
 **Last updated:** July 2026
 
 Read this before changing anything on the page. Most of what looks like arbitrary
 layout is a conversion decision with a reason behind it. The reasons are written
 down here so you can override them deliberately instead of accidentally.
+
+---
+
+## 0. Where the code lives
+
+These arrived as 36 standalone HTML files generated from a tokenized template by
+a Node script. That generator is gone; Astro does the same job on every build.
+Nothing about the page's structure or copy changed in the move.
+
+| Then | Now |
+|---|---|
+| `data/trades-1..4.json` | `src/data/trades/*.json`, re-exported by `index.js` |
+| `scripts/generate.js` → `fields()` | `src/lib/trade-fields.js` → `tradeFields()` |
+| `templates/trade-template.html` | `src/components/AiSeoTradePage.astro` |
+| `ai-seo-for-<slug>.html` × 36 | `src/pages/ai-seo-for-[trade].astro` |
+| `img/` | `public/images/ai-seo-trades/` |
+
+**Adding or changing a trade is still one object in a JSON file.** The sentences
+are composed in `trade-fields.js`, so a trade only supplies what is genuinely
+different about it and can override any composed line with the matching optional
+field. There is no regenerate step and no rendered HTML to commit — `astro build`
+produces the pages, and both sitemaps pick them up automatically.
+
+Three things changed on import, all of them deliberate:
+
+1. **The build-notes block is gone.** It was handoff scaffolding, never part of
+   the page. Its open items are preserved in §7 below.
+2. **Missing screenshots resolve at build time**, not in the browser. The old
+   page shipped a script that swapped in a placeholder when an image 404'd;
+   `src/pages/ai-seo-for-[trade].astro` now reads the capture folder during the
+   build and renders the placeholder directly. Drop a capture in and it appears
+   — same property, no client-side JS, no layout shift.
+3. **The pricing and sign-in links point at the real destinations.** The handoff
+   used `/signup/?plan=lite` and `/signin/`, neither of which exists on this
+   site. They now use the Stripe checkout URLs and accounts host from
+   `src/lib/data.js`.
+
+The page keeps its own nav and footer and does **not** use `Base.astro` — see
+§3.1 (Nav) for why that matters. It does inherit the Meta Pixel, canonical URL
+and OG tags, via `src/layouts/TradeLanding.astro`.
 
 ---
 
@@ -19,7 +59,7 @@ down here so you can override them deliberately instead of accidentally.
 | **Traffic** | Organic + paid, cold. Target query family: "AI SEO for [trade]", "get my business in ChatGPT", "AI search for contractors" |
 | **Primary conversion** | Free AI visibility scan (`/scan/`) — no card |
 | **Secondary conversion** | $1 / 7-day trial → $49/mo |
-| **Page count** | 1 template × 16 trades (see §6) |
+| **Page count** | 1 template × 36 trades (see §6) |
 
 **Why two conversion actions and not one.** Cold contractor traffic converts to a
 paid trial at low single digits. The free scan captures the other 90%+, and it
@@ -308,7 +348,7 @@ the CTA count and the day-8 disclosure after every major regeneration.
 
 ## 6. Trade variants
 
-Sixteen trades ship from this template. Per trade, swap:
+All 36 trades ship from this template. Per trade, swap:
 
 | Variable | HVAC value |
 |---|---|
@@ -326,7 +366,7 @@ Sixteen trades ship from this template. Per trade, swap:
 plumbing page defeats the entire purpose of using real proof.
 
 Everything else — structure, CTA cadence, offer language, FAQ order — stays
-identical across all sixteen.
+identical across all 36.
 
 ---
 
@@ -339,8 +379,55 @@ identical across all sixteen.
    a specific number ("three replacement jobs in August we'd never have seen")
    outperforms a general one. Do not ship unattributed.
 4. **Schema not yet added:** FAQPage on the accordion, Service, LocalBusiness.
-5. **OG/Twitter image** — use the ChatGPT screenshot.
-6. ~~**Screenshot annotations** still in red marker. Redraw in `#6a2f9e`.~~ Done Jul 2026 — annotations recolored to `#6a2f9e` in `img/*_purple.png`; original red JPGs retained as source.
+5. **OG/Twitter image** — use the ChatGPT screenshot. `TradeLanding.astro` sets
+   `og:title`, `og:description` and `og:type` but no image.
+6. **Analytics events on CTAs**, distinguishable by position, so the five
+   in-flow slots can be told apart. Not wired.
+7. **Eight trades still need screenshots** — see §9.
+8. ~~**Screenshot annotations** still in red marker. Redraw in `#6a2f9e`.~~ Done Jul 2026 — annotations recolored to `#6a2f9e` in `img/*_purple.png`; original red JPGs retained as source.
+
+Items 1–6 were carried over from the handoff's build-notes block, which was
+removed from the page itself on import. Nothing on the page depends on them, and
+none of them block publishing — but 1 in particular ships illustrative numbers.
+
+---
+
+## 9. Screenshots
+
+Two captures per trade, both required, both trade-specific. An HVAC screenshot on
+the plumbing page defeats the entire purpose of using real proof.
+
+Files go in `public/images/ai-seo-trades/` named `<slug>-chatgpt.png` and
+`<slug>-ai-overview.png`. HVAC is the exception — it was the hand-built master
+and keeps `get_seen_here_chatgpt_purple.png` / `get_seen_ai_overviews_marked.png`,
+mapped in `src/lib/trade-fields.js`.
+
+**28 of 36 trades have both captures.** These eight do not, and render a
+placeholder naming the file they need until the captures land:
+
+`appliance-repair-companies`, `chimney-sweep-companies`, `handyman-companies`,
+`home-security-installation-companies`, `mold-remediation-companies`,
+`septic-service-companies`, `solar-installation-companies`,
+`water-damage-restoration-companies`
+
+Nothing else needs updating when you add one — the build reads the folder.
+
+**How to shoot each one**
+
+1. Clean browser profile, logged out, location set to the city named in the
+   query. Keep one real city per trade.
+2. **Capture A — ChatGPT.** Ask the query with a question mark. Screenshot the
+   full answer including the named businesses, addresses and phone numbers.
+3. **Capture B — Google.** Search the same query without the question mark.
+   Screenshot the AI Overview **and** the map pack with at least two listings.
+4. Annotate as a numbered pair: purple box + marker 1 (`#6a2f9e`) on the AI
+   answer, blue box + marker 2 (`#1c78b8`) on the map pack, connector spine in
+   the left gutter, cropped so both zones stay legible at 375px.
+5. If the answer you capture uses a different query than the one in the trade's
+   data, update the page's query, hero line and captions to match the capture —
+   not the other way round (§2.5). A trade whose Google capture used a different
+   search sets `q2`, which owns the AI Overview section only.
+6. Update the `· July 2026` caption if you shoot in a later month.
 
 ---
 

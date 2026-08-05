@@ -8,7 +8,9 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { verticals } from '../data/verticals/index.js';
+import { trades } from '../data/trades/index.js';
 import { aiTrackingVerticalPath } from '../lib/ai-tracking-verticals';
+import { tradePath } from '../lib/trade-fields.js';
 import { sortPosts } from '../lib/blog';
 import { SITEMAP_GROUPS, assertSitemapCoverage, staticPages } from '../lib/site-pages';
 
@@ -39,6 +41,7 @@ const groups = SITEMAP_GROUPS.map((heading) => ({
 })).filter((group) => group.links.length > 0);
 
 const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
+const tradePages = [...trades].sort((a, b) => a.n.localeCompare(b.n));
 ---
 
 <Base
@@ -72,6 +75,16 @@ const industries = [...verticals].sort((a, b) => a.name.localeCompare(b.name));
         <ul class="sitemap-list sitemap-list--columns">
           {industries.map((v) => (
             <li><a href={`${url(aiTrackingVerticalPath(v.slug))}/`}>AI Tracking for {v.name}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="sitemap-block">
+        <h2>AI SEO by trade</h2>
+        <p class="sitemap-block-note">{tradePages.length} trade landing pages.</p>
+        <ul class="sitemap-list sitemap-list--columns">
+          {tradePages.map((t) => (
+            <li><a href={url(tradePath(t.s))}>AI SEO for {t.n}</a></li>
           ))}
         </ul>
       </section>

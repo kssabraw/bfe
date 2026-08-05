@@ -14,7 +14,7 @@ const url = (path: string) => `${base}${path}`;
 const answerParas = v.answer.split(/(?<=\.)\s+(?=[A-Z])/).filter(Boolean);
 ---
 
-<div class="bfe-verticals" style={`font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #545356; background: #ffffff; line-height: 1.65; font-size: 16px; --accent: ${accent};`}>
+<div class="bfe-verticals" style={`font-family: var(--font); color: #545356; background: #ffffff; line-height: 1.65; font-size: 16px; --accent: ${accent};`}>
 
   <div style="border-bottom: 1px solid #f1ecfa; background: #faf8ff;">
     <div style="max-width: 1140px; margin: 0 auto; padding: 12px 24px; font-size: 13px; color: #8c8ea3; display: flex; gap: 8px; align-items: center;">

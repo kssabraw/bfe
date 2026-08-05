@@ -1,0 +1,31 @@
+---
+/**
+ * The site's one and only font-loading declaration.
+ *
+ * global.css sets `--font: "Inter", system-ui, ...`, but declaring a font
+ * family in CSS doesn't fetch it — until this component existed, Base.astro
+ * had no font <link> at all, so every page silently rendered in whatever
+ * system font the visitor's OS supplies instead of Inter. TradeLanding.astro
+ * separately hand-copied a working font <link> of its own, which is how the
+ * two drifted: it briefly loaded Lexend too, a display face nothing else on
+ * the site used, and Base.astro's copy didn't exist yet at all.
+ *
+ * Fix once, structurally: every layout renders this same component instead
+ * of writing its own <link> tags, so there is exactly one place that decides
+ * what the site's font is. A new layout that forgets to render <Fonts />
+ * will visibly render in the wrong font immediately — comparable to any
+ * other page, not silently — rather than drifting unnoticed the way two
+ * separate hand-copied blocks did.
+ *
+ * Weights: 400/500/600/700 — matches every font-weight value used across
+ * global.css, Header.astro and Footer.astro. Add a weight here, not in a
+ * second copy, if a component ever needs one that isn't loaded.
+ */
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>

@@ -1,0 +1,35 @@
+---
+// /ai-seo-for-<trade>/ — one landing page per trade, 36 in total.
+//
+// Distinct from src/pages/[vertical]/[page].astro, which serves the AI tracking
+// pages at /<slug>/ai-tracking-<slug>/. Both cover the same trades; they are
+// different pages for different traffic, and neither URL space overlaps.
+import TradeLanding from '../layouts/TradeLanding.astro';
+import AiSeoTradePage from '../components/AiSeoTradePage.astro';
+import { trades } from '../data/trades/index.js';
+import { tradeFields, tradeCaptures } from '../lib/trade-fields.js';
+import { readdirSync } from 'node:fs';
+
+// Which screenshots actually exist, read from disk at build time. Derived
+// rather than listed so dropping a capture into the folder is the only step
+// needed to replace a placeholder — the same property the handoff generator
+// had, which is why its SCREENSHOTS.md was generated and never hand-edited.
+const captureDir = new URL('../../public/images/ai-seo-trades/', import.meta.url);
+const available = new Set(readdirSync(captureDir));
+
+export function getStaticPaths() {
+  return trades.map((trade) => ({
+    params: { trade: trade.s },
+    props: { trade },
+  }));
+}
+
+const { trade } = Astro.props;
+const fields = tradeFields(trade);
+const captures = tradeCaptures(trade, available);
+const others = trades.filter((t) => t.s !== trade.s);
+---
+
+<TradeLanding title={fields.TITLE} description={fields.META}>
+  <AiSeoTradePage fields={fields} captures={captures} others={others} />
+</TradeLanding>

@@ -383,7 +383,8 @@ identical across all 36.
    `og:title`, `og:description` and `og:type` but no image.
 6. **Analytics events on CTAs**, distinguishable by position, so the five
    in-flow slots can be told apart. Not wired.
-7. **Eight trades still need screenshots** — see §9.
+7. ~~**Eight trades still need screenshots.**~~ Done Aug 2026 — all 36 trades
+   now have both captures.
 8. ~~**Screenshot annotations** still in red marker. Redraw in `#6a2f9e`.~~ Done Jul 2026 — annotations recolored to `#6a2f9e` in `img/*_purple.png`; original red JPGs retained as source.
 
 Items 1–6 were carried over from the handoff's build-notes block, which was
@@ -402,15 +403,9 @@ Files go in `public/images/ai-seo-trades/` named `<slug>-chatgpt.png` and
 and keeps `get_seen_here_chatgpt_purple.png` / `get_seen_ai_overviews_marked.png`,
 mapped in `src/lib/trade-fields.js`.
 
-**28 of 36 trades have both captures.** These eight do not, and render a
-placeholder naming the file they need until the captures land:
-
-`appliance-repair-companies`, `chimney-sweep-companies`, `handyman-companies`,
-`home-security-installation-companies`, `mold-remediation-companies`,
-`septic-service-companies`, `solar-installation-companies`,
-`water-damage-restoration-companies`
-
-Nothing else needs updating when you add one — the build reads the folder.
+**All 36 trades have both captures.** Nothing needs updating when you replace
+or re-shoot one — the build reads the folder, so a trade with a placeholder
+would render the placeholder automatically if its files were ever removed.
 
 **How to shoot each one**
 

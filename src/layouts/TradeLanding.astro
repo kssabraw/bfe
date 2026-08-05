@@ -2,17 +2,31 @@
 /**
  * Shell for the "AI SEO for [trade]" landing pages.
  *
- * These deliberately do NOT use Base.astro. They are cold-traffic landing
- * pages that ship their own nav and footer, and the handoff bundle's CLAUDE.md
- * is explicit about why: the page carries exactly one navigation element
- * pointing at conversion, because every extra nav link raises the odds a
- * visitor leaves before the hero lands. Dropping the site header and footer on
- * top would both duplicate the chrome and undo that decision.
+ * These deliberately do NOT use Base.astro's <Header /> — the handoff bundle's
+ * CLAUDE.md is explicit about why: the page carries exactly one navigation
+ * element pointing at conversion, because every extra nav link raises the odds
+ * a visitor leaves before the hero lands. AiSeoTradePage.astro ships its own
+ * nav for that reason, and that stays.
  *
- * What it does keep from Base.astro is everything invisible — the Meta Pixel,
- * canonical URL, OG tags and favicon — so these pages are tracked and indexed
- * on the same terms as the rest of the site.
+ * The footer is a different call, and not the same rule: it sits below the
+ * final CTA and long-form section, after every in-flow conversion point, so
+ * using the site's own <Footer /> here doesn't reopen an early exit — it's
+ * the same swap Base.astro-based pages already make at that point in the
+ * page. Using the real component (not a recreation) also means it never
+ * drifts from the one every other page ships.
+ *
+ * global.css is imported for the footer's sake — it depends on the site's
+ * CSS custom properties (--c-navy etc.) and its .container/.btn/.card/.eyebrow
+ * utility classes, none of which the trade page defines on its own. Those
+ * same class names are also used by the trade page's own content above the
+ * footer, with different values (different button shape, different card
+ * padding), so AiSeoTradePage.astro scopes its own rules under `.ai-seo-page`
+ * to keep the two stylesheets from fighting over the same selectors — see the
+ * comment on that wrapper there before changing either file.
  */
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -65,5 +79,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <slot />
+    <Footer />
+    <script src="../scripts/forms.js"></script>
   </body>
 </html>

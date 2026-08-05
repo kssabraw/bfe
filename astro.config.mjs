@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import rehypePostEnhance from './src/lib/rehype-post-enhance.mjs';
+import { trades } from './src/data/trades/index.js';
+import { tradePath } from './src/lib/trade-fields.js';
 
 // SITE_URL / BASE_PATH are set by the deploy environment:
 //  - GitHub Pages preview: SITE_URL=https://kssabraw.github.io BASE_PATH=bfe
@@ -27,5 +29,17 @@ export default defineConfig({
     '/sample-page': withBase('/'),
     '/privacy-policy-2': withBase('/privacy-policy'),
     '/blog/category/uncategorized': withBase('/blog'),
+
+    // The 36 trade pages shipped at /ai-seo-for-<trade>/ before it was
+    // confirmed they're the "vertical" page type reserved at the bare
+    // /<trade>/ root (src/lib/ai-tracking-verticals.ts) and moved there.
+    // That first URL was live in production, so it's redirected rather than
+    // left to 404 — anything that linked or indexed it during that window
+    // still resolves. Generated from the same trade list the pages
+    // themselves come from, so a renamed or removed trade can't leave a
+    // stale or missing redirect behind.
+    ...Object.fromEntries(
+      trades.map((t) => [`/ai-seo-for-${t.s}`, withBase(tradePath(t.s))]),
+    ),
   },
 });

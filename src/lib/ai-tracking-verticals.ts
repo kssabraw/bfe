@@ -4,9 +4,15 @@
 // are:
 //
 //   vertical              the industry page directly off the root domain,
-//                         /<slug>/. None are built today — /roofers/ 404s.
+//                         /<slug>/. Built by src/pages/[trade].astro, from the
+//                         records in src/data/trades — see that file for why
+//                         it's the trade landing page and not a separate type.
 //   ai tracking vertical  /<slug>/ai-tracking-<slug>/, the pages this module
 //                         serves. All 36 of them exist.
+//
+// The two are siblings, not nested: an incoming request for /roofers/ and one
+// for /roofers/ai-tracking-roofers/ resolve to different route files by path
+// depth, so neither shadows the other.
 //
 // "Vertical" on its own still refers to the industry itself elsewhere in the
 // codebase — the [vertical] route param and the records in src/data/verticals.
